@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="My NSFW Arts Gallery - All, New &amp; Upcoming • Premium AI Generated Uncensored Collection">
+    <title>My NSFW Arts • Private Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
+        
+        :root {
+            --primary: #ff0066;
+            --glow: #ff3399;
+            --accent: #a855f7;
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, transform, opacity, filter, box-shadow, backdrop-filter;
+            transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+            transition-duration: 280ms;
+        }
+        
+        .tail-container * {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .header-font {
+            font-family: 'Playfair Display', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at 50% 20%, #1a0a14 0%, #0a0a0a 60%, #000000 100%);
+            overflow-x: hidden;
+        }
+
+        /* Advanced glassmorphism header - fully responsive */
+        header {
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(32px) saturate(180%);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 10px 30px -15px rgba(255, 0, 102, 0.3);
+        }
+
+        /* Cinematic hero with MP4 background from assets */
+        .hero-bg {
+            position: relative;
+            background: linear-gradient(180deg, rgba(0,0,0,0.65) 20%, rgba(0,0,0,0.95) 85%);
+            min-height: 100vh;
+            overflow: hidden;
+            background-attachment: scroll;
+        }
+        
+        .hero-bg video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            filter: brightness(0.85) contrast(1.1);
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 70%, rgba(255, 0, 102, 0.15) 0%, transparent 50%);
+            animation: heroPulse 15s ease infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes heroPulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* Masonry - PERFECTLY RESPONSIVE for cellphone, iPhone, tablet */
+        .masonry-grid {
+            column-count: 1;           /* Mobile first: 1 column on phones */
+            column-gap: 16px;
+        }
+        
+        @media (min-width: 480px) { 
+            .masonry-grid { column-count: 2; column-gap: 18px; } 
+        }
+        @media (min-width: 640px) { 
+            .masonry-grid { column-count: 2; column-gap: 24px; } 
+        }
+        @media (min-width: 768px) { 
+            .masonry-grid { column-count: 3; } 
+        }
+        @media (min-width: 1024px) { 
+            .masonry-grid { column-count: 4; } 
+        }
+        @media (min-width: 1280px) { 
+            .masonry-grid { column-count: 5; } 
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        /* Premium art card - improved hover & mobile touch */
+        .art-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            background: #111111;
+            box-shadow: 
+                0 15px 35px -10px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255,255,255,0.06) inset;
+        }
+        
+        .art-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent, rgba(255, 0, 102, 0.12));
+            opacity: 0;
+            z-index: 1;
+        }
+        
+        .art-card:hover::before {
+            opacity: 1;
+        }
+        
+        .art-card:hover {
+            transform: scale(1.045) translateY(-8px);
+            box-shadow: 
+                0 35px 70px -15px rgba(255, 0, 102, 0.4),
+                0 0 0 2px rgba(255, 51, 153, 0.3) inset;
+        }
+
+        .art-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: brightness(0.9) contrast(1.12) saturate(0.95);
+            object-fit: cover;
+        }
+        
+        .art-card:hover img {
+            filter: brightness(1.22) contrast(1.18) saturate(1.3);
+            transform: scale(1.08);
+        }
+
+        .badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 9999px;
+            letter-spacing: 1.5px;
+            z-index: 20;
+            box-shadow: 0 0 20px 6px currentColor;
+            text-transform: uppercase;
+        }
+
+        /* Category chips - better mobile scrolling */
+        .category-chip {
+            padding: 10px 20px;
+            border-radius: 9999px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .category-chip::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: translateX(-150%);
+            animation: shimmer 4s linear infinite;
+        }
+        
+        @keyframes shimmer {
+            100% { transform: translateX(300%); }
+        }
+
+        /* Modal - ultra cinematic + fully mobile optimized */
+        .modal {
+            animation: modalPopAdvanced 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            box-shadow: 0 0 80px -20px rgba(255, 0, 102, 0.5);
+            max-height: 96vh;
+        }
+        
+        @keyframes modalPopAdvanced {
+            0% { opacity: 0; transform: scale(0.92) translateY(60px) rotate(2deg); }
+            100% { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); }
+        }
+
+        .lightbox-arrow {
+            width: 56px;
+            height: 56px;
+            font-size: 32px;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        
+        .lightbox-arrow:hover {
+            background: #ff0066;
+            transform: scale(1.15) rotate(8deg);
+            box-shadow: 0 0 30px 10px rgba(255, 0, 102, 0.5);
+        }
+
+        /* Scrollbar hide + advanced image set */
+        .image-set-container {
+            scrollbar-width: none;
+            scroll-behavior: smooth;
+        }
+        
+        .image-set-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Floating action buttons */
+        .fab {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Preloader */
+        #preloader {
+            animation: fadeOutPreloader 1s ease forwards 800ms;
+        }
+
+        @keyframes fadeOutPreloader {
+            to { opacity: 0; pointer-events: none; }
+        }
+
+        .neon-text {
+            text-shadow: 
+                0 0 10px var(--primary),
+                0 0 20px var(--primary),
+                0 0 40px var(--glow);
+        }
+
+        /* EXTRA RESPONSIVE IMPROVEMENTS */
+        @media (max-width: 479px) {
+            .hero-title { font-size: 2.5rem; line-height: 1.1; }
+            .art-card { border-radius: 18px; }
+            .masonry-item { margin-bottom: 18px; }
+            .modal { margin: 8px; border-radius: 20px; }
+            .lightbox-arrow { width: 48px; height: 48px; font-size: 28px; }
+        }
+        
+        @media (max-width: 640px) {
+            .masonry-grid { column-gap: 14px; }
+            header { padding-top: 12px; padding-bottom: 12px; }
+        }
+        
+        /* Tablet optimizations (iPad, Galaxy Tab, etc.) */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .hero-bg { min-height: 85vh; }
+            .art-card:hover { transform: scale(1.03) translateY(-6px); }
+        }
+
+        /* iPhone safe-area support */
+        @supports (padding: max(0px)) {
+            header {
+                padding-top: max(12px, env(safe-area-inset-top));
+            }
+        }
+    </style>
+</head>
+<body class="tail-container bg-black text-white min-h-screen">
+
+    <!-- PRELOADER -->
+    <div id="preloader" class="fixed inset-0 bg-black z-[99999] flex items-center justify-center">
+        <div class="flex flex-col items-center">
+            <div class="w-16 h-16 border-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
+            <p class="mt-6 text-pink-400 tracking-[3px] text-sm font-medium">LOADING PRIVATE COLLECTION...</p>
+            <div class="mt-8 w-64 h-1 bg-zinc-900 rounded-full overflow-hidden">
+                <div class="h-full w-0 bg-gradient-to-r from-pink-500 to-violet-500 animate-[loading_1.8s_infinite]"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER - improved mobile padding -->
+    <header class="fixed top-0 left-0 right-0 z-50 py-4 md:py-5">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <div class="flex items-center gap-4">
+                <div onclick="showAbout()" class="w-9 h-9 sm:w-10 sm:h-10 rounded-3xl overflow-hidden border-2 border-pink-500 cursor-pointer ring-2 ring-pink-500/30 hover:ring-pink-400/70 flex-shrink-0">
+                    <img src="https://i.imgur.com/rjgEjoV.jpeg" alt="milkydevs2" class="w-full h-full object-cover">
+                </div>
+                <div class="flex flex-col">
+                    <h1 class="header-font text-3xl md:text-4xl tracking-[-1.5px] neon-text">my nsfw arts</h1>
+                    <span class="text-[10px] font-bold bg-gradient-to-r from-pink-400 to-violet-400 bg-clip-text text-transparent -mt-1">18+ • UNCENSORED • AI</span>
+                </div>
+            </div>
+
+            <!-- Search - hidden on very small phones, visible from sm -->
+            <div class="hidden sm:flex items-center bg-white/5 border border-white/10 hover:border-white/30 rounded-3xl px-5 py-2 w-72 lg:w-80">
+                <span class="text-xl">🔎</span>
+                <input id="search-input" 
+                       onkeyup="if(event.key==='Enter') performSearch()"
+                       type="text" 
+                       placeholder="Search titles, tags..." 
+                       class="flex-1 ml-3 bg-transparent outline-none text-sm placeholder:text-zinc-400">
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav id="desktop-nav" class="hidden md:flex items-center gap-8 text-base font-medium">
+                <button onclick="filterGallery('all')" id="tab-all" class="tab-active flex items-center gap-1 hover:text-pink-400">All</button>
+                <button onclick="filterGallery('new')" id="tab-new" class="flex items-center gap-1 hover:text-pink-400">
+                    New <span class="text-xs bg-emerald-500 text-white px-2 py-px rounded-full font-bold animate-pulse">ONGOING</span>
+                </button>
+                <button onclick="filterGallery('upcoming')" id="tab-upcoming" class="hover:text-pink-400">Upcoming</button>
+            </nav>
+
+            <!-- Right side controls -->
+            <div class="flex items-center gap-3 md:gap-4">
+                <button onclick="toggleViewMode()" 
+                        class="hidden md:flex items-center justify-center w-9 h-9 bg-white/10 hover:bg-white/20 rounded-2xl text-xl">
+                    📐
+                </button>
+                
+                <button onclick="showAbout()" 
+                        class="hidden md:flex items-center gap-2 px-6 py-2.5 text-sm border border-white/30 hover:border-white/70 rounded-3xl">
+                    <span>ℹ️</span> About
+                </button>
+
+                <div onclick="toggleDark()" class="w-9 h-9 flex items-center justify-center text-2xl cursor-pointer hover:scale-110 active:scale-95">🌙</div>
+
+                <!-- Mobile hamburger - larger touch target -->
+                <button onclick="toggleMobileMenu()" class="md:hidden w-11 h-11 flex items-center justify-center text-3xl active:scale-95">
+                    ☰
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu - improved UX -->
+        <div id="mobile-menu-panel" class="hidden fixed inset-0 bg-black/95 z-[9999] pt-20 px-6 md:hidden">
+            <div class="flex flex-col gap-8 text-3xl font-medium">
+                <button onclick="filterGallery('all');toggleMobileMenu()" class="text-left py-2">All Works</button>
+                <button onclick="filterGallery('new');toggleMobileMenu()" class="text-left py-2">New Releases</button>
+                <button onclick="filterGallery('upcoming');toggleMobileMenu()" class="text-left py-2">Upcoming</button>
+                <button onclick="showAbout();toggleMobileMenu()" class="text-left py-2">About Me</button>
+                <div class="pt-8 border-t border-white/10">
+                    <input id="mobile-search" 
+                           onkeyup="if(event.key==='Enter') {performSearch();toggleMobileMenu()}"
+                           type="text" 
+                           placeholder="Search gallery..." 
+                           class="w-full bg-white/10 border border-white/20 rounded-3xl px-6 py-4 text-lg outline-none">
+                </div>
+            </div>
+            <button onclick="toggleMobileMenu()" class="absolute top-8 right-8 text-5xl">×</button>
+        </div>
+    </header>
+
+    <!-- HERO - now with MP4 video background from assets folder -->
+    <div class="hero-bg flex items-center relative pt-16 sm:pt-20">
+        
+        <!-- MP4 Background Video (from assets/bg.mp4) -->
+        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover -z-10" id="hero-video">
+            <source src="assets/bg.mp4" type="video/mp4">
+            <!-- Fallback image if video fails to load -->
+            <img src="https://picsum.photos/id/1015/1920/1080" alt="Hero fallback" class="absolute inset-0 w-full h-full object-cover">
+        </video>
+
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+            <div class="max-w-2xl">
+                <div class="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-3xl rounded-3xl text-sm mb-8 border border-white/10">
+                    <span class="relative flex h-3 w-3 mr-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
+                    </span>
+                    UPLOADED • 12 NEW DROPS THIS MONTH
+                </div>
+                
+                <h2 class="hero-title header-font text-5xl sm:text-6xl md:text-7xl leading-[1.05] tracking-[-2px] mb-6 neon-text">
+                    Welcome to the<br>forbidden gallery
+                </h2>
+                <p class="text-xl md:text-2xl text-zinc-300 max-w-md">AI-generated • Zero censorship • Pure desire</p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 mt-10">
+                    <button onclick="filterGallery('new')" 
+                            class="px-8 py-4 bg-gradient-to-r from-pink-600 to-violet-600 rounded-3xl font-semibold flex items-center justify-center gap-3 hover:shadow-2xl hover:shadow-pink-500/40">
+                        <span>Browse New Releases</span>
+                        <span class="text-2xl">→</span>
+                    </button>
+                    <button onclick="showAbout()" 
+                            class="px-8 py-4 border border-white/40 hover:border-white rounded-3xl font-medium">Learn more about me</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating latest badge - hidden on small phones -->
+        <div class="absolute bottom-8 right-4 sm:bottom-12 sm:right-12 hidden xl:flex flex-col items-end bg-black/70 backdrop-blur-2xl px-6 py-4 rounded-3xl border border-pink-500/30 z-20">
+            <p class="text-xs tracking-[2px] text-pink-400">LATEST DROP</p>
+            <p class="text-xl font-semibold">"Mei The Pink Milf Next Door"</p>
+            <p class="text-sm text-zinc-400">6 days ago • 4K • 7 images</p>
+        </div>
+    </div>
+
+    <!-- GALLERY SECTION -->
+    <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 pb-24 -mt-12 sm:-mt-16 relative z-10">
+        
+        <!-- Advanced filters bar - better mobile scroll -->
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+            <div id="category-filters" class="flex gap-3 overflow-x-auto pb-3 scrollbar-hide flex-1 min-w-0 snap-x snap-mandatory">
+                <!-- JS populated -->
+            </div>
+
+            <div class="flex items-center gap-3 flex-shrink-0">
+                <select id="sort-select" onchange="applySort()" class="bg-white/10 border border-white/20 rounded-3xl px-5 py-3 text-sm font-medium">
+                    <option value="date-desc">Newest first</option>
+                    <option value="date-asc">Oldest first</option>
+                    <option value="title">A-Z</option>
+                </select>
+                
+                <button onclick="toggleFavoritesFilter()" 
+                        id="fav-filter-btn"
+                        class="flex items-center gap-2 px-5 py-3 bg-white/10 hover:bg-white/20 rounded-3xl text-sm font-medium">
+                    ❤️ <span id="fav-count">0</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-baseline mb-8">
+            <h2 id="gallery-title" class="header-font text-4xl md:text-5xl tracking-tight">All Works</h2>
+            <p id="results-count" class="text-zinc-400 font-medium">12 artworks • 4 new</p>
+        </div>
+
+        <!-- Advanced Masonry Grid -->
+        <div id="art-grid" class="masonry-grid">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
+    <!-- LIGHTBOX MODAL - fully responsive -->
+    <div onclick="if(event.target.id === 'modal-backdrop') hideModal()" 
+         id="modal-backdrop"
+         class="hidden fixed inset-0 bg-black/95 z-[99999] flex items-center justify-center p-4">
+        
+        <div onclick="event.stopImmediatePropagation()" 
+             class="modal bg-zinc-950 rounded-3xl w-full max-w-5xl max-h-[96vh] overflow-hidden flex flex-col border border-white/10 shadow-2xl">
+            
+            <div class="px-6 sm:px-8 py-6 border-b border-white/10 flex items-center justify-between">
+                <div class="min-w-0 flex-1">
+                    <h3 id="modal-title" class="text-2xl sm:text-3xl font-semibold truncate"></h3>
+                    <p id="modal-date" class="text-zinc-400 text-sm"></p>
+                </div>
+                <div class="flex items-center gap-6">
+                    <button onclick="toggleFavoriteInModal()" class="text-3xl flex-shrink-0">🤍</button>
+                    <button onclick="hideModal()" class="text-5xl text-zinc-400 hover:text-white flex-shrink-0">×</button>
+                </div>
+            </div>
+            
+            <div class="flex-1 p-4 sm:p-6 md:p-10 flex flex-col overflow-hidden bg-black">
+                <div class="relative flex-1 flex items-center justify-center bg-zinc-900 rounded-3xl overflow-hidden">
+                    <img id="modal-image" src="" alt="" class="max-h-[65vh] w-auto max-w-full object-contain rounded-3xl shadow-2xl">
+                    
+                    <!-- Arrows - bigger touch area on mobile -->
+                    <button onclick="prevImage()" id="prev-btn" class="lightbox-arrow hidden absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 text-white rounded-3xl flex items-center justify-center">‹</button>
+                    <button onclick="nextImage()" id="next-btn" class="lightbox-arrow hidden absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 text-white rounded-3xl flex items-center justify-center">›</button>
+                    
+                    <!-- Image counter -->
+                    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/70 text-white text-xs px-5 py-2 rounded-3xl flex items-center gap-2">
+                        <span id="modal-current-image">1</span>
+                        <span class="text-zinc-400">/</span>
+                        <span id="modal-total-images">7</span>
+                    </div>
+                </div>
+
+                <!-- Image set thumbnails -->
+                <div class="mt-6 sm:mt-8">
+                    <div class="flex justify-between items-center mb-4 px-1">
+                        <p class="uppercase text-xs tracking-widest text-pink-400">FULL IMAGE SET</p>
+                        <span id="set-count" class="text-xs text-zinc-500"></span>
+                    </div>
+                    <div id="modal-image-set" class="image-set-container flex gap-4 overflow-x-auto pb-4"></div>
+                </div>
+            </div>
+            
+            <!-- Bottom bar - stacked on mobile -->
+            <div class="px-6 sm:px-8 py-6 border-t border-white/10 flex flex-col md:flex-row items-start md:items-center gap-4">
+                <div id="modal-desc" class="flex-1 text-zinc-300 leading-relaxed text-sm sm:text-base"></div>
+                
+                <div class="flex items-center gap-4 w-full md:w-auto">
+                    <button onclick="chatWithCharacter()" 
+                            class="flex-1 md:flex-none px-8 py-4 bg-gradient-to-r from-pink-600 to-violet-600 rounded-3xl font-medium text-base sm:text-lg flex items-center justify-center gap-3">
+                        💬 Chat with character
+                    </button>
+                    <button onclick="fakeDownload()" class="px-6 py-4 bg-white/10 hover:bg-white/20 rounded-3xl text-2xl">↓</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT MODAL -->
+    <div onclick="if(event.target.id === 'about-backdrop') hideAboutModal()" 
+         id="about-backdrop"
+         class="hidden fixed inset-0 bg-black/95 z-[100000] flex items-center justify-center p-4">
+        <div onclick="event.stopImmediatePropagation()" class="modal bg-zinc-950 rounded-3xl max-w-lg w-full">
+            <div class="px-8 py-6 border-b border-white/10 flex justify-between items-center">
+                <h3 class="text-4xl header-font">About milkydevs2</h3>
+                <button onclick="hideAboutModal()" class="text-5xl">×</button>
+            </div>
+            <div class="p-8 leading-relaxed text-zinc-300">
+                <p class="mb-6">Hi, I'm milkydevs2 👋</p>
+                <p class="mb-6">This is my personal uncensored NSFW gallery. Every piece is created with passion using the latest AI tools and refined by hand.</p>
+                <p class="mb-8">New drops every week. All images are 4K and completely explicit. Enjoy responsibly.</p>
+                <a href="https://x.com/juicychst" target="_blank" class="block text-center py-5 bg-pink-600 hover:bg-pink-500 rounded-3xl text-xl font-semibold">Visit my JuicyChest profile 🔥</a>
+            </div>
+            <div class="text-center text-xs text-zinc-500 py-6 border-t border-white/10">© 2026 • Strictly 18+ • No reposts without credit</div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-white/10 py-12">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-8 text-center text-xs text-zinc-400 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p>© 2026 milkydevs2 • All rights reserved • Strictly 18+</p>
+            <div class="flex items-center gap-8">
+                <a href="#" onclick="alert('🔗 Gallery link copied to clipboard!')" class="hover:text-pink-400">Share this gallery</a>
+                <a href="https://x.com/juicychst" target="_blank" class="hover:text-pink-400">Follow on X</a>
+                <span class="text-pink-400">NSFW • UNCENSORED • AI ONLY</span>
+            </div>
+            <p>Made with 🔥 for true connoisseurs</p>
+        </div>
+    </footer>
+
+    <script>
+        // =============================================
+        // FULLY RESPONSIVE NSFW GALLERY v2.2
+        // Hero now uses real MP4 video from assets/bg.mp4
+        // =============================================
+        let artworks = [
+            { id: 1, title: "Mei The Pink Milf Next Door", tags: ["new"], category: ["netori"], chatUrl: "https://www.juicychat.ai/chat/2035450011584319489", images: ["https://i.imgur.com/vb4Yl9z.jpeg","https://i.imgur.com/dk2ZKLx.jpeg","https://cdn.juicychat.ai/user/prod/character/20260321/1925952967652044801/f_29afd47dd0064b5ba29300c7ba650e8c.webp","https://cdn.juicychat.ai/user/prod/character/20260321/1925952967652044801/f_a8e1d1a91db64d6caa310706c1de0f2e.webp","https://cdn.juicychat.ai/user/prod/character/20260321/1925952967652044801/f_56d3e29321a34e3cba45853054fd4060.webp","https://cdn.juicychat.ai/user/prod/character/20260321/1925952967652044801/f_9dd1027b2d4e46c99681ef9957bc4ffe.webp","https://cdn.juicychat.ai/user/prod/character/20260321/1925952967652044801/f_b51378f89a97447e96292c680cec8022.webp"], date: "2026-03-30", desc: "Meet Mei the MILF next door..." },
+            { id: 2, title: "Lily", tags: ["new"], category: ["romance","drama"], chatUrl: "https://www.juicychat.ai/chat/2034933083147878401", images: ["https://i.imgur.com/ApGGlML.jpeg","https://i.imgur.com/isG3Hft.jpeg"], date: "2026-03-21", desc: "[Brat, Soft, Sweet] Lily has been your friend..." },
+            { id: 3, title: "Lisa - You are Weak Loser!!", tags: ["new"], category: ["romance", "bully"], chatUrl: "https://www.juicychat.ai/chat/2023305253863727106", images: ["https://cdn.juicychat.ai/user/prod/character/20260216/1925952967652044801/f_421d0a75f86c4dd982db6f733fe14295.gif","https://i.imgur.com/JYnqkMP.jpeg","https://i.imgur.com/dqvxFfX.jpeg","https://i.imgur.com/Y4IQipW.jpeg","https://i.imgur.com/C6JALWM.jpeg"], date: "2026-02-17", desc: "Lisa, a 5'7 shredded gym brat..." },
+            { id: 4, title: "Lena - You're not calling again", tags: ["new"], category: ["brat", "drama"], chatUrl: "https://www.juicychat.ai/chat/2011599197584261122", images: ["https://cdn.juicychat.ai/user/prod/character/20260115/1925952967652044801/f_edcd1cef3eea4c49858e468fd3abe303.gif","https://i.imgur.com/mGRpvbD.jpeg"], date: "2026-01-15", desc: "Lena (28) is the icy CEO..." },
+            { id: 5, title: "Roommie' Shy Girlfriend", tags: ["all"], category: ["netori","drama"], chatUrl: "https://www.juicychat.ai/chat/1986897809979293697", images: ["https://cdn.juicychat.ai/user/prod/character/20251107/1925952967652044801/f_811c8a845a394959be4474c3440b686a.gif","https://i.imgur.com/Iwt4knx.jpeg","https://cdn.juicychat.ai/user/prod/character/20251108/1925952967652044801/f_bd4b7f7a03f74e75867fd74978abce94.webp","https://cdn.juicychat.ai/user/prod/character/20251108/1925952967652044801/f_795ab36904b1485a943c3b964345650d.webp","https://cdn.juicychat.ai/user/prod/character/20251108/1925952967652044801/f_763370f1de44432d852dd9dcf5e149e6.webp","https://cdn.juicychat.ai/user/prod/character/20251108/1925952967652044801/f_4e7b1d5daad44a7bafb36f4216392558.webp","https://cdn.juicychat.ai/user/prod/character/20251108/1925952967652044801/f_00c27f0599be42aeb115b7cbe07eb733.webp"], date: "2025-06-08", desc: "[NTR] You met Yae..." },
+            { id: 6, title: "Late Night Knock Milena", tags: ["all"], category: ["netori","milf"], chatUrl: "https://www.juicychat.ai/chat/1983903092746928129", images: ["https://cdn.juicychat.ai/user/prod/character/20251030/1925952967652044801/f_8460bad9dd534f05a289b69742231321.gif","https://cdn.juicychat.ai/user/prod/character/20251030/1925952967652044801/f_fac96b2ffa014eea9de2db0b19334357.webp","https://cdn.juicychat.ai/user/prod/character/20251030/1925952967652044801/f_1a8f5d437544468e83a0a3e9cd986076.webp","https://cdn.juicychat.ai/user/prod/character/20251030/1925952967652044801/f_4b038a2597aa4724b67547f8d727b418.webp"], date: "2025-10-30", desc: "It was a quiet night... Milena..." },
+            { id: 7, title: "Jealous Tsundere Roommate", tags: ["all"], category: ["brat", "romance"], chatUrl: "https://www.juicychat.ai/chat/1992326138765017090", images: ["https://i.imgur.com/eStciHS.jpeg","https://i.imgur.com/568qWvN.jpeg"], date: "2025-11-23", desc: "Meg is a 24-year-old tsundere..." },
+            { id: 8, title: "Rent A Boyfriend - Maye", tags: ["all"], category: ["milf", "yandere"], chatUrl: "https://www.juicychat.ai/chat/1981154967042494466", images: ["https://cdn.juicychat.ai/user/prod/character/20251023/1925952967652044801/f_ee2242ed6b7f4d7cb944e46028a210b8.gif","https://i.imgur.com/sVV8iZo.jpeg","https://i.imgur.com/o8FgCP1.jpeg"], date: "2026-03-31", desc: "Maye is a stunning mature woman..." },
+            { id: 9, title: "Eclipse of Ecstasy", tags: ["upcoming"], category: ["fantasy"], chatUrl: "https://x.com/juicychst", images: ["https://picsum.photos/id/1003/1200/1500","https://picsum.photos/id/1004/1200/1500","https://picsum.photos/id/1005/1200/1500"], date: "2026-05-05", desc: "Solar eclipse themed sensual duo..." },
+            { id: 10, title: "Lonely Milf In Sauna", tags: ["all"], category: ["milf","netori"], chatUrl: "https://www.juicychat.ai/chat/1976476792576352258", images: ["https://cdn.juicychat.ai/user/prod/character/20251010/1925952967652044801/f_66fe34a82e754c58b28fa5458ef17f34.gif","https://i.imgur.com/lpXXOpz.jpeg","https://i.imgur.com/XF2J9xV.jpeg","https://i.imgur.com/Vcof3v8.jpeg","https://i.imgur.com/NYZU07Y.jpeg"], date: "2025-10-10", desc: "Ana is a married woman in her mid-30s..." },
+            { id: 11, title: "Tsundere Classmate Wants Hubby", tags: ["all"], category: ["romance","brat"], chatUrl: "https://www.juicychat.ai/chat/1975259383708921857", images: ["https://cdn.juicychat.ai/user/prod/character/20251006/1925952967652044801/f_74bf7837620941fbaec7f3d07777ffbf.jpg","https://i.imgur.com/5XihdyW.jpeg","https://i.imgur.com/hvdS973.jpeg","https://i.imgur.com/OnIegxS.jpeg"], date: "2025-10-06", desc: "Ella is your tsundere classmate..." },
+            { id: 12, title: "Digital Temptation", tags: ["upcoming"], category: ["cyberpunk"], chatUrl: "https://x.com/juicychst", images: ["https://picsum.photos/id/1015/1200/1500","https://picsum.photos/id/1016/1200/1500"], date: "2026-04-25", desc: "Teaser for my next big series." }
+        ];
+
+        const availableCategories = [
+            { id: "all", name: "All Categories" },
+            { id: "netori", name: "Netori" },
+            { id: "fantasy", name: "Fantasy" },
+            { id: "romance", name: "Romance" },
+            { id: "milf", name: "MILF" },
+            { id: "brat", name: "Brat" },
+            { id: "drama", name: "Drama" },
+            { id: "yandere", name: "Yandere" }
+        ];
+
+        let currentFilter = 'all';
+        let currentCategory = 'all';
+        let currentArtwork = null;
+        let currentImageIndex = 0;
+        let favorites = JSON.parse(localStorage.getItem('nsfwFavorites')) || [];
+        let viewMode = 'masonry';
+
+        function saveFavorites() {
+            localStorage.setItem('nsfwFavorites', JSON.stringify(favorites));
+        }
+
+        function isFavorite(id) {
+            return favorites.includes(id);
+        }
+
+        function toggleFavorite(id) {
+            if (isFavorite(id)) {
+                favorites = favorites.filter(f => f !== id);
+            } else {
+                favorites.push(id);
+            }
+            saveFavorites();
+            renderGallery(getFilteredArtworks());
+        }
+
+        function toggleFavoritesFilter() {
+            const btn = document.getElementById('fav-filter-btn');
+            if (btn.dataset.active === 'true') {
+                btn.dataset.active = 'false';
+                btn.classList.remove('bg-pink-600', 'text-white');
+                renderGallery(getFilteredArtworks());
+            } else {
+                btn.dataset.active = 'true';
+                btn.classList.add('bg-pink-600', 'text-white');
+                const favOnly = artworks.filter(a => isFavorite(a.id));
+                renderGallery(favOnly);
+            }
+        }
+
+        function toggleFavoriteInModal() {
+            if (!currentArtwork) return;
+            toggleFavorite(currentArtwork.id);
+            const heart = document.querySelector('#modal-backdrop button.text-3xl');
+            if (heart) heart.textContent = isFavorite(currentArtwork.id) ? '❤️' : '🤍';
+        }
+
+        function fakeDownload() {
+            const notif = document.createElement('div');
+            notif.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#111;border:2px solid #ff0066;color:white;padding:16px 24px;border-radius:9999px;box-shadow:0 0 30px #ff0066;z-index:999999';
+            notif.innerHTML = '✅ Image set saved to your private vault';
+            document.body.appendChild(notif);
+            setTimeout(() => notif.remove(), 2800);
+        }
+
+        function renderCategoryFilters() {
+            const container = document.getElementById('category-filters');
+            container.innerHTML = '';
+            availableCategories.forEach(cat => {
+                const active = cat.id === currentCategory ? 'bg-pink-600 text-white shadow-xl shadow-pink-500/30' : 'bg-white/10 hover:bg-white/20 border border-white/20';
+                const btn = `<button onclick="setCategory('${cat.id}')" class="category-chip ${active}">${cat.name}</button>`;
+                container.innerHTML += btn;
+            });
+        }
+
+        function setCategory(catId) {
+            currentCategory = catId;
+            renderCategoryFilters();
+            renderGallery(getFilteredArtworks());
+        }
+
+        function getFilteredArtworks() {
+            let filtered = artworks;
+
+            if (currentFilter === 'new') filtered = filtered.filter(a => a.tags.includes('new'));
+            else if (currentFilter === 'upcoming') filtered = filtered.filter(a => a.tags.includes('upcoming'));
+            else filtered = filtered.filter(a => !a.tags.includes('upcoming'));
+
+            if (currentCategory !== 'all') {
+                filtered = filtered.filter(a => a.category.includes(currentCategory));
+            }
+            return filtered;
+        }
+
+        function renderGallery(filteredArtworks) {
+            const grid = document.getElementById('art-grid');
+            grid.innerHTML = '';
+
+            if (filteredArtworks.length === 0) {
+                grid.innerHTML = `<div class="col-span-full py-24 text-center"><p class="text-3xl">No artworks match your filters</p></div>`;
+                return;
+            }
+
+            filteredArtworks.forEach(art => {
+                const isUpcoming = art.tags.includes('upcoming');
+                const isFav = isFavorite(art.id);
+                const mainImg = art.images[0];
+
+                const badge = isUpcoming 
+                    ? `<div class="badge bg-amber-500 text-black">SOON</div>` 
+                    : `<div class="badge bg-pink-600">NSFW</div>`;
+
+                const cardHTML = `
+                <div onclick="openModal(${art.id})" class="masonry-item art-card cursor-pointer group active:scale-[0.97]">
+                    ${badge}
+                    <img src="${mainImg}" alt="${art.title}" loading="lazy">
+                    <div class="p-5 sm:p-6">
+                        <div class="flex justify-between items-start">
+                            <div class="flex-1 min-w-0">
+                                <h3 class="font-semibold text-lg sm:text-xl leading-tight group-hover:text-pink-400 truncate">${art.title}</h3>
+                                <p class="text-xs text-zinc-400 mt-2">${art.date}</p>
+                            </div>
+                            <button onclick="event.stopImmediatePropagation();toggleFavorite(${art.id});" class="text-3xl mt-1 ${isFav ? 'text-pink-500' : 'text-white/40 hover:text-pink-400'}">
+                                ${isFav ? '❤️' : '♡'}
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+
+                grid.innerHTML += cardHTML;
+            });
+
+            const newCount = filteredArtworks.filter(a => a.tags.includes('new')).length;
+            document.getElementById('results-count').innerHTML = `
+                ${filteredArtworks.length} artwork${filteredArtworks.length !== 1 ? 's' : ''} 
+                <span class="text-emerald-400">• ${newCount} new</span>`;
+        }
+
+        function filterGallery(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('#desktop-nav button').forEach(b => b.classList.remove('tab-active', 'text-pink-400'));
+            const activeBtn = document.getElementById(`tab-${filter}`);
+            if (activeBtn) activeBtn.classList.add('tab-active', 'text-pink-400');
+            
+            document.getElementById('gallery-title').textContent = 
+                filter === 'new' ? 'New Releases' : 
+                filter === 'upcoming' ? 'Upcoming Works' : 'All Works';
+
+            renderGallery(getFilteredArtworks());
+        }
+
+        function applySort() {
+            const sortType = document.getElementById('sort-select').value;
+            let filtered = getFilteredArtworks();
+            
+            if (sortType === 'date-desc') {
+                filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+            } else if (sortType === 'date-asc') {
+                filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
+            } else if (sortType === 'title') {
+                filtered.sort((a, b) => a.title.localeCompare(b.title));
+            }
+            
+            renderGallery(filtered);
+        }
+
+        function toggleViewMode() {
+            viewMode = viewMode === 'masonry' ? 'grid' : 'masonry';
+            alert('🔥 View mode switched (full grid/list coming in next update)');
+            renderGallery(getFilteredArtworks());
+        }
+
+        function performSearch() {
+            const term = (document.getElementById('search-input') || document.getElementById('mobile-search')).value.toLowerCase().trim();
+            if (!term) return renderGallery(getFilteredArtworks());
+            
+            const results = artworks.filter(a => 
+                a.title.toLowerCase().includes(term) || 
+                a.desc.toLowerCase().includes(term) ||
+                a.category.some(c => c.includes(term))
+            );
+            renderGallery(results);
+        }
+
+        function openModal(id) {
+            currentArtwork = artworks.find(a => a.id === id);
+            if (!currentArtwork) return;
+            currentImageIndex = 0;
+
+            document.getElementById('modal-title').textContent = currentArtwork.title;
+            document.getElementById('modal-date').textContent = `Released • ${currentArtwork.date}`;
+            document.getElementById('modal-desc').innerHTML = `
+                <strong class="block mb-4 text-white text-lg">Description</strong>
+                <p class="leading-relaxed">${currentArtwork.desc}</p>
+                <div class="mt-8 flex gap-2 text-xs uppercase font-medium flex-wrap"><span class="px-4 py-1 bg-pink-600/20 text-pink-400 rounded-3xl">EXPLICIT</span><span class="px-4 py-1 bg-violet-600/20 text-violet-400 rounded-3xl">4K</span><span class="px-4 py-1 bg-emerald-600/20 text-emerald-400 rounded-3xl">AI</span></div>
+            `;
+
+            const img = document.getElementById('modal-image');
+            img.src = currentArtwork.images[0];
+            
+            document.getElementById('modal-current-image').textContent = 1;
+            document.getElementById('modal-total-images').textContent = currentArtwork.images.length;
+            document.getElementById('set-count').textContent = `(${currentArtwork.images.length} images)`;
+
+            const modal = document.getElementById('modal-backdrop');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            renderImageSet();
+            showNavigation();
+            
+            const heartBtn = document.querySelector('#modal-backdrop button.text-3xl');
+            if (heartBtn) heartBtn.textContent = isFavorite(currentArtwork.id) ? '❤️' : '🤍';
+        }
+
+        function renderImageSet() {
+            const container = document.getElementById('modal-image-set');
+            container.innerHTML = '';
+            
+            currentArtwork.images.forEach((src, index) => {
+                const active = index === currentImageIndex ? 'ring-4 ring-pink-500 scale-110' : '';
+                const thumb = document.createElement('div');
+                thumb.className = `flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 cursor-pointer transition-all ${active}`;
+                thumb.innerHTML = `<img src="${src}" class="w-full h-full object-cover" loading="lazy">`;
+                thumb.onclick = () => changeModalImage(index);
+                container.appendChild(thumb);
+            });
+        }
+
+        function showNavigation() {
+            const multiple = currentArtwork.images.length > 1;
+            document.getElementById('prev-btn').classList.toggle('hidden', !multiple);
+            document.getElementById('next-btn').classList.toggle('hidden', !multiple);
+        }
+
+        function changeModalImage(index) {
+            currentImageIndex = index;
+            const img = document.getElementById('modal-image');
+            img.style.opacity = '0';
+            setTimeout(() => {
+                img.src = currentArtwork.images[index];
+                img.style.opacity = '1';
+                document.getElementById('modal-current-image').textContent = index + 1;
+                renderImageSet();
+            }, 160);
+        }
+
+        function prevImage() {
+            if (!currentArtwork || currentArtwork.images.length <= 1) return;
+            currentImageIndex = (currentImageIndex - 1 + currentArtwork.images.length) % currentArtwork.images.length;
+            changeModalImage(currentImageIndex);
+        }
+
+        function nextImage() {
+            if (!currentArtwork || currentArtwork.images.length <= 1) return;
+            currentImageIndex = (currentImageIndex + 1) % currentArtwork.images.length;
+            changeModalImage(currentImageIndex);
+        }
+
+        function hideModal() {
+            const modal = document.getElementById('modal-backdrop');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            currentArtwork = null;
+        }
+
+        function chatWithCharacter() {
+            if (currentArtwork && currentArtwork.chatUrl) window.open(currentArtwork.chatUrl, '_blank');
+            else window.open('https://x.com/juicychst', '_blank');
+        }
+
+        function showAbout() {
+            const modal = document.getElementById('about-backdrop');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function hideAboutModal() {
+            const modal = document.getElementById('about-backdrop');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function toggleDark() {
+            alert("🌙 This gallery stays in permanent dark mode for the best NSFW experience possible.");
+        }
+
+        function toggleMobileMenu() {
+            const panel = document.getElementById('mobile-menu-panel');
+            panel.classList.toggle('hidden');
+        }
+
+        function initialize() {
+            renderCategoryFilters();
+            renderGallery(getFilteredArtworks());
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape') {
+                    if (!document.getElementById('modal-backdrop').classList.contains('hidden')) hideModal();
+                    else if (!document.getElementById('about-backdrop').classList.contains('hidden')) hideAboutModal();
+                }
+                if (e.key === '/' && document.activeElement.tagName !== "INPUT") {
+                    e.preventDefault();
+                    const search = document.getElementById('search-input') || document.getElementById('mobile-search');
+                    if (search) search.focus();
+                }
+            });
+
+            // Preloader
+            setTimeout(() => {
+                const pre = document.getElementById('preloader');
+                if (pre) pre.style.display = 'none';
+            }, 1200);
+
+            // Ensure video plays on mobile (iOS Safari fix)
+            const video = document.getElementById('hero-video');
+            if (video) {
+                video.play().catch(() => {
+                    // Silent fallback - video may be blocked until user interaction
+                    console.log('%c🎥 Hero MP4 background ready (assets/bg.mp4)', 'color:#ff0066;font-weight:700');
+                });
+            }
+
+            console.log('%c✅ Advanced NSFW Gallery v2.2 - Hero now uses MP4 from assets/bg.mp4', 'color:#ff0066;font-weight:700');
+        }
+
+        window.onload = initialize;
+    </script>
+</body>
+</html>
