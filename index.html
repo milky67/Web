@@ -8,42 +8,36 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="description" content="Queendom Free NSFW arts - real uncensored AI Arts.">
     <title>Queendom • Free NSFW Arts</title>
-
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
-
     <style>
         :root { --accent: #ffffff; }
         body { background-color: #0a0a0a; color: white; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
         .playfair { font-family: 'Playfair Display', serif; }
-      
+     
         ::-webkit-scrollbar { width: 4px; height: 4px; }
         ::-webkit-scrollbar-track { background: #0a0a0a; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-        
+       
         @keyframes popIn { from { opacity: 0; transform: scale(0.9) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
         .animate-pop-in { animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-      
+     
         .glass { background: rgba(15, 15, 15, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
-      
+     
         .art-card { position: relative; border-radius: 12px; overflow: hidden; background: #111; aspect-ratio: 2/3; cursor: pointer; transition: all 0.3s ease; }
         .art-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .locked-blur { filter: blur(25px); transform: scale(1.1); }
-
         .tab-btn { padding: 8px 16px; border-radius: 50px; font-size: 13px; font-weight: 600; transition: 0.2s; color: #666; }
         .tab-btn.active { background: white; color: black; }
-
         .toggle-switch { width: 40px; height: 20px; background: #333; border-radius: 20px; position: relative; cursor: pointer; transition: 0.3s; }
         .toggle-switch::after { content: ''; width: 16px; height: 16px; background: white; border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: 0.3s; }
         .toggle-switch.on { background: #22c55e; }
         .toggle-switch.on::after { left: 22px; }
-
         .vault-toast { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); z-index: 10000; background: rgba(0,0,0,0.95); color: white; padding: 12px 20px; border-radius: 50px; border: 1px solid #333; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; box-shadow: 0 10px 40px rgba(0,0,0,0.5); animation: toastIn 0.3s ease forwards; }
         @keyframes toastIn { from { opacity: 0; transform: translate(-50%, -20px); } to { opacity: 1; transform: translate(-50%, 0); } }
     </style>
 </head>
 <body>
-
     <!-- Preloader -->
     <div id="preloader" class="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center transition-opacity duration-500">
         <div class="mb-6 text-center">
@@ -93,9 +87,7 @@
                        class="w-full bg-zinc-900/50 border border-zinc-800 rounded-2xl py-4 pl-12 pr-12 focus:outline-none focus:border-white/30 transition-all text-sm">
                 <button id="clear-search" class="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 hidden hover:text-white">✕</button>
             </div>
-
             <div class="flex flex-wrap items-center gap-2 overflow-x-auto pb-2 no-scrollbar" id="category-container"></div>
-
             <div class="flex items-center justify-between border-t border-zinc-900 pt-4">
                 <div class="flex gap-1 glass p-1 rounded-full">
                     <button id="tab-all" onclick="applyFilter('all')" class="tab-btn active">All <span id="count-all" class="ml-1 opacity-50">0</span></button>
@@ -155,28 +147,23 @@
                 <button onclick="closeModal('lightbox')" class="w-12 h-12 glass rounded-full flex items-center justify-center text-xl">✕</button>
             </div>
         </div>
-
         <div id="lb-touch-area" class="flex-1 relative flex items-center justify-center p-4 overflow-hidden">
             <div id="lb-spinner" class="absolute inset-0 flex items-center justify-center z-0">
                 <div class="w-12 h-12 border-4 border-zinc-800 border-t-white rounded-full animate-spin"></div>
             </div>
             <img id="lb-image" src="" class="max-w-full max-h-full object-contain transition-all duration-300 z-10 drop-shadow-2xl">
-
             <div id="lb-locked-ui" class="absolute inset-0 z-20 glass flex-col items-center justify-center text-center p-10 hidden">
                 <span class="text-5xl mb-6">🔒</span>
                 <h4 class="text-2xl font-bold mb-2">Arts Locked</h4>
                 <p id="lb-locked-desc" class="text-zinc-400 text-sm max-w-xs mb-8">This set is currently encrypted.</p>
                 <button class="px-8 py-3 bg-white text-black rounded-full font-bold text-xs uppercase tracking-widest">🔔 Get Release Alert</button>
             </div>
-
             <button onclick="navImage(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 glass rounded-full flex items-center justify-center text-2xl z-30 opacity-0 hover:opacity-100">‹</button>
             <button onclick="navImage(1)" class="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 glass rounded-full flex items-center justify-center text-2xl z-30 opacity-0 hover:opacity-100">›</button>
-
             <div class="absolute bottom-10 left-1/2 -translate-x-1/2 glass px-4 py-1.5 rounded-full text-[10px] font-bold tracking-widest z-30">
                 <span id="lb-curr-idx-overlay">1</span> / <span id="lb-tot-idx-overlay">1</span> IMAGES
             </div>
         </div>
-
         <div class="glass p-6 rounded-t-3xl border-t border-zinc-800">
             <div class="flex items-center justify-between mb-6">
                 <div class="flex flex-col">
@@ -285,7 +272,7 @@
             currentArt: null,
             imgIndex: 0,
             touchStartX: 0,
-            hearts: {}
+            hearts: {}                     // ← Fixed: always exists
         };
 
         const API_BASE = "/.netlify/functions/hearts";
@@ -295,7 +282,7 @@
                 const res = await fetch(API_BASE);
                 if (res.ok) STATE.hearts = await res.json();
             } catch (e) {}
-            renderGrid();
+            renderGrid();   // re-render once hearts are loaded
         }
 
         async function sendHeart(id) {
@@ -367,7 +354,7 @@
             STATE.filter = type;
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             if (type === 'favs') document.getElementById('btn-fav-filter').classList.add('active');
-            else document.getElementById(`tab-${type}`).classList.add('active');
+            else if (document.getElementById(`tab-${type}`)) document.getElementById(`tab-${type}`).classList.add('active');
             renderGrid();
         }
 
@@ -390,20 +377,25 @@
                 empty.style.display = 'flex';
                 return;
             }
+
             grid.style.display = 'grid';
             empty.style.display = 'none';
 
             grid.innerHTML = data.map((art, i) => {
                 const isFav = STATE.favorites.includes(art.id);
-                const heartCount = STATE.hearts[art.id] || 0;
+                const heartCount = STATE.hearts?.[art.id] || 0;   // ← Safe optional chaining
                 const delay = STATE.settings.anim ? `style="animation-delay: ${i * 0.05}s"` : '';
+
                 return `
                     <div onclick="openLightbox(${art.id})" class="art-card animate-pop-in relative" ${delay}>
                         <img src="${art.imgs[0]}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110 ${art.locked ? 'locked-blur' : ''}">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                        <div onclick="event.stopImmediatePropagation(); sendHeart(${art.id});" class="absolute top-3 right-3 bg-black/70 hover:bg-black/90 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 cursor-pointer active:scale-90">
+                        
+                        <div onclick="event.stopImmediatePropagation(); sendHeart(${art.id});" 
+                             class="absolute top-3 right-3 bg-black/70 hover:bg-black/90 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 cursor-pointer active:scale-90">
                             ❤️ <span>${heartCount}</span>
                         </div>
+
                         <div class="absolute bottom-0 left-0 right-0 p-3">
                             <h4 class="text-xs font-bold leading-tight truncate mb-1">${art.title}</h4>
                             <div class="flex items-center justify-between">
@@ -419,6 +411,7 @@
 
         function openLightbox(id) {
             STATE.currentArt = DB_ARTWORKS.find(a => a.id === id);
+            if (!STATE.currentArt) return;
             STATE.imgIndex = 0;
             const newUrl = `${window.location.origin}${window.location.pathname}?art=${id}`;
             window.history.pushState({}, '', newUrl);
@@ -429,7 +422,6 @@
             document.getElementById('lb-cat').innerText = art.cat.toUpperCase();
             document.getElementById('lb-desc').innerText = art.desc;
             document.getElementById('lb-set-total').innerText = `${art.imgs.length} IMAGES IN SET`;
-
             updateLightboxFavUI();
 
             const modal = document.getElementById('modal-lightbox');
@@ -441,10 +433,12 @@
 
         function loadLightboxImage() {
             const art = STATE.currentArt;
+            if (!art) return;
             const imgEl = document.getElementById('lb-image');
             const spinner = document.getElementById('lb-spinner');
             imgEl.style.opacity = '0';
             spinner.style.display = 'flex';
+
             const newImg = new Image();
             newImg.src = art.imgs[STATE.imgIndex];
             newImg.onload = () => {
@@ -459,6 +453,7 @@
 
         function renderLightboxThumbs() {
             const art = STATE.currentArt;
+            if (!art) return;
             const container = document.getElementById('lb-thumbs');
             container.innerHTML = art.imgs.map((src, i) => `
                 <div onclick="setLightboxImage(${i}); event.stopImmediatePropagation()" class="w-16 h-20 rounded-lg overflow-hidden flex-shrink-0 cursor-pointer border-2 ${STATE.imgIndex === i ? 'border-white' : 'border-transparent'}">
@@ -480,6 +475,7 @@
 
         function updateLightboxFavUI() {
             const btn = document.getElementById('lb-fav-btn');
+            if (!STATE.currentArt) return;
             btn.innerText = STATE.favorites.includes(STATE.currentArt.id) ? '❤️' : '🤍';
         }
 
@@ -498,10 +494,12 @@
             saveState();
             updateStatsCounters();
             renderGrid();
+            updateLightboxFavUI();
         }
 
         function openModal(type) {
             const modal = document.getElementById(`modal-${type}`);
+            if (!modal) return;
             modal.classList.remove('hidden', 'opacity-0');
             modal.classList.add('flex');
             document.body.style.overflow = 'hidden';
@@ -509,6 +507,7 @@
 
         function closeModal(type) {
             const modal = document.getElementById(`modal-${type}`);
+            if (!modal) return;
             modal.classList.add('opacity-0');
             setTimeout(() => {
                 modal.classList.add('hidden');
@@ -549,7 +548,6 @@
             document.getElementById('count-new').innerText = DB_ARTWORKS.filter(a => a.tags.includes('new')).length;
             document.getElementById('count-favs').innerText = STATE.favorites.length;
             document.getElementById('hdr-stats-count').innerText = DB_ARTWORKS.length;
-
             document.getElementById('stat-total').innerText = DB_ARTWORKS.length;
             document.getElementById('stat-imgs').innerText = DB_ARTWORKS.reduce((sum, a) => sum + a.imgs.length, 0);
             document.getElementById('stat-locked').innerText = DB_ARTWORKS.filter(a => a.locked).length;
@@ -558,15 +556,18 @@
 
         function toggleSetting(key) {
             STATE.settings[key] = !STATE.settings[key];
-            document.getElementById(`toggle-${key}`).className = `toggle-switch ${STATE.settings[key] ? 'on' : ''}`;
+            const toggleEl = document.getElementById(`toggle-${key}`);
+            if (toggleEl) toggleEl.className = `toggle-switch ${STATE.settings[key] ? 'on' : ''}`;
             saveState();
             showToast(`${key.toUpperCase()} updated`, "info");
             renderGrid();
         }
 
         function initSettingsUI() {
-            document.getElementById('toggle-hq').className = `toggle-switch ${STATE.settings.hq ? 'on' : ''}`;
-            document.getElementById('toggle-anim').className = `toggle-switch ${STATE.settings.anim ? 'on' : ''}`;
+            const hqToggle = document.getElementById('toggle-hq');
+            const animToggle = document.getElementById('toggle-anim');
+            if (hqToggle) hqToggle.className = `toggle-switch ${STATE.settings.hq ? 'on' : ''}`;
+            if (animToggle) animToggle.className = `toggle-switch ${STATE.settings.anim ? 'on' : ''}`;
         }
 
         function clearVaultData() {
@@ -626,10 +627,9 @@
             initSettingsUI();
             renderCategories();
             setupEventListeners();
-            applyFilter('all');
+            applyFilter('all');           // initial render
             updateStatsCounters();
-            loadHearts();
-
+            loadHearts();                 // ← hearts load safely after first render
             let progress = 0;
             const bar = document.getElementById('load-bar');
             const text = document.getElementById('load-text');
