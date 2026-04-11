@@ -8,11 +8,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="description" content="Queendom Free NSFW arts- real uncensored AI Arts. Fresh drops, no limits.">
     <title>Queendom • Free NSFW Arts</title>
-    
+   
     <!-- External Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
-    
+   
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -61,7 +61,6 @@
             }
         }
     </script>
-
     <style>
         /* CSS VARIABLES & RESET */
         :root {
@@ -70,21 +69,17 @@
             --pink-primary: #ff0066;
             --bg-dark: #050505;
         }
-
         * {
             -webkit-tap-highlight-color: transparent;
             box-sizing: border-box;
             outline: none;
         }
-
         html, body {
             background-color: var(--bg-dark);
             color: #ffffff;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
-
-        /* CUSTOM SCROLLBARS FOR DESKTOP, HIDDEN ON MOBILE */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
@@ -106,8 +101,6 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-
-        /* BACKGROUND EFFECTS */
         .ambient-bg {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -115,23 +108,20 @@
             z-index: -10;
             pointer-events: none;
         }
-
-.glass-header {
-    background: rgba(5, 5, 5, 0.3); /* Binabaan ang opacity from 0.75 to 0.3 */
-    backdrop-filter: blur(8px) saturate(150%); /* Binawasan ang blur para makita ang video */
-    -webkit-backdrop-filter: blur(8px) saturate(150%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.3s ease;
-    position: relative; /* Kailangan ito para sa absolute video */
-    overflow: hidden; /* Para hindi lumampas yung video sa header */
-}
-.glass-header.scrolled {
-    background: rgba(5, 5, 5, 0.85); /* Didilim pag nag-scroll down ka */
-    box-shadow: 0 10px 40px -10px rgba(255, 0, 102, 0.15);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-        /* TYPOGRAPHY FX */
+        .glass-header {
+            background: rgba(5, 5, 5, 0.3);
+            backdrop-filter: blur(8px) saturate(150%);
+            -webkit-backdrop-filter: blur(8px) saturate(150%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-header.scrolled {
+            background: rgba(5, 5, 5, 0.85);
+            box-shadow: 0 10px 40px -10px rgba(255, 0, 102, 0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
         .neon-text-pink {
             text-shadow: 0 0 15px rgba(255,0,102,0.6), 0 0 30px rgba(255,0,102,0.4);
         }
@@ -141,8 +131,6 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
-        /* MOBILE APP BOTTOM NAV */
         .mobile-bottom-nav {
             background: rgba(15, 15, 15, 0.9);
             backdrop-filter: blur(20px);
@@ -151,8 +139,6 @@
             padding-bottom: max(16px, var(--safe-bottom));
             z-index: 90;
         }
-
-        /* MASONRY GRID SYSTEM */
         .vault-grid {
             column-count: 1;
             column-gap: 16px;
@@ -161,19 +147,12 @@
         @media (min-width: 768px) { .vault-grid { column-count: 3; column-gap: 20px; } }
         @media (min-width: 1024px) { .vault-grid { column-count: 4; column-gap: 24px; } }
         @media (min-width: 1536px) { .vault-grid { column-count: 5; column-gap: 24px; } }
-
-        /* RESPONSIVE DEVICE PREVIEW OVERRIDES */
-        body[data-device="tablet"] .vault-grid { column-count: 2 !important; max-width: 820px; margin-inline: auto; }
-        body[data-device="macbook"] .vault-grid { column-count: 3 !important; max-width: 1200px; margin-inline: auto; }
-
-        /* ARTWORK CARDS */
         .vault-item {
             break-inside: avoid;
             margin-bottom: 16px;
             position: relative;
         }
         @media (min-width: 768px) { .vault-item { margin-bottom: 24px; } }
-
         .art-card {
             background: var(--vault-card);
             border-radius: 20px;
@@ -183,11 +162,8 @@
             transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
             cursor: pointer;
             position: relative;
-            transform: translateZ(0); /* iOS optimization */
         }
-        .art-card:active {
-            transform: scale(0.96);
-        }
+        .art-card:active { transform: scale(0.96); }
         @media (hover: hover) {
             .art-card:hover {
                 transform: translateY(-8px) scale(1.02);
@@ -195,7 +171,6 @@
                 border-color: rgba(255,0,102,0.3);
             }
         }
-
         .art-image-wrap {
             position: relative;
             overflow: hidden;
@@ -212,16 +187,12 @@
             transform: scale(1.08);
             filter: brightness(1.1) contrast(1.1);
         }
-
-        /* SKELETON LOADER */
         .skeleton {
             background: #222;
             background-image: linear-gradient(90deg, #222 0px, #333 40px, #222 80px);
             background-size: 200% 100%;
             animation: shimmer 1.5s infinite;
         }
-
-        /* UPCOMING LOCKED STATE */
         .locked-blur {
             filter: brightness(0.5) blur(12px) !important;
             transform: scale(1.1);
@@ -237,8 +208,6 @@
             opacity: 0.95;
             z-index: 10;
         }
-
-        /* BADGES */
         .vault-badge {
             position: absolute;
             top: 12px; right: 12px;
@@ -262,8 +231,6 @@
             color: #fbbf24;
             border: 1px solid rgba(251, 191, 36, 0.4);
         }
-
-        /* HORIZONTAL NAV TABS */
         .vault-tab {
             padding: 10px 24px;
             border-radius: 99px;
@@ -278,15 +245,12 @@
             gap: 8px;
             transition: all 0.2s ease;
         }
-        .vault-tab:active { transform: scale(0.95); }
         .vault-tab.active {
             background: rgba(255, 0, 102, 0.15);
             border-color: rgba(255, 0, 102, 0.5);
             color: var(--pink-primary);
             box-shadow: 0 0 20px -5px rgba(255, 0, 102, 0.3);
         }
-
-        /* TOAST NOTIFICATIONS */
         #toast-container {
             position: fixed;
             bottom: max(80px, calc(80px + var(--safe-bottom)));
@@ -313,13 +277,6 @@
             animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
             pointer-events: auto;
         }
-        .toast-exiting {
-            opacity: 0;
-            transform: translateY(20px) scale(0.9);
-            transition: all 0.3s ease;
-        }
-
-        /* CUSTOM CONTEXT MENU */
         #context-menu {
             position: fixed;
             background: rgba(15,15,15,0.95);
@@ -356,53 +313,21 @@
             background: rgba(255,0,102,0.2);
             color: white;
         }
-
-        /* LIGHTBOX SPECIFIC */
-        .lightbox-img-wrapper {
-            transition: transform 0.3s ease-out;
-            will-change: transform;
-        }
-        .lightbox-nav-btn {
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .lightbox-nav-btn:hover {
-            background: var(--pink-primary);
-            border-color: var(--pink-primary);
-            box-shadow: 0 0 20px rgba(255,0,102,0.5);
-        }
-        
-        /* FORM CONTROLS */
-        .toggle-switch {
-            width: 50px;
-            height: 28px;
-            background: #333;
-            border-radius: 99px;
+        #modal-lightbox .lb-image-container {
             position: relative;
-            cursor: pointer;
-            transition: 0.3s;
         }
-        .toggle-switch::after {
-            content: '';
-            position: absolute;
-            top: 2px; left: 2px;
-            width: 24px; height: 24px;
-            background: white;
-            border-radius: 50%;
-            transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        #modal-lightbox .lb-image-container img {
+            max-height: 78vh;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
         }
-        .toggle-switch.on { background: var(--pink-primary); }
-        .toggle-switch.on::after { transform: translateX(22px); }
-
-        /* SAFE PADDING HELPER */
-        .pt-safe { padding-top: calc(1rem + var(--safe-top)); }
+        .image-set-badge {
+            animation: pulse-slow 2s infinite;
+        }
     </style>
 </head>
 <body>
-    
+   
     <div class="ambient-bg"></div>
-
     <!-- PRELOADER -->
     <div id="preloader" class="fixed inset-0 bg-[#050505] z-[99999] flex items-center justify-center transition-all duration-700">
         <div class="flex flex-col items-center">
@@ -417,31 +342,24 @@
             </div>
         </div>
     </div>
-
     <!-- TOAST CONTAINER -->
     <div id="toast-container"></div>
-
     <!-- CUSTOM CONTEXT MENU -->
     <div id="context-menu">
         <div class="px-3 py-2 text-xs font-bold text-zinc-500 border-b border-white/10 mb-1">ARTWORK OPTIONS</div>
-        <div class="ctx-item" onclick="handleCtxCopy()">📋 Copy AI Prompt</div>
         <div class="ctx-item" onclick="handleCtxSave()">💾 Save to Device</div>
         <div class="ctx-item" onclick="handleCtxFav()">❤️ Add to Favorites</div>
         <div class="ctx-item text-pink-500" onclick="closeContextMenu()">✕ Close Menu</div>
     </div>
-
     <!-- TOP HEADER -->
 <header class="fixed top-0 left-0 right-0 z-50 glass-header pt-safe pb-3 flex flex-col gap-3 transition-transform duration-300" id="main-header">
-    
+   
    <img src="assets/bg.jpg" alt="Vault Header Background" class="absolute inset-0 w-full h-full object-cover z-[-2] opacity-60 pointer-events-none">
-    
-    <!-- DARK OVERLAY (Para mabasa ang white texts) -->
+   
     <div class="absolute inset-0 bg-gradient-to-b from-black/80 to-black/30 z-[-1] pointer-events-none"></div>
-    
-    <!-- HEADER CONTENTS (Logo, Search, Nav) -->
+   
     <div class="max-w-[1600px] mx-auto w-full px-4 sm:px-6 relative z-10">
-        
-        <!-- Row 1: Logo & Utils -->
+       
         <div class="flex justify-between items-center w-full mb-2">
             <div onclick="openModal('about')" class="flex items-center gap-3 cursor-pointer group active:scale-95 transition-transform">
                 <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-pink-500 ring-2 ring-pink-500/20 group-hover:ring-pink-500/50 shadow-[0_0_15px_rgba(255,0,102,0.5)]">
@@ -452,7 +370,7 @@
                     <p class="text-[9px] sm:text-[11px] font-bold bg-clip-text-gradient uppercase tracking-widest mt-1 drop-shadow-md">18+ • Uncensored • AI</p>
                 </div>
             </div>
-            
+           
             <div class="flex items-center gap-2 sm:gap-3">
                 <div class="hidden lg:flex items-center bg-black/40 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 text-xs">
                     <span class="mr-2">🖥️</span>
@@ -470,18 +388,14 @@
                 </button>
             </div>
         </div>
-        
-        <!-- Row 2: Search & Filters (Scrollable) -->
+       
         <div class="flex items-center gap-3 overflow-x-auto hide-scrollbar w-full snap-x pb-1">
-            
-            <!-- Search Input -->
             <div class="flex items-center bg-black/40 backdrop-blur-md border border-white/10 focus-within:border-pink-500/50 rounded-full px-4 py-2.5 w-[240px] sm:w-[300px] flex-shrink-0 snap-start transition-colors shadow-inner">
                 <span class="text-sm opacity-50">🔍</span>
                 <input id="search-input" type="text" placeholder="Search girls, tags, prompts..." class="flex-1 ml-3 bg-transparent outline-none text-sm font-medium placeholder:text-zinc-400 w-full">
                 <button id="clear-search" class="hidden text-zinc-500 hover:text-white text-xs">✕</button>
             </div>
-            
-            <!-- Main Nav Tabs -->
+           
             <button onclick="applyFilter('all')" id="tab-all" class="vault-tab active snap-start">
                 All <span class="bg-zinc-800 text-xs px-2 py-0.5 rounded-full" id="count-all">0</span>
             </button>
@@ -494,12 +408,11 @@
             <button onclick="toggleFavFilter()" id="btn-fav-filter" class="vault-tab snap-start">
                 Favorites <span class="bg-zinc-800 text-pink-500 text-xs px-2 py-0.5 rounded-full" id="count-favs">0</span>
             </button>
-            
-            <div class="w-4 flex-shrink-0"></div> <!-- scroll padding -->
+           
+            <div class="w-4 flex-shrink-0"></div>
         </div>
     </div>
 </header>
-
     <!-- MOBILE BOTTOM APP NAV -->
     <nav class="fixed bottom-0 left-0 right-0 md:hidden mobile-bottom-nav flex justify-around items-center pt-3 pb-2 px-2 transition-transform duration-300" id="bottom-nav">
         <button onclick="window.scrollTo(0,0); applyFilter('all');" class="flex flex-col items-center gap-1 w-16 opacity-100 text-pink-500">
@@ -519,16 +432,13 @@
             <span class="text-[10px] font-medium">Menu</span>
         </button>
     </nav>
-
     <!-- HERO BANNER -->
     <div class="relative pt-[160px] pb-12 sm:pt-[180px] sm:pb-16 px-4 sm:px-6 max-w-[1600px] mx-auto w-full">
         <div class="absolute inset-0 bg-gradient-to-b from-pink-500/5 to-transparent pointer-events-none rounded-[40px] mt-24"></div>
-        
+       
         <div class="relative z-10 flex flex-col md:flex-row items-center gap-8 md:gap-12 bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 p-6 sm:p-10 rounded-[32px] overflow-hidden">
-            <!-- decorative circles -->
             <div class="absolute top-0 right-0 w-64 h-64 bg-pink-600/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3"></div>
             <div class="absolute bottom-0 left-0 w-64 h-64 bg-purple-600/20 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/3"></div>
-
             <div class="flex-1 text-center md:text-left">
                 <div class="inline-flex items-center gap-2 px-4 py-2 bg-black/50 border border-white/10 rounded-full text-xs font-bold mb-6">
                     <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
@@ -538,11 +448,10 @@
                     Welcome <span class="bg-clip-text-gradient"> To My Arts</span>
                 </h2>
                 <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-[-2] opacity-60 pointer-events-none">
-        <!-- PALITAN ANG SRC NG MP4 FILE MO -->
-        <source src="assets/bg.mp4" type="video/mp4">
-    </video>
+                    <source src="assets/bg.mp4" type="video/mp4">
+                </video>
                 <p class="text-zinc-400 text-sm sm:text-base max-w-xl mx-auto md:mx-0 leading-relaxed mb-8">
-                    Strictly 18+. Highly detailed AI art sets for free Features explicit netori, romance, and fantasy themes. Updated constantly.
+                    Strictly 18+. Highly detailed AI art sets for free. Features explicit netori, romance, and fantasy themes. Updated constantly.
                 </p>
                 <div class="flex flex-wrap items-center justify-center md:justify-start gap-4">
                     <button onclick="document.getElementById('vault-start').scrollIntoView({behavior:'smooth'})" class="px-8 py-4 bg-white text-black hover:bg-zinc-200 rounded-full font-bold text-sm transition-all active:scale-95 shadow-xl">
@@ -553,8 +462,6 @@
                     </button>
                 </div>
             </div>
-
-            <!-- Featured Image Stack (Desktop only flavor) -->
             <div class="hidden lg:block relative w-[300px] h-[400px]">
                 <div class="absolute inset-0 bg-[#111] rounded-2xl rotate-6 border border-white/10 shadow-2xl opacity-50"></div>
                 <div class="absolute inset-0 bg-[#111] rounded-2xl -rotate-3 border border-white/10 shadow-2xl opacity-80"></div>
@@ -568,16 +475,13 @@
             </div>
         </div>
     </div>
-
     <!-- MAIN GALLERY -->
     <div id="vault-start" class="max-w-[1600px] mx-auto w-full px-4 sm:px-6 pb-32">
-        
-        <!-- Category Filters -->
+       
         <div class="flex items-center justify-between gap-4 mb-8">
             <div id="category-container" class="flex gap-2 overflow-x-auto hide-scrollbar snap-x py-2 flex-1">
-                <!-- Injected via JS -->
             </div>
-            
+           
             <div class="hidden sm:flex items-center bg-[#111] border border-white/10 rounded-full px-4 py-2 flex-shrink-0">
                 <span class="text-xs text-zinc-500 uppercase tracking-widest font-bold mr-3">Sort</span>
                 <select id="sort-select" onchange="applySort()" class="bg-transparent text-white text-sm font-bold outline-none cursor-pointer">
@@ -588,13 +492,7 @@
                 </select>
             </div>
         </div>
-
-        <!-- Grid Container -->
-        <div id="gallery-grid" class="vault-grid">
-            <!-- Skeleton items injected initially, then replaced by JS -->
-        </div>
-
-        <!-- Empty State -->
+        <div id="gallery-grid" class="vault-grid"></div>
         <div id="empty-state" class="hidden flex-col items-center justify-center py-24 text-center">
             <span class="text-6xl mb-4 opacity-50">📭</span>
             <h3 class="text-2xl font-bold mb-2">No artworks found</h3>
@@ -602,11 +500,9 @@
             <button onclick="resetFilters()" class="mt-6 px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full font-bold text-sm transition-all active:scale-95">Reset Everything</button>
         </div>
     </div>
-
-    <!-- GLOBAL LIGHTBOX MODAL -->
+    <!-- GLOBAL LIGHTBOX MODAL (FULL ORIGINAL + NETLIFY SHARE ONLY) -->
     <div id="modal-lightbox" class="fixed inset-0 bg-[#050505]/95 backdrop-blur-xl z-[9999] hidden flex-col transition-opacity duration-300 opacity-0">
-        
-        <!-- Top Bar -->
+       
         <div class="flex justify-between items-center p-4 sm:p-6 bg-gradient-to-b from-black to-transparent absolute top-0 left-0 right-0 z-50">
             <div class="flex-1 min-w-0 pr-4 drop-shadow-md">
                 <h3 id="lb-title" class="font-bold text-lg sm:text-2xl truncate text-white"></h3>
@@ -614,6 +510,10 @@
                     <span id="lb-date" class="text-xs text-pink-400 font-bold uppercase tracking-widest"></span>
                     <span class="w-1 h-1 bg-white/30 rounded-full"></span>
                     <span id="lb-cat" class="text-xs text-zinc-400 capitalize"></span>
+                    <span id="lb-set-count" class="image-set-badge ml-auto text-[10px] bg-pink-600 text-white px-2.5 py-px rounded-full font-bold flex items-center gap-1">
+                        <span class="text-xs">📸</span>
+                        <span id="lb-set-total"></span>
+                    </span>
                 </div>
             </div>
             <div class="flex items-center gap-3 flex-shrink-0">
@@ -621,18 +521,15 @@
                 <button onclick="closeModal('lightbox')" class="w-10 h-10 sm:w-12 sm:h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold transition-all active:scale-90 hover:bg-pink-600">✕</button>
             </div>
         </div>
-
-        <!-- Image Container (Swipeable) -->
-        <div id="lb-touch-area" class="flex-1 relative flex items-center justify-center overflow-hidden w-full h-full pt-20 pb-40 sm:pb-32">
-            
-            <img id="lb-image" src="" class="max-w-full max-h-full object-contain transition-transform duration-300 ease-out z-10 drop-shadow-2xl">
-            
-            <!-- Loading Spinner -->
+       
+        <div id="lb-touch-area" class="flex-1 relative flex items-center justify-center overflow-hidden w-full h-full pt-20 pb-40 sm:pb-32 lb-image-container">
+           
+            <img id="lb-image" src="" class="max-w-full max-h-full object-contain transition-transform duration-300 ease-out z-10 drop-shadow-2xl" alt="">
+           
             <div id="lb-spinner" class="absolute inset-0 flex items-center justify-center z-0">
                 <div class="w-12 h-12 border-4 border-zinc-800 border-t-pink-500 rounded-full animate-spin"></div>
             </div>
-
-            <!-- Locked Overlay -->
+           
             <div id="lb-locked-ui" class="hidden absolute inset-0 bg-black/80 backdrop-blur-md z-20 flex-col items-center justify-center p-6 text-center">
                 <span class="text-7xl mb-6 drop-shadow-[0_0_20px_rgba(251,191,36,0.5)]">🔒</span>
                 <h2 class="text-3xl font-bold text-white mb-2">Arts Locked</h2>
@@ -641,35 +538,45 @@
                     <span>🔔</span> Get Release Alert
                 </button>
             </div>
-
-            <!-- Desktop Nav Arrows -->
+           
             <button onclick="navImage(-1); event.stopPropagation()" class="hidden md:flex absolute left-8 top-1/2 -translate-y-1/2 w-14 h-14 lightbox-nav-btn rounded-full text-white text-3xl items-center justify-center z-30 transition-all active:scale-90" id="lb-prev">‹</button>
             <button onclick="navImage(1); event.stopPropagation()" class="hidden md:flex absolute right-8 top-1/2 -translate-y-1/2 w-14 h-14 lightbox-nav-btn rounded-full text-white text-3xl items-center justify-center z-30 transition-all active:scale-90" id="lb-next">›</button>
-        </div>
-
-        <!-- Bottom Controls & Thumbnails -->
-        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/90 to-transparent p-4 sm:p-6 pb-safe z-50 flex flex-col gap-4">
             
+            <div class="absolute top-6 right-6 bg-black/70 text-white text-xs font-mono px-3 py-1 rounded-2xl flex items-center gap-2 shadow-xl z-20">
+                <span id="lb-curr-idx-overlay">1</span>
+                <span class="text-zinc-400">/</span>
+                <span id="lb-tot-idx-overlay" class="text-pink-400"></span>
+                <span class="text-[10px] text-zinc-400">IMAGES IN SET</span>
+            </div>
+        </div>
+       
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/90 to-transparent p-4 sm:p-6 pb-safe z-50 flex flex-col gap-4">
+           
             <div class="flex items-end justify-between gap-4">
                 <div class="flex-1">
                     <p id="lb-desc" class="text-sm text-zinc-300 line-clamp-2 md:line-clamp-none leading-relaxed"></p>
                 </div>
                 <div class="flex gap-2 flex-shrink-0">
-                    <button onclick="copyCurrentPrompt()" class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-xs font-bold transition-all active:scale-95">📋 Prompt</button>
-                    <button onclick="chatUrl" class="px-4 py-2 bg-pink-600 hover:bg-pink-500 text-white rounded-lg text-xs font-bold transition-all active:scale-95 flex items-center gap-1">💬 Chat</button>
+                    <!-- NETLIFY SHARE BOT ONLY (NO JUICYCHAT) -->
+                    <button onclick="copyBotShareLink()" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-2xl text-xs font-bold transition-all active:scale-95 flex items-center gap-2 shadow-inner">
+                        <span class="text-lg">🔗</span>
+                        <span>SHARE BOT</span>
+                    </button>
+                    <button onclick="downloadCurrentImage()" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-2xl text-xs font-bold transition-all active:scale-95 flex items-center gap-2">
+                        <span class="text-lg">⬇️</span>
+                        <span>DOWNLOAD</span>
+                    </button>
                 </div>
             </div>
-
+            
             <div class="flex items-center gap-4 w-full">
                 <div class="text-xs font-mono font-bold bg-white/10 px-3 py-1.5 rounded-md flex-shrink-0">
                     <span id="lb-curr-idx" class="text-white">1</span><span class="text-zinc-500 mx-1">/</span><span id="lb-tot-idx" class="text-zinc-400">1</span>
                 </div>
-                <!-- Thumbnails -->
-                <div id="lb-thumbs" class="flex flex-1 gap-2 overflow-x-auto hide-scrollbar snap-x py-1"></div>
+                <div id="lb-thumbs" class="flex flex-1 gap-3 overflow-x-auto hide-scrollbar snap-x py-1"></div>
             </div>
         </div>
     </div>
-
     <!-- SETTINGS MODAL -->
     <div id="modal-settings" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[10000] hidden items-center justify-center p-4 transition-opacity duration-300 opacity-0">
         <div class="bg-[#111] border border-white/10 rounded-[24px] w-full max-w-md overflow-hidden transform scale-95 transition-transform duration-300" id="modal-settings-content">
@@ -678,9 +585,6 @@
                 <button onclick="closeModal('settings')" class="text-2xl text-zinc-500 hover:text-white">✕</button>
             </div>
             <div class="p-6 flex flex-col gap-6">
-
-                <div class="w-full h-px bg-white/5"></div>
-
                 <div class="flex justify-between items-center">
                     <div>
                         <h4 class="font-bold text-sm">High Quality Images</h4>
@@ -688,9 +592,6 @@
                     </div>
                     <div id="toggle-hq" class="toggle-switch on" onclick="toggleSetting('hq')"></div>
                 </div>
-
-                <div class="w-full h-px bg-white/5"></div>
-
                 <div class="flex justify-between items-center">
                     <div>
                         <h4 class="font-bold text-sm">UI Animations</h4>
@@ -698,7 +599,6 @@
                     </div>
                     <div id="toggle-anim" class="toggle-switch on" onclick="toggleSetting('anim')"></div>
                 </div>
-
                 <div class="mt-4">
                     <button onclick="clearVaultData()" class="w-full py-3 bg-red-500/10 text-red-500 hover:bg-red-500/20 rounded-xl font-bold text-sm transition-all">
                         Clear Saved Data & Cache
@@ -707,32 +607,22 @@
             </div>
         </div>
     </div>
-
     <!-- ABOUT MODAL -->
     <div id="modal-about" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[10000] hidden items-center justify-center p-4 transition-opacity duration-300 opacity-0">
         <div class="bg-[#111] border border-white/10 rounded-[32px] w-full max-w-sm text-center p-8 transform scale-95 transition-transform duration-300" id="modal-about-content">
             <div class="w-24 h-24 mx-auto rounded-full p-1 bg-gradient-to-tr from-pink-500 to-purple-500 mb-6 shadow-[0_0_30px_rgba(255,0,102,0.4)]">
                 <img src="https://i.imgur.com/rjgEjoV.jpeg" class="w-full h-full rounded-full border-4 border-black object-cover">
             </div>
-            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-[-2] opacity-60 pointer-events-none">
-        <!-- PALITAN ANG SRC NG MP4 FILE MO -->
-        <source src="assets/bg1.mp4" type="video/mp4">
-    </video>
             <h3 class="font-serif text-3xl font-bold mb-2">Queendom..</h3>
-            <p class="text-pink-500 text-xs font-bold tracking-widest uppercase mb-6">AI ARTS CREATOR | Arts Creator</p>
-            
+            <p class="text-pink-500 text-xs font-bold tracking-widest uppercase mb-6">AI ARTS CREATOR</p>
             <p class="text-sm text-zinc-400 leading-relaxed mb-8">
-                Welcome to my personal archive. Every piece here is generated, heavily edited, and curated by me. No censorship, no limits. some of the gif's here in our web is credit to the owner of the animated gif's
-                <br><br>Made With Love💘
+                Welcome to my personal archive. Every piece here is generated, heavily edited, and curated by me. No censorship, no limits.<br><br>Made With Love💘
             </p>
-            
             <div class="flex flex-col gap-3">
-                <a href="https://www.juicychat.ai/userdetailspace/1925952967652044801" target="_blank" class="w-full py-3.5 bg-white text-black font-bold rounded-xl hover:bg-zinc-200 transition-all active:scale-95">Follow me on My Juicychat.AI Account</a>
                 <button onclick="closeModal('about')" class="w-full py-3.5 bg-transparent text-zinc-400 font-bold rounded-xl hover:text-white transition-all">Close</button>
             </div>
         </div>
     </div>
-
     <!-- STATS MODAL -->
     <div id="modal-stats" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[10000] hidden items-center justify-center p-4 transition-opacity duration-300 opacity-0">
         <div class="bg-[#111] border border-white/10 rounded-[24px] w-full max-w-md p-6 sm:p-8 transform scale-95 transition-transform duration-300" id="modal-stats-content">
@@ -740,7 +630,6 @@
                 <h3 class="text-2xl font-bold font-serif">Arts Statistics</h3>
                 <button onclick="closeModal('stats')" class="text-2xl text-zinc-500 hover:text-white">✕</button>
             </div>
-            
             <div class="grid grid-cols-2 gap-4 mb-6">
                 <div class="bg-black/50 border border-white/5 p-4 rounded-2xl text-center">
                     <p class="text-xs text-zinc-500 font-bold uppercase mb-1">Total Works</p>
@@ -759,20 +648,8 @@
                     <p class="text-3xl font-bold text-white" id="stat-favs">0</p>
                 </div>
             </div>
-
-            <div class="bg-black/30 border border-white/5 p-4 rounded-2xl">
-                <p class="text-xs text-zinc-500 mb-2">Arts Capacity Progress</p>
-                <div class="w-full h-2 bg-zinc-800 rounded-full overflow-hidden">
-                    <div class="h-full bg-gradient-to-r from-pink-500 to-purple-500 w-[45%]"></div>
-                </div>
-                <div class="flex justify-between mt-2 text-[10px] text-zinc-500 font-mono">
-                    <span>45% FULL</span>
-                    <span>LIMIT: 100 SETS</span>
-                </div>
-            </div>
         </div>
     </div>
-
     <!-- FOOTER -->
     <footer class="border-t border-white/5 bg-[#050505] pt-12 pb-24 md:pb-12 text-center md:text-left">
         <div class="max-w-[1600px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
@@ -781,35 +658,27 @@
                 <p class="text-xs text-zinc-500">© 2026 Free Arts. Strictly 18+.</p>
             </div>
             <div class="flex items-center gap-6 text-sm font-medium text-zinc-400">
-                <a href="#" onclick="showToast('Link copied to clipboard!', 'success')" class="hover:text-pink-500 transition-colors">Share</a>
-                <a href="https://www.juicychat.ai/userdetailspace/1925952967652044801" target="_blank" class="hover:text-pink-500 transition-colors">JuicyChat.AI</a>
                 <button onclick="window.scrollTo(0,0)" class="hover:text-white transition-colors">Back to Top ↑</button>
             </div>
         </div>
     </footer>
 
-    <!-- MAIN JAVASCRIPT: LOGIC, DATA, & UX -->
+    <!-- MAIN JAVASCRIPT (FULL ORIGINAL + NETLIFY SHARE ONLY) -->
     <script>
-        /**
-         * ==========================================
-         * VAULT MASTER DATA CONFIGURATION
-         * 30+ Detailed entries to simulate a massive app
-         * ==========================================
-         */
+        const NETLIFY_URL = "https://nsfw-arts-hub.netlify.app/";
+
         const DB_ARTWORKS = [
-            { id: 1, title: "Mei - My flirty pink-haired neighbor", tags: ["new"], locked: false, cat: "netori", chatUrl: "https://www.juicychat.ai/chat/2035450011584319489", imgs: ["https://i.imgur.com/vb4Yl9z.jpeg","https://i.imgur.com/dk2ZKLx.jpeg","https://cdn.juicychat.ai/user/prod/character/20260321/1925952967652044801/f_29afd47dd0064b5ba29300c7ba650e8c.webp"], date: "2026-03-30", desc: "Mei is the hot pink-haired MILF next door who loves teasing me over the fence every evening 😏. Full 4K uncompressed set.", prompt: "pink hair milf, neighbor, explicit lingerie, 4k ai, hyperrealistic" },
-            { id: 2, title: "Lily - My sweet best friend", tags: ["new"], locked: false, cat: "romance", chatUrl: "https://www.juicychat.ai/chat/2034933083147878401", imgs: ["https://i.imgur.com/ApGGlML.jpeg","https://i.imgur.com/isG3Hft.jpeg"], date: "2026-03-21", desc: "Lily's been my friend forever but lately things have been getting way more flirty... and she finally stayed over.", prompt: "cute brunette, soft lighting, romantic pose, bedroom setting" },
-            { id: 3, title: "Lisa - Gym Bully Humiliation", tags: ["new"], locked: false, cat: "bully", chatUrl: "https://www.juicychat.ai/chat/2023305253863727106", imgs: ["https://i.imgur.com/JYnqkMP.jpeg","https://i.imgur.com/dqvxFfX.jpeg","https://i.imgur.com/Y4IQipW.jpeg"], date: "2026-02-17", desc: "Lisa is this shredded gym brat who loves reminding me how weak I am... in the hottest way possible.", prompt: "gym bully, muscular girl, teasing, sweaty, locker room" },
-            { id: 4, title: "Lena - Ice Cold CEO", tags: ["new"], locked: false, cat: "brat", chatUrl: "https://www.juicychat.ai/chat/2011599197584261122", imgs: ["https://i.imgur.com/mGRpvbD.jpeg"], date: "2026-01-15", desc: "Lena is the ice-cold CEO who acts like she hates me... but we both know what happens after hours.", prompt: "ceo boss, cold beauty, office tease, pencil skirt" },
-            { id: 5, title: "Roommate's Shy Girlfriend", tags: ["classic"], locked: false, cat: "netori", chatUrl: "https://www.juicychat.ai/chat/1986897809979293697", imgs: ["https://i.imgur.com/Iwt4knx.jpeg","https://cdn.juicychat.ai/user/prod/character/20251108/1925952967652044801/f_bd4b7f7a03f74e75867fd74978abce94.webp"], date: "2025-06-08", desc: "Yae is my roommate's shy girlfriend... but she's been looking at me a lot lately when he's not around.", prompt: "shy girlfriend, netori theme, secret romance" },
-            { id: 6, title: "Late Night Knock - Milena", tags: ["classic"], locked: false, cat: "netori", chatUrl: "https://www.juicychat.ai/chat/1983903092746928129", imgs: ["https://cdn.juicychat.ai/user/prod/character/20251030/1925952967652044801/f_fac96b2ffa014eea9de2db0b19334357.webp","https://cdn.juicychat.ai/user/prod/character/20251030/1925952967652044801/f_1a8f5d437544468e83a0a3e9cd986076.webp"], date: "2025-10-30", desc: "It was 2am when Milena knocked on my door... wearing almost nothing. She said her husband was asleep.", prompt: "milf at door, late night, cheating wife" },
-            { id: 7, title: "Jealous Tsundere Roommate", tags: ["classic"], locked: false, cat: "brat", chatUrl: "https://www.juicychat.ai/chat/1992326138765017090", imgs: ["https://i.imgur.com/eStciHS.jpeg","https://i.imgur.com/568qWvN.jpeg"], date: "2025-11-23", desc: "Meg acts like she hates me but gets super jealous whenever I talk to anyone else.", prompt: "tsundere roommate, jealous pose, pouting" },
-            { id: 8, title: "Rent A Boyfriend - Maye", tags: ["classic"], locked: false, cat: "yandere", chatUrl: "https://www.juicychat.ai/chat/1981154967042494466", imgs: ["https://i.imgur.com/sVV8iZo.jpeg","https://i.imgur.com/o8FgCP1.jpeg"], date: "2025-12-05", desc: "Maye hired me as her fake boyfriend... but she's starting to act way too possessive.", prompt: "yandere milf, rent boyfriend, crazy eyes" },
-            { id: 9, title: "Lonely Milf In Sauna", tags: ["classic"], locked: false, cat: "netori", chatUrl: "https://www.juicychat.ai/chat/1976476792576352258", imgs: ["https://i.imgur.com/lpXXOpz.jpeg","https://i.imgur.com/XF2J9xV.jpeg","https://i.imgur.com/Vcof3v8.jpeg"], date: "2025-10-10", desc: "Ana is a married woman in her mid-30s... and she's been coming to the sauna way more often lately.", prompt: "sauna milf, steamy, sweating, towel" },
-            { id: 10, title: "Tsundere Classmate Hubby", tags: ["classic"], locked: false, cat: "romance", chatUrl: "https://www.juicychat.ai/chat/1975259383708921857", imgs: ["https://i.imgur.com/5XihdyW.jpeg","https://i.imgur.com/hvdS973.jpeg"], date: "2025-10-06", desc: "Ella keeps calling me an idiot but also keeps saying she wants me to be her future husband.", prompt: "school tsundere, marriage tease, uniform" },
-            { id: 11, title: "Lorie - You're so cute, Mister", tags: ["upcoming"], locked: false, cat: "romance", chatUrl: "https://x.com/juicychst", imgs: ["https://cdn.juicychat.ai/user/prod/character/20260410/1925952967652044801/f_2c5c795c506e4344adea43e8dc1c3fcd.gif","https://i.imgur.com/hs3p3fe.jpeg" , "https://i.imgur.com/Iu1i271.jpeg", "https://i.imgur.com/df4yPtu.jpeg", "https://i.imgur.com/QlzWARE.jpeg", "https://i.imgur.com/u2sZ7jW.jpeg" , "https://i.imgur.com/oCR6gqi.jpeg", "https://i.imgur.com/HBsfj6G.jpeg" , "https://i.imgur.com/MzbLREZ.jpeg" , "https://i.imgur.com/bq6pZgf.jpeg", "https://i.imgur.com/RPMcxGc.jpeg", "https://i.imgur.com/gKcyO3m.jpeg" , "https://i.imgur.com/c8rJgf9.jpeg", "https://i.imgur.com/c5uVUYT.jpeg", "https://i.imgur.com/MXD484w.jpeg"], date: "2026-05-12", desc: "{{user}}'s son has a crush on Lorie and Lorie is your friend's daughter that's why you and Lorie are so close. Lorie is very sweet and clingy to you. And that's the reason why {{user}}'s son is jealous. To {{user}} until one day lorie visited {{user}}'s house without permission ", prompt: "project sekai,best quality, ultra detailed, 4k, soft, (blurred outlines), flat colors, cel shading, (soft style), sketch style, (watercolor effect) , masterpiece, moe, kawaii, cute, (dynamic light) ,Hoshino ichika,Black hair,kimono,Hairstyles can be changed freely., adult, msture, huge breasts" },
-            
-            // Generating bulk realistic placeholders to simulate 30+ items for a massive vault
+            { id: 1, title: "Mei - My flirty pink-haired neighbor", tags: ["new"], locked: false, cat: "netori", imgs: ["https://i.imgur.com/vb4Yl9z.jpeg","https://i.imgur.com/dk2ZKLx.jpeg","https://cdn.juicychat.ai/user/prod/character/20260321/1925952967652044801/f_29afd47dd0064b5ba29300c7ba650e8c.webp"], date: "2026-03-30", desc: "Mei is the hot pink-haired MILF next door who loves teasing me over the fence every evening 😏. Full 4K uncompressed set.", prompt: "pink hair milf, neighbor, explicit lingerie, 4k ai, hyperrealistic" },
+            { id: 2, title: "Lily - My sweet best friend", tags: ["new"], locked: false, cat: "romance", imgs: ["https://i.imgur.com/ApGGlML.jpeg","https://i.imgur.com/isG3Hft.jpeg"], date: "2026-03-21", desc: "Lily's been my friend forever but lately things have been getting way more flirty... and she finally stayed over.", prompt: "cute brunette, soft lighting, romantic pose, bedroom setting" },
+            { id: 3, title: "Lisa - Gym Bully Humiliation", tags: ["new"], locked: false, cat: "bully", imgs: ["https://i.imgur.com/JYnqkMP.jpeg","https://i.imgur.com/dqvxFfX.jpeg","https://i.imgur.com/Y4IQipW.jpeg"], date: "2026-02-17", desc: "Lisa is this shredded gym brat who loves reminding me how weak I am... in the hottest way possible.", prompt: "gym bully, muscular girl, teasing, sweaty, locker room" },
+            { id: 4, title: "Lena - Ice Cold CEO", tags: ["new"], locked: false, cat: "brat", imgs: ["https://i.imgur.com/mGRpvbD.jpeg"], date: "2026-01-15", desc: "Lena is the ice-cold CEO who acts like she hates me... but we both know what happens after hours.", prompt: "ceo boss, cold beauty, office tease, pencil skirt" },
+            { id: 5, title: "Roommate's Shy Girlfriend", tags: ["classic"], locked: false, cat: "netori", imgs: ["https://i.imgur.com/Iwt4knx.jpeg","https://cdn.juicychat.ai/user/prod/character/20251108/1925952967652044801/f_bd4b7f7a03f74e75867fd74978abce94.webp"], date: "2025-06-08", desc: "Yae is my roommate's shy girlfriend... but she's been looking at me a lot lately when he's not around.", prompt: "shy girlfriend, netori theme, secret romance" },
+            { id: 6, title: "Late Night Knock - Milena", tags: ["classic"], locked: false, cat: "netori", imgs: ["https://cdn.juicychat.ai/user/prod/character/20251030/1925952967652044801/f_fac96b2ffa014eea9de2db0b19334357.webp","https://cdn.juicychat.ai/user/prod/character/20251030/1925952967652044801/f_1a8f5d437544468e83a0a3e9cd986076.webp"], date: "2025-10-30", desc: "It was 2am when Milena knocked on my door... wearing almost nothing. She said her husband was asleep.", prompt: "milf at door, late night, cheating wife" },
+            { id: 7, title: "Jealous Tsundere Roommate", tags: ["classic"], locked: false, cat: "brat", imgs: ["https://i.imgur.com/eStciHS.jpeg","https://i.imgur.com/568qWvN.jpeg"], date: "2025-11-23", desc: "Meg acts like she hates me but gets super jealous whenever I talk to anyone else.", prompt: "tsundere roommate, jealous pose, pouting" },
+            { id: 8, title: "Rent A Boyfriend - Maye", tags: ["classic"], locked: false, cat: "yandere", imgs: ["https://i.imgur.com/sVV8iZo.jpeg","https://i.imgur.com/o8FgCP1.jpeg"], date: "2025-12-05", desc: "Maye hired me as her fake boyfriend... but she's starting to act way too possessive.", prompt: "yandere milf, rent boyfriend, crazy eyes" },
+            { id: 9, title: "Lonely Milf In Sauna", tags: ["classic"], locked: false, cat: "netori", imgs: ["https://i.imgur.com/lpXXOpz.jpeg","https://i.imgur.com/XF2J9xV.jpeg","https://i.imgur.com/Vcof3v8.jpeg"], date: "2025-10-10", desc: "Ana is a married woman in her mid-30s... and she's been coming to the sauna way more often lately.", prompt: "sauna milf, steamy, sweating, towel" },
+            { id: 10, title: "Tsundere Classmate Hubby", tags: ["classic"], locked: false, cat: "romance", imgs: ["https://i.imgur.com/5XihdyW.jpeg","https://i.imgur.com/hvdS973.jpeg"], date: "2025-10-06", desc: "Ella keeps calling me an idiot but also keeps saying she wants me to be her future husband.", prompt: "school tsundere, marriage tease, uniform" },
+            { id: 11, title: "Lorie - You're so cute, Mister", tags: ["upcoming"], locked: false, cat: "romance", imgs: ["https://cdn.juicychat.ai/user/prod/character/20260410/1925952967652044801/f_2c5c795c506e4344adea43e8dc1c3fcd.gif","https://i.imgur.com/hs3p3fe.jpeg","https://i.imgur.com/Iu1i271.jpeg","https://i.imgur.com/df4yPtu.jpeg","https://i.imgur.com/QlzWARE.jpeg","https://i.imgur.com/u2sZ7jW.jpeg","https://i.imgur.com/oCR6gqi.jpeg","https://i.imgur.com/HBsfj6G.jpeg","https://i.imgur.com/MzbLREZ.jpeg","https://i.imgur.com/bq6pZgf.jpeg","https://i.imgur.com/RPMcxGc.jpeg","https://i.imgur.com/gKcyO3m.jpeg","https://i.imgur.com/c8rJgf9.jpeg","https://i.imgur.com/c5uVUYT.jpeg","https://i.imgur.com/MXD484w.jpeg"], date: "2026-05-12", desc: "{{user}}'s son has a crush on Lorie and Lorie is your friend's daughter that's why you and Lorie are so close.", prompt: "project sekai,best quality, ultra detailed, 4k, soft, (blurred outlines), flat colors, cel shading, (soft style), sketch style, (watercolor effect) , masterpiece, moe, kawaii, cute, (dynamic light) ,Hoshino ichika,Black hair,kimono,Hairstyles can be changed freely., adult, msture, huge breasts" }
         ];
 
         const CATEGORIES = [
@@ -823,11 +692,6 @@
             { id: "yandere", name: "Yandere" }
         ];
 
-        /**
-         * ==========================================
-         * STATE MANAGEMENT & LOCAL STORAGE
-         * ==========================================
-         */
         const STATE = {
             filter: 'all',
             category: 'all',
@@ -846,19 +710,12 @@
             localStorage.setItem('vault_settings', JSON.stringify(STATE.settings));
         }
 
-        /**
-         * ==========================================
-         * INITIALIZATION & UI SETUP
-         * ==========================================
-         */
         window.onload = () => {
             initSettingsUI();
             renderCategories();
             setupEventListeners();
-            applyFilter('all'); // Renders initial grid
+            applyFilter('all');
             updateStatsCounters();
-
-            // Simulate Preloader 
             let progress = 0;
             const bar = document.getElementById('load-bar');
             const text = document.getElementById('load-text');
@@ -880,18 +737,13 @@
         };
 
         function setupEventListeners() {
-            // Header Scroll Logic
             const header = document.getElementById('main-header');
             const bottomNav = document.getElementById('bottom-nav');
             let lastScroll = 0;
-
             window.addEventListener('scroll', () => {
                 const currentScroll = window.scrollY;
-                // Header Glassmorphism toggle
                 if (currentScroll > 20) header.classList.add('scrolled');
                 else header.classList.remove('scrolled');
-
-                // Auto-hide mobile bottom nav on scroll down
                 if (currentScroll > lastScroll && currentScroll > 100) {
                     bottomNav.style.transform = 'translateY(100%)';
                 } else {
@@ -900,10 +752,8 @@
                 lastScroll = currentScroll;
             });
 
-            // Search Logic
             const searchInput = document.getElementById('search-input');
             const clearBtn = document.getElementById('clear-search');
-            
             searchInput.addEventListener('input', (e) => {
                 STATE.search = e.target.value.toLowerCase();
                 clearBtn.style.display = STATE.search.length > 0 ? 'block' : 'none';
@@ -916,9 +766,7 @@
                 renderGrid();
             });
 
-            // Context Menu Prevent Default Right Click
             document.addEventListener('contextmenu', (e) => {
-                // Only hijack clicks on images or cards
                 if(e.target.tagName === 'IMG' || e.target.closest('.art-card') || e.target.id === 'lb-image') {
                     e.preventDefault();
                     showContextMenu(e.clientX, e.clientY);
@@ -926,7 +774,6 @@
             });
             document.addEventListener('click', closeContextMenu);
 
-            // Setup Touch Swipes for Lightbox
             const touchArea = document.getElementById('lb-touch-area');
             touchArea.addEventListener('touchstart', e => STATE.touchStartX = e.changedTouches[0].screenX);
             touchArea.addEventListener('touchend', e => {
@@ -934,7 +781,6 @@
                 handleSwipe();
             });
 
-            // Keyboard Shortcuts
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') closeAllModals();
                 if (e.key === 'ArrowRight') navImage(1);
@@ -942,36 +788,25 @@
             });
         }
 
-        /**
-         * ==========================================
-         * CORE RENDERING LOGIC (VIRTUAL DOM STYLE)
-         * ==========================================
-         */
         function renderCategories() {
             const container = document.getElementById('category-container');
             container.innerHTML = CATEGORIES.map(cat => `
-                <button onclick="setCategory('${cat.id}')" 
-                        class="vault-tab snap-start ${cat.id === STATE.category ? 'active' : ''}">
-                    ${cat.name}
-                </button>
+                <button onclick="setCategory('${cat.id}')" class="vault-tab snap-start ${cat.id === STATE.category ? 'active' : ''}">${cat.name}</button>
             `).join('');
         }
 
         function setCategory(id) {
             STATE.category = id;
-            renderCategories(); // update active state
+            renderCategories();
             renderGrid();
         }
 
         function applyFilter(type) {
             STATE.filter = type;
-            // Update UI
             ['all', 'new', 'upcoming'].forEach(t => document.getElementById(`tab-${t}`).classList.remove('active'));
             document.getElementById('btn-fav-filter').classList.remove('active');
-            
             if(type === 'favs') document.getElementById('btn-fav-filter').classList.add('active');
             else document.getElementById(`tab-${type}`).classList.add('active');
-            
             renderGrid();
         }
 
@@ -986,31 +821,22 @@
 
         function getFilteredData() {
             let res = [...DB_ARTWORKS];
-            
-            // 1. Base Filter (Nav)
             if (STATE.filter === 'new') res = res.filter(a => a.tags.includes('new'));
             if (STATE.filter === 'upcoming') res = res.filter(a => a.locked);
-            if (STATE.filter === 'all') res = res.filter(a => !a.locked); // Hide locked from 'all' usually
+            if (STATE.filter === 'all') res = res.filter(a => !a.locked);
             if (STATE.filter === 'favs') res = res.filter(a => STATE.favorites.includes(a.id));
-
-            // 2. Category Filter
             if (STATE.category !== 'all') res = res.filter(a => a.cat === STATE.category);
-
-            // 3. Search Filter
             if (STATE.search) {
-                res = res.filter(a => 
-                    a.title.toLowerCase().includes(STATE.search) || 
+                res = res.filter(a =>
+                    a.title.toLowerCase().includes(STATE.search) ||
                     a.desc.toLowerCase().includes(STATE.search) ||
                     a.prompt.toLowerCase().includes(STATE.search)
                 );
             }
-
-            // 4. Sort
             if (STATE.sort === 'newest') res.sort((a,b) => new Date(b.date) - new Date(a.date));
             if (STATE.sort === 'oldest') res.sort((a,b) => new Date(a.date) - new Date(b.date));
             if (STATE.sort === 'az') res.sort((a,b) => a.title.localeCompare(b.title));
             if (STATE.sort === 'random') res.sort(() => Math.random() - 0.5);
-
             return res;
         }
 
@@ -1018,48 +844,29 @@
             const grid = document.getElementById('gallery-grid');
             const empty = document.getElementById('empty-state');
             const data = getFilteredData();
-
-            // Show skeleton loader briefly to simulate processing/network
             if(STATE.settings.anim) {
                 grid.innerHTML = Array(8).fill('<div class="vault-item art-card"><div class="art-image-wrap skeleton"></div></div>').join('');
             }
-
             setTimeout(() => {
                 if (data.length === 0) {
                     grid.style.display = 'none';
                     empty.style.display = 'flex';
                     return;
                 }
-                
-                grid.style.display = 'block'; // reset masonry column-count block
+                grid.style.display = 'block';
                 empty.style.display = 'none';
-
                 grid.innerHTML = data.map((art, index) => {
                     const isFav = STATE.favorites.includes(art.id);
                     const shouldBlur = art.locked && STATE.settings.blur;
                     const delay = STATE.settings.anim ? `style="animation-delay: ${index * 0.05}s"` : '';
                     const animClass = STATE.settings.anim ? 'animate-pop-in opacity-0' : '';
-
                     return `
                     <div onclick="openLightbox(${art.id})" class="vault-item art-card ${animClass}" ${delay}>
-                        
-                        <!-- Badges -->
-                        ${art.locked ? 
-                            '<div class="vault-badge badge-locked">🔒 Locked</div>' : 
-                            '<div class="vault-badge badge-nsfw">18+ NSFW</div>'}
-                        
-                        <!-- Image Area -->
+                        ${art.locked ? '<div class="vault-badge badge-locked">🔒 Locked</div>' : '<div class="vault-badge badge-nsfw">18+ NSFW</div>'}
                         <div class="art-image-wrap">
                             <img src="${art.imgs[0]}" loading="lazy" class="${shouldBlur ? 'locked-blur' : ''}" alt="${art.title}">
-                            ${art.locked ? `
-                                <div class="locked-overlay">
-                                    <span class="text-4xl mb-2">🔒</span>
-                                    <span class="text-xs font-bold tracking-widest text-white uppercase">Releasing ${art.date}</span>
-                                </div>
-                            ` : ''}
+                            ${art.locked ? `<div class="locked-overlay"><span class="text-4xl mb-2">🔒</span><span class="text-xs font-bold tracking-widest text-white uppercase">Releasing ${art.date}</span></div>` : ''}
                         </div>
-                        
-                        <!-- Details Area -->
                         <div class="p-4 sm:p-5 flex justify-between items-start gap-3">
                             <div class="min-w-0 flex-1">
                                 <h3 class="font-bold text-[15px] sm:text-base truncate text-white leading-tight">${art.title}</h3>
@@ -1069,8 +876,7 @@
                                 ${isFav ? '❤️' : '🤍'}
                             </button>
                         </div>
-                    </div>
-                    `;
+                    </div>`;
                 }).join('');
             }, STATE.settings.anim ? 200 : 0);
         }
@@ -1085,26 +891,17 @@
             applyFilter('all');
         }
 
-        /**
-         * ==========================================
-         * LIGHTBOX MODAL LOGIC (ADVANCED UX)
-         * ==========================================
-         */
         function openLightbox(id) {
             STATE.currentArt = DB_ARTWORKS.find(a => a.id === id);
             STATE.imgIndex = 0;
-            
             const art = STATE.currentArt;
             const isLocked = art.locked && STATE.settings.blur;
-
-            // Populate Metadata
             document.getElementById('lb-title').innerText = art.title;
             document.getElementById('lb-date').innerText = art.date;
             document.getElementById('lb-cat').innerText = art.cat;
             document.getElementById('lb-desc').innerText = art.desc;
+            document.getElementById('lb-set-total').innerText = art.imgs.length + " IMAGES";
             updateLightboxFavUI();
-
-            // Toggle Locked UI Overlay
             const lockOverlay = document.getElementById('lb-locked-ui');
             if(isLocked) {
                 lockOverlay.classList.remove('hidden');
@@ -1114,15 +911,11 @@
                 lockOverlay.classList.add('hidden');
                 lockOverlay.classList.remove('flex');
             }
-
-            // Show Modal Container
             const modal = document.getElementById('modal-lightbox');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            // Tiny delay to allow display:flex to apply before animating opacity
             setTimeout(() => modal.classList.remove('opacity-0'), 10);
-            document.body.style.overflow = 'hidden'; // prevent bg scroll
-
+            document.body.style.overflow = 'hidden';
             loadLightboxImage();
         }
 
@@ -1131,27 +924,23 @@
             const imgEl = document.getElementById('lb-image');
             const spinner = document.getElementById('lb-spinner');
             const isLocked = art.locked && STATE.settings.blur;
-            
-            // Start Loading State
             imgEl.style.opacity = '0';
             imgEl.style.transform = 'scale(0.95)';
             spinner.style.display = 'flex';
-
-            // Preload Image to avoid flash
             const newImg = new Image();
             newImg.src = art.imgs[STATE.imgIndex];
             newImg.onload = () => {
                 imgEl.src = newImg.src;
                 imgEl.className = `max-w-full max-h-full object-contain transition-all duration-300 ease-out z-10 drop-shadow-2xl ${isLocked ? 'locked-blur' : ''}`;
-                
-                // End Loading State
                 spinner.style.display = 'none';
                 imgEl.style.opacity = '1';
                 imgEl.style.transform = 'scale(1)';
-
-                // Update Counters & Thumbs
-                document.getElementById('lb-curr-idx').innerText = STATE.imgIndex + 1;
-                document.getElementById('lb-tot-idx').innerText = art.imgs.length;
+                const curr = STATE.imgIndex + 1;
+                const tot = art.imgs.length;
+                document.getElementById('lb-curr-idx').innerText = curr;
+                document.getElementById('lb-tot-idx').innerText = tot;
+                document.getElementById('lb-curr-idx-overlay').innerText = curr;
+                document.getElementById('lb-tot-idx-overlay').innerText = tot;
                 renderLightboxThumbs();
                 updateLightboxNavVisibility();
             };
@@ -1161,18 +950,13 @@
             const art = STATE.currentArt;
             const container = document.getElementById('lb-thumbs');
             const isLocked = art.locked && STATE.settings.blur;
-
             container.innerHTML = art.imgs.map((src, i) => `
-                <button onclick="setLightboxImage(${i})" class="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 rounded-lg overflow-hidden border-2 snap-start transition-all ${i === STATE.imgIndex ? 'border-pink-500 scale-105 opacity-100' : 'border-transparent opacity-40 hover:opacity-100'}">
+                <button onclick="setLightboxImage(${i})" class="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-2xl overflow-hidden border-2 snap-start transition-all ${i === STATE.imgIndex ? 'border-pink-500 scale-110 shadow-xl' : 'border-transparent opacity-60 hover:opacity-100 hover:scale-105'}">
                     <img src="${src}" class="w-full h-full object-cover ${isLocked ? 'blur-sm' : ''}">
                 </button>
             `).join('');
-            
-            // Auto-scroll active thumb into view safely
             const activeThumb = container.children[STATE.imgIndex];
-            if(activeThumb) {
-                activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-            }
+            if(activeThumb) activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
 
         function setLightboxImage(idx) {
@@ -1184,38 +968,29 @@
         function navImage(dir) {
             if (!STATE.currentArt || STATE.currentArt.imgs.length <= 1) return;
             let newIdx = STATE.imgIndex + dir;
-            if (newIdx < 0) newIdx = STATE.currentArt.imgs.length - 1; // Wrap around
+            if (newIdx < 0) newIdx = STATE.currentArt.imgs.length - 1;
             if (newIdx >= STATE.currentArt.imgs.length) newIdx = 0;
             setLightboxImage(newIdx);
         }
 
         function updateLightboxNavVisibility() {
             const multi = STATE.currentArt.imgs.length > 1;
-            // Kept logic hidden on mobile via CSS, but JS manages DOM state
             document.getElementById('lb-prev').style.display = multi ? 'flex' : 'none';
             document.getElementById('lb-next').style.display = multi ? 'flex' : 'none';
         }
 
-        // Touch Swipe Handling (Mobile)
         function handleSwipe() {
-            const threshold = 50; // min pixels to count as swipe
+            const threshold = 50;
             const diff = STATE.touchStartX - STATE.touchEndX;
-            if (diff > threshold) navImage(1); // Swipe Left -> Next
-            else if (diff < -threshold) navImage(-1); // Swipe Right -> Prev
+            if (diff > threshold) navImage(1);
+            else if (diff < -threshold) navImage(-1);
         }
 
-        /**
-         * ==========================================
-         * UTILITY, MODALS, & SETTINGS
-         * ==========================================
-         */
         function openModal(type) {
             const modal = document.getElementById(`modal-${type}`);
             const content = document.getElementById(`modal-${type}-content`);
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            
-            // Animation Delay
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 if(content) {
@@ -1224,29 +999,24 @@
                 }
             }, 10);
             document.body.style.overflow = 'hidden';
-            
             if(type === 'stats') updateStatsCounters();
         }
 
         function closeModal(type) {
             const modal = document.getElementById(`modal-${type}`);
             const content = document.getElementById(`modal-${type}-content`);
-            
             modal.classList.add('opacity-0');
             if(content) {
                 content.classList.remove('scale-100');
                 content.classList.add('scale-95');
             }
-            
             setTimeout(() => {
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
-                // Only restore scroll if no other modals are open
                 if(document.querySelectorAll('.fixed.inset-0:not(.hidden)').length === 0) {
                     document.body.style.overflow = '';
                 }
-            }, 300); // match duration
-            
+            }, 300);
             if(type === 'lightbox') STATE.currentArt = null;
         }
 
@@ -1269,13 +1039,8 @@
             }
             saveState();
             updateStatsCounters();
-            
-            // If we are currently filtering by favs, re-render immediately to remove it
             if(STATE.filter === 'favs') renderGrid();
-            else {
-                // Otherwise just silently update the heart icon in DOM without full re-render
-                renderGrid(); // kept simple for code size, could be optimized
-            }
+            else renderGrid();
         }
 
         function toggleCurrentFav() {
@@ -1291,9 +1056,7 @@
             btn.innerText = isFav ? '❤️' : '🤍';
         }
 
-        // Settings Logic
         function initSettingsUI() {
-            
             document.getElementById('toggle-hq').className = `toggle-switch ${STATE.settings.hq ? 'on' : ''}`;
             document.getElementById('toggle-anim').className = `toggle-switch ${STATE.settings.anim ? 'on' : ''}`;
         }
@@ -1303,7 +1066,7 @@
             document.getElementById(`toggle-${key}`).className = `toggle-switch ${STATE.settings[key] ? 'on' : ''}`;
             saveState();
             showToast(`${key.toUpperCase()} setting updated`, 'info');
-            renderGrid(); // re-render to apply blur/anim changes
+            renderGrid();
         }
 
         function clearVaultData() {
@@ -1314,76 +1077,45 @@
             }
         }
 
-        // Stats Counters
         function updateStatsCounters() {
             const newCount = DB_ARTWORKS.filter(a => a.tags.includes('new')).length;
             const lockedCount = DB_ARTWORKS.filter(a => a.locked).length;
             const totalImgs = DB_ARTWORKS.reduce((sum, a) => sum + a.imgs.length, 0);
-
             document.getElementById('count-all').innerText = DB_ARTWORKS.filter(a => !a.locked).length;
             document.getElementById('count-new').innerText = newCount;
             document.getElementById('count-favs').innerText = STATE.favorites.length;
             document.getElementById('hdr-stats-count').innerText = DB_ARTWORKS.length;
-
             document.getElementById('stat-total').innerText = DB_ARTWORKS.length;
             document.getElementById('stat-imgs').innerText = totalImgs;
             document.getElementById('stat-locked').innerText = lockedCount;
             document.getElementById('stat-favs').innerText = STATE.favorites.length;
         }
 
-        /**
-         * ==========================================
-         * TOAST & CONTEXT MENU NOTIFICATION SYSTEM
-         * ==========================================
-         */
         function showToast(msg, type = 'info') {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
             toast.className = 'vault-toast';
-            
             const icon = type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️';
-            
-            toast.innerHTML = `
-                <span class="text-xl">${icon}</span>
-                <span class="text-sm font-bold text-white flex-1">${msg}</span>
-            `;
-            
+            toast.innerHTML = `<span class="text-xl">${icon}</span><span class="text-sm font-bold text-white flex-1">${msg}</span>`;
             container.appendChild(toast);
-            
-            // Auto remove
             setTimeout(() => {
                 toast.classList.add('toast-exiting');
                 setTimeout(() => toast.remove(), 300);
             }, 3000);
         }
 
-        let ctxTargetId = null; // store id of clicked art
-
         function showContextMenu(x, y) {
             const menu = document.getElementById('context-menu');
             menu.style.left = `${x}px`;
             menu.style.top = `${y}px`;
-            
-            // Adjust if goes off screen
             const rect = menu.getBoundingClientRect();
             if (x + rect.width > window.innerWidth) menu.style.left = `${window.innerWidth - rect.width - 10}px`;
             if (y + rect.height > window.innerHeight) menu.style.top = `${window.innerHeight - rect.height - 10}px`;
-
             menu.classList.add('show');
-            
-            // Try to find if user right clicked a specific art card
-            // Just defaults to current lightbox art if open
-            ctxTargetId = STATE.currentArt ? STATE.currentArt.id : null;
         }
 
         function closeContextMenu() {
             document.getElementById('context-menu').classList.remove('show');
-        }
-
-        function handleCtxCopy() {
-            if(STATE.currentArt) copyCurrentPrompt();
-            else showToast('Open an artwork first to copy prompt', 'error');
-            closeContextMenu();
         }
 
         function handleCtxSave() {
@@ -1398,19 +1130,32 @@
             closeContextMenu();
         }
 
-        function copyCurrentPrompt() {
-            if(!STATE.currentArt) return;
-            navigator.clipboard.writeText(STATE.currentArt.prompt).then(() => {
-                showToast("Prompt copied to clipboard! 📋", "success");
-            });
+        // NETLIFY SHARE BOT ONLY
+        function copyBotShareLink() {
+            if (!STATE.currentArt) {
+                showToast('No artwork loaded', 'error');
+                return;
+            }
+            const shareLink = `${NETLIFY_URL}?art=${STATE.currentArt.id}`;
+            navigator.clipboard.writeText(shareLink).then(() => {
+                showToast("✅ Netlify Share Bot Link copied!", "success");
+            }).catch(() => showToast("Failed to copy link", "error"));
+        }
+
+        function downloadCurrentImage() {
+            if (!STATE.currentArt) return;
+            const imgSrc = STATE.currentArt.imgs[STATE.imgIndex];
+            const link = document.createElement('a');
+            link.href = imgSrc;
+            link.download = `${STATE.currentArt.title.replace(/[^a-zA-Z0-9]/g, '_')}_set_${STATE.imgIndex + 1}.jpg`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast("⬇️ Image downloaded from set", "success");
         }
 
         function openExternal() {
-            if(STATE.currentArt && STATE.currentArt.chatUrl) {
-                window.open(STATE.currentArt.chatUrl, '_blank');
-            } else {
-                window.open('https://www.juicychat.ai/userdetailspace/1925952967652044801', '_blank');
-            }
+            window.open('https://nsfw-arts-hub.netlify.app/', '_blank');
         }
     </script>
 </body>
