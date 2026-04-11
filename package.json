@@ -1,7 +1,8 @@
 {
-  "name": "nsfw-arts-hub",
+  "name": "queendom-nsfw",
   "version": "1.0.0",
+  "private": true,
   "dependencies": {
-    "@netlify/blobs": "^latest"
+    "@netlify/blobs": "^10.7.4"
   }
 }
