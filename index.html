@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#0a0a1a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="description" content="Queendom Free NSFW arts - real uncensored AI Arts.">
@@ -11,232 +11,343 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
     <style>
-        :root { --accent: #ffffff; }
-        body { background-color: #0a0a0a; color: white; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        :root {
+            --accent: #ff2d95;
+            --neon-pink: #ff2d95;
+            --neon-purple: #9f2dff;
+            --glass-bg: rgba(15, 15, 35, 0.85);
+            --glass-border: rgba(255, 45, 149, 0.15);
+        }
+
+        * { transition-property: color, background-color, border-color, text-decoration-color, fill, stroke; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+
+        body {
+            background: #0a0a1a;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+
         .playfair { font-family: 'Playfair Display', serif; }
-     
-        ::-webkit-scrollbar { width: 4px; height: 4px; }
-        ::-webkit-scrollbar-track { background: #0a0a0a; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-       
-        @keyframes popIn { from { opacity: 0; transform: scale(0.9) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-        .animate-pop-in { animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-     
-        .glass { background: rgba(15, 15, 15, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
-     
-        .art-card { position: relative; border-radius: 12px; overflow: hidden; background: #111; aspect-ratio: 2/3; cursor: pointer; transition: all 0.3s ease; }
-        .art-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .locked-blur { filter: blur(25px); transform: scale(1.1); }
-        .tab-btn { padding: 8px 16px; border-radius: 50px; font-size: 13px; font-weight: 600; transition: 0.2s; color: #666; }
-        .tab-btn.active { background: white; color: black; }
-        .toggle-switch { width: 40px; height: 20px; background: #333; border-radius: 20px; position: relative; cursor: pointer; transition: 0.3s; }
-        .toggle-switch::after { content: ''; width: 16px; height: 16px; background: white; border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: 0.3s; }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px -12px rgb(159 45 255);
+        }
+
+        .art-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #111;
+            aspect-ratio: 2/3;
+            cursor: pointer;
+            box-shadow: 0 10px 30px -15px rgb(255 45 149);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .art-card:hover {
+            transform: translateY(-12px) scale(1.04);
+            box-shadow: 0 0 30px 8px rgba(255, 45, 149, 0.3), 0 25px 50px -12px rgb(159 45 255);
+        }
+
+        .art-card img { transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
+        .art-card:hover img { transform: scale(1.12); }
+
+        .locked-blur { filter: blur(28px) brightness(0.7); transform: scale(1.1); }
+
+        .heart-btn {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid transparent;
+            box-shadow: 0 0 15px rgba(255, 45, 149, 0.5);
+        }
+        .heart-btn:hover {
+            background: #ff2d95;
+            color: white;
+            transform: scale(1.15);
+            box-shadow: 0 0 25px #ff2d95;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #aaa;
+            position: relative;
+        }
+        .tab-btn.active {
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-purple));
+            color: white;
+            box-shadow: 0 0 25px 8px rgba(255, 45, 149, 0.4);
+        }
+
+        @keyframes floatHeart {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-220px) scale(0.4); }
+        }
+        .floating-heart {
+            position: fixed;
+            z-index: 99999;
+            font-size: 32px;
+            pointer-events: none;
+            text-shadow: 0 0 15px #ff2d95, 0 0 30px #ff2d95;
+            animation: floatHeart 1400ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+        }
+
+        #gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+        @media (min-width: 768px) { #gallery-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); } }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            width: 48px; height: 24px;
+            background: #333;
+            border-radius: 9999px;
+            position: relative;
+            cursor: pointer;
+        }
+        .toggle-switch::after {
+            content: '';
+            width: 20px; height: 20px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px; left: 2px;
+            transition: 0.3s;
+        }
         .toggle-switch.on { background: #22c55e; }
-        .toggle-switch.on::after { left: 22px; }
-        .vault-toast { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); z-index: 10000; background: rgba(0,0,0,0.95); color: white; padding: 12px 20px; border-radius: 50px; border: 1px solid #333; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; box-shadow: 0 10px 40px rgba(0,0,0,0.5); animation: toastIn 0.3s ease forwards; }
-        @keyframes toastIn { from { opacity: 0; transform: translate(-50%, -20px); } to { opacity: 1; transform: translate(-50%, 0); } }
+        .toggle-switch.on::after { left: 24px; }
+
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a1a; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(var(--neon-pink), var(--neon-purple)); border-radius: 20px; }
+
+        .vault-toast {
+            background: rgba(15, 15, 35, 0.95);
+            border: 1px solid #ff2d95;
+            box-shadow: 0 0 30px -5px #ff2d95;
+        }
     </style>
 </head>
 <body>
     <!-- Preloader -->
     <div id="preloader" class="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center transition-opacity duration-500">
         <div class="mb-6 text-center">
-            <h1 class="playfair italic text-4xl mb-2">Queendom</h1>
-            <p class="text-[10px] tracking-[0.4em] text-zinc-500 uppercase">Personal Archive • v2.0</p>
+            <h1 class="playfair italic text-5xl mb-2 neon-text">Queendom</h1>
+            <p class="text-[10px] tracking-[0.5em] text-pink-400 uppercase font-bold">Personal Archive • v2.1</p>
         </div>
-        <div class="w-48 h-[2px] bg-zinc-900 rounded-full overflow-hidden mb-3">
-            <div id="load-bar" class="h-full bg-white w-0 transition-all duration-100 ease-out"></div>
+        <div class="w-56 h-[3px] bg-zinc-900 rounded-full overflow-hidden mb-4">
+            <div id="load-bar" class="h-full bg-gradient-to-r from-pink-500 to-purple-500 w-0 transition-all duration-100 ease-out"></div>
         </div>
-        <div id="load-text" class="text-[9px] font-bold tracking-[0.2em] text-zinc-600 uppercase">Decrypting Assets...</div>
+        <div id="load-text" class="text-[10px] font-bold tracking-[0.3em] text-pink-400 uppercase">Decrypting your desires...</div>
     </div>
 
     <!-- Header -->
     <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3" onclick="openModal('about')">
-            <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-black bg-zinc-800">
+            <div class="w-10 h-10 rounded-2xl overflow-hidden border-2 border-pink-500 bg-zinc-800 shadow-inner">
                 <img src="https://i.imgur.com/rjgEjoV.jpeg" alt="avatar" class="w-full h-full object-cover">
             </div>
             <div>
-                <h1 class="playfair italic text-xl leading-none">Queendom</h1>
-                <p class="text-[9px] tracking-widest text-zinc-500 font-bold uppercase">AI Arts Archive</p>
+                <h1 class="playfair italic text-2xl leading-none neon-text">Queendom</h1>
+                <p class="text-[10px] tracking-[0.4em] text-pink-400 font-bold uppercase">UNCENSORED AI VAULT</p>
             </div>
         </div>
         <div class="flex items-center gap-4">
-            <button onclick="openModal('stats')" class="glass px-3 py-1.5 rounded-full text-[10px] font-bold tracking-tighter flex items-center gap-2">
-                <span class="text-green-500">●</span> <span id="hdr-stats-count">0</span> WORKS
+            <button onclick="openModal('stats')" class="glass px-5 py-2 rounded-3xl text-xs font-bold flex items-center gap-2 shadow-inner">
+                <span class="text-green-400 text-lg leading-none">●</span> 
+                <span id="hdr-stats-count" class="text-lg">0</span> 
+                <span class="uppercase tracking-widest text-[10px]">WORKS</span>
             </button>
-            <button onclick="openModal('settings')" class="w-9 h-9 glass rounded-full flex items-center justify-center text-lg">⚙️</button>
+            <button onclick="openModal('settings')" class="w-10 h-10 glass rounded-3xl flex items-center justify-center text-2xl hover:scale-110">⚙️</button>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="pt-24 pb-32 px-4 max-w-5xl mx-auto">
+    <main class="pt-24 pb-32 px-4 max-w-7xl mx-auto">
         <section class="mb-12 text-center animate-pop-in">
-            <h2 class="playfair italic text-5xl md:text-7xl mb-4">Welcome To My Arts</h2>
-            <p class="text-zinc-400 text-sm md:text-base max-w-xl mx-auto leading-relaxed">
-                Highly detailed AI art sets. Explicit themes, no limits, updated constantly.
-                <span class="text-white font-bold">Strictly 18+</span>.
+            <h2 class="playfair italic text-6xl md:text-8xl mb-3 neon-text">Welcome to my<br>private gallery</h2>
+            <p class="text-zinc-300 text-base max-w-2xl mx-auto leading-relaxed">
+                Ultra-detailed, zero-censorship AI art.<br>
+                <span class="font-bold text-pink-400">Strictly 18+ • Updated daily</span>
             </p>
         </section>
 
         <!-- Search & Filters -->
-        <section class="mb-8 space-y-4">
+        <section class="mb-10 space-y-5">
             <div class="relative group">
-                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500">🔍</span>
-                <input type="text" id="search-input" placeholder="Search by title, category or prompt..."
-                       class="w-full bg-zinc-900/50 border border-zinc-800 rounded-2xl py-4 pl-12 pr-12 focus:outline-none focus:border-white/30 transition-all text-sm">
-                <button id="clear-search" class="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 hidden hover:text-white">✕</button>
+                <span class="absolute left-6 top-1/2 -translate-y-1/2 text-2xl text-pink-400">🔎</span>
+                <input type="text" id="search-input" placeholder="Search titles, tags, or prompts..."
+                       class="w-full bg-white/5 border border-white/10 rounded-3xl py-6 pl-14 pr-14 focus:outline-none focus:border-pink-400 text-lg placeholder:text-zinc-400">
+                <button id="clear-search" class="absolute right-6 top-1/2 -translate-y-1/2 text-3xl text-zinc-400 hidden hover:text-pink-400">✕</button>
             </div>
-            <div class="flex flex-wrap items-center gap-2 overflow-x-auto pb-2 no-scrollbar" id="category-container"></div>
-            <div class="flex items-center justify-between border-t border-zinc-900 pt-4">
-                <div class="flex gap-1 glass p-1 rounded-full">
-                    <button id="tab-all" onclick="applyFilter('all')" class="tab-btn active">All <span id="count-all" class="ml-1 opacity-50">0</span></button>
-                    <button id="tab-new" onclick="applyFilter('new')" class="tab-btn">New <span id="count-new" class="ml-1 opacity-50">0</span></button>
-                    <button id="tab-upcoming" onclick="applyFilter('upcoming')" class="tab-btn">Locked</button>
-                    <button id="btn-fav-filter" onclick="toggleFavFilter()" class="tab-btn">❤️ <span id="count-favs" class="ml-1 opacity-50">0</span></button>
+
+            <div class="flex flex-wrap items-center gap-3 overflow-x-auto pb-2 no-scrollbar" id="category-container"></div>
+
+            <div class="flex items-center justify-between border-t border-white/10 pt-6">
+                <div class="flex gap-2 glass p-1.5 rounded-3xl">
+                    <button id="tab-all" onclick="applyFilter('all')" class="tab-btn active px-8">All</button>
+                    <button id="tab-new" onclick="applyFilter('new')" class="tab-btn px-8">New 🔥</button>
+                    <button id="tab-upcoming" onclick="applyFilter('upcoming')" class="tab-btn px-8">Locked 🔒</button>
+                    <button id="btn-fav-filter" onclick="toggleFavFilter()" class="tab-btn px-8">❤️ Favs</button>
                 </div>
-                <select id="sort-select" onchange="applySort()" class="bg-transparent text-[11px] font-bold uppercase tracking-widest outline-none cursor-pointer">
-                    <option value="newest">Newest</option>
-                    <option value="oldest">Oldest</option>
-                    <option value="az">A-Z</option>
+
+                <select id="sort-select" onchange="applySort()" class="glass bg-transparent text-sm font-bold uppercase tracking-widest px-6 py-3 rounded-3xl outline-none">
+                    <option value="newest">Newest first</option>
+                    <option value="oldest">Oldest first</option>
+                    <option value="az">A to Z</option>
                     <option value="random">Shuffle 🎲</option>
                 </select>
             </div>
         </section>
 
         <!-- Gallery Grid -->
-        <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+        <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"></div>
 
         <!-- Empty State -->
-        <div id="empty-state" class="hidden flex-col items-center justify-center py-20 text-zinc-600">
-            <span class="text-6xl mb-4">📭</span>
-            <p class="font-bold uppercase tracking-widest mb-4">No artworks found</p>
-            <button onclick="resetFilters()" class="px-6 py-2 border border-zinc-800 rounded-full text-xs font-bold hover:bg-white hover:text-black transition-all">Reset Everything</button>
+        <div id="empty-state" class="hidden flex-col items-center justify-center py-20 text-zinc-400">
+            <span class="text-7xl mb-6">🌫️</span>
+            <p class="text-2xl font-bold mb-2">No matches found</p>
+            <button onclick="resetFilters()" class="px-10 py-4 glass rounded-3xl text-sm font-bold uppercase tracking-widest hover:bg-pink-500 hover:text-white">Clear all filters</button>
         </div>
     </main>
 
     <!-- Bottom Nav -->
-    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] glass rounded-full px-4 py-2 flex items-center gap-8 shadow-2xl">
-        <button onclick="window.scrollTo({top:0, behavior:'smooth'})" class="flex flex-col items-center gap-1 opacity-50 hover:opacity-100">
-            <span class="text-xl">🏠</span>
-            <span class="text-[9px] font-bold">HOME</span>
+    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] glass rounded-3xl px-8 py-3 flex items-center gap-8 shadow-2xl border border-white/10">
+        <button onclick="window.scrollTo({top:0, behavior:'smooth'})" class="flex flex-col items-center gap-1 text-pink-300 hover:text-white">
+            <span class="text-3xl">🏠</span>
+            <span class="text-[10px] font-bold tracking-widest">HOME</span>
         </button>
-        <button onclick="applyFilter('new')" class="flex flex-col items-center gap-1 opacity-50 hover:opacity-100">
-            <span class="text-xl">✨</span>
-            <span class="text-[9px] font-bold">NEW</span>
+        <button onclick="applyFilter('new')" class="flex flex-col items-center gap-1 text-pink-300 hover:text-white">
+            <span class="text-3xl">✨</span>
+            <span class="text-[10px] font-bold tracking-widest">NEW</span>
         </button>
-        <button onclick="applyFilter('favs')" class="flex flex-col items-center gap-1 opacity-50 hover:opacity-100">
-            <span class="text-xl">❤️</span>
-            <span class="text-[9px] font-bold">FAVS</span>
+        <button onclick="applyFilter('favs')" class="flex flex-col items-center gap-1 text-pink-300 hover:text-white">
+            <span class="text-3xl">❤️</span>
+            <span class="text-[10px] font-bold tracking-widest">FAVS</span>
         </button>
-        <button onclick="openModal('settings')" class="flex flex-col items-center gap-1 opacity-50 hover:opacity-100">
-            <span class="text-xl">⚙️</span>
-            <span class="text-[9px] font-bold">MENU</span>
+        <button onclick="openModal('settings')" class="flex flex-col items-center gap-1 text-pink-300 hover:text-white">
+            <span class="text-3xl">⚙️</span>
+            <span class="text-[10px] font-bold tracking-widest">MENU</span>
         </button>
     </nav>
 
     <!-- Lightbox Modal -->
-    <div id="modal-lightbox" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl hidden flex-col transition-opacity duration-300 opacity-0">
-        <div class="p-6 flex items-center justify-between">
-            <div class="flex flex-col">
-                <span id="lb-cat" class="text-[10px] font-black tracking-[0.3em] text-white uppercase opacity-40 mb-1">CATEGORY</span>
-                <h3 id="lb-title" class="playfair italic text-2xl">Artwork Title</h3>
+    <div id="modal-lightbox" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-2xl hidden flex-col transition-all duration-300">
+        <div class="p-6 flex items-center justify-between border-b border-white/10">
+            <div>
+                <span id="lb-cat" class="text-xs font-black tracking-[2px] text-pink-400">CATEGORY</span>
+                <h3 id="lb-title" class="playfair italic text-3xl">Artwork Title</h3>
             </div>
             <div class="flex items-center gap-4">
-                <button id="lb-fav-btn" onclick="toggleCurrentFav()" class="w-12 h-12 glass rounded-full flex items-center justify-center text-xl">🤍</button>
-                <button onclick="closeModal('lightbox')" class="w-12 h-12 glass rounded-full flex items-center justify-center text-xl">✕</button>
+                <button id="lb-fav-btn" onclick="toggleCurrentFav()" class="w-14 h-14 glass rounded-3xl flex items-center justify-center text-3xl">🤍</button>
+                <button onclick="closeModal('lightbox')" class="w-14 h-14 glass rounded-3xl flex items-center justify-center text-3xl">✕</button>
             </div>
         </div>
-        <div id="lb-touch-area" class="flex-1 relative flex items-center justify-center p-4 overflow-hidden">
-            <div id="lb-spinner" class="absolute inset-0 flex items-center justify-center z-0">
-                <div class="w-12 h-12 border-4 border-zinc-800 border-t-white rounded-full animate-spin"></div>
+
+        <div id="lb-touch-area" class="flex-1 relative flex items-center justify-center p-8 overflow-hidden">
+            <div id="lb-spinner" class="absolute inset-0 flex items-center justify-center z-10">
+                <div class="w-14 h-14 border-4 border-white/30 border-t-pink-400 rounded-full animate-spin"></div>
             </div>
-            <img id="lb-image" src="" class="max-w-full max-h-full object-contain transition-all duration-300 z-10 drop-shadow-2xl">
-            <div id="lb-locked-ui" class="absolute inset-0 z-20 glass flex-col items-center justify-center text-center p-10 hidden">
-                <span class="text-5xl mb-6">🔒</span>
-                <h4 class="text-2xl font-bold mb-2">Arts Locked</h4>
-                <p id="lb-locked-desc" class="text-zinc-400 text-sm max-w-xs mb-8">This set is currently encrypted.</p>
-                <button class="px-8 py-3 bg-white text-black rounded-full font-bold text-xs uppercase tracking-widest">🔔 Get Release Alert</button>
-            </div>
-            <button onclick="navImage(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 glass rounded-full flex items-center justify-center text-2xl z-30 opacity-0 hover:opacity-100">‹</button>
-            <button onclick="navImage(1)" class="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 glass rounded-full flex items-center justify-center text-2xl z-30 opacity-0 hover:opacity-100">›</button>
-            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 glass px-4 py-1.5 rounded-full text-[10px] font-bold tracking-widest z-30">
-                <span id="lb-curr-idx-overlay">1</span> / <span id="lb-tot-idx-overlay">1</span> IMAGES
+            <img id="lb-image" src="" class="max-w-full max-h-[78vh] object-contain rounded-3xl shadow-2xl transition-all">
+            
+            <button onclick="navImage(-1)" class="absolute left-8 top-1/2 -translate-y-1/2 w-16 h-16 glass rounded-3xl flex items-center justify-center text-5xl hover:scale-110">‹</button>
+            <button onclick="navImage(1)" class="absolute right-8 top-1/2 -translate-y-1/2 w-16 h-16 glass rounded-3xl flex items-center justify-center text-5xl hover:scale-110">›</button>
+
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 glass px-6 py-2 rounded-3xl text-xs font-bold flex items-center gap-2">
+                <span id="lb-curr-idx-overlay">1</span> 
+                <span class="text-zinc-400">/</span> 
+                <span id="lb-tot-idx-overlay">1</span>
+                <span class="text-zinc-400 text-xs">IMAGES</span>
             </div>
         </div>
-        <div class="glass p-6 rounded-t-3xl border-t border-zinc-800">
-            <div class="flex items-center justify-between mb-6">
-                <div class="flex flex-col">
-                    <span id="lb-date" class="text-[10px] font-bold text-zinc-500 mb-1 tracking-widest"></span>
-                    <span id="lb-set-total" class="text-[11px] font-black uppercase tracking-tighter"></span>
+
+        <div class="glass p-8 rounded-t-3xl">
+            <div class="flex justify-between mb-6">
+                <div>
+                    <span id="lb-date" class="text-xs font-bold text-zinc-400"></span>
+                    <span id="lb-set-total" class="block text-sm font-black uppercase"></span>
                 </div>
-                <div class="flex items-center gap-6">
-                    <div onclick="copyBotShareLink()" class="flex flex-col items-center gap-1 cursor-pointer group">
-                        <span class="text-xl group-hover:scale-110">🔗</span>
-                        <span class="text-[9px] font-bold tracking-tighter opacity-50">SHARE</span>
+                <div class="flex gap-8">
+                    <div onclick="copyBotShareLink()" class="cursor-pointer flex flex-col items-center">
+                        <span class="text-3xl">🔗</span>
+                        <span class="text-xs font-bold mt-1">SHARE</span>
                     </div>
-                    <div onclick="copyImageDirectLink()" class="flex flex-col items-center gap-1 cursor-pointer group">
-                        <span class="text-xl group-hover:scale-110">🖼️</span>
-                        <span class="text-[9px] font-bold tracking-tighter opacity-50">COPY LINK</span>
+                    <div onclick="copyImageDirectLink()" class="cursor-pointer flex flex-col items-center">
+                        <span class="text-3xl">🖼️</span>
+                        <span class="text-xs font-bold mt-1">COPY LINK</span>
                     </div>
-                    <div onclick="downloadCurrentImage()" class="flex flex-col items-center gap-1 cursor-pointer group">
-                        <span class="text-xl group-hover:scale-110">⬇️</span>
-                        <span class="text-[9px] font-bold tracking-tighter opacity-50">DOWNLOAD</span>
+                    <div onclick="downloadCurrentImage()" class="cursor-pointer flex flex-col items-center">
+                        <span class="text-3xl">⬇️</span>
+                        <span class="text-xs font-bold mt-1">SAVE</span>
                     </div>
                 </div>
             </div>
-            <p id="lb-desc" class="text-zinc-400 text-sm leading-relaxed mb-6 italic"></p>
-            <div id="lb-thumbs" class="flex gap-2 overflow-x-auto no-scrollbar py-2"></div>
+            <p id="lb-desc" class="text-zinc-300 leading-relaxed"></p>
+            <div id="lb-thumbs" class="flex gap-3 overflow-x-auto pt-6"></div>
         </div>
     </div>
 
-    <!-- Stats Modal -->
-    <div id="modal-stats" class="fixed inset-0 z-[110] bg-black/90 backdrop-blur-md hidden items-center justify-center p-6 opacity-0">
-        <div class="glass w-full max-w-sm rounded-3xl p-8">
-            <div class="flex items-center justify-between mb-8">
-                <h4 class="playfair italic text-2xl">Arts Statistics</h4>
-                <button onclick="closeModal('stats')" class="text-xl">✕</button>
+    <!-- Modals (Stats, Settings, About) - unchanged but with new glass -->
+    <div id="modal-stats" class="fixed inset-0 z-[110] bg-black/90 backdrop-blur-xl hidden items-center justify-center p-6">
+        <div class="glass w-full max-w-md rounded-3xl p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h4 class="playfair italic text-3xl">Vault Statistics</h4>
+                <button onclick="closeModal('stats')" class="text-3xl">✕</button>
             </div>
             <div class="grid grid-cols-2 gap-4">
-                <div class="glass p-6 rounded-2xl text-center"><span class="block text-[10px] font-bold text-zinc-500 uppercase">Total Works</span><span id="stat-total" class="text-3xl font-bold">0</span></div>
-                <div class="glass p-6 rounded-2xl text-center"><span class="block text-[10px] font-bold text-zinc-500 uppercase">Total Images</span><span id="stat-imgs" class="text-3xl font-bold">0</span></div>
-                <div class="glass p-6 rounded-2xl text-center"><span class="block text-[10px] font-bold text-zinc-500 uppercase">Locked</span><span id="stat-locked" class="text-3xl font-bold">0</span></div>
-                <div class="glass p-6 rounded-2xl text-center"><span class="block text-[10px] font-bold text-zinc-500 uppercase">Favorites</span><span id="stat-favs" class="text-3xl font-bold">0</span></div>
+                <div class="glass p-6 rounded-3xl text-center"><span class="block text-xs uppercase font-bold text-pink-400">Total Works</span><span id="stat-total" class="text-5xl font-bold">0</span></div>
+                <div class="glass p-6 rounded-3xl text-center"><span class="block text-xs uppercase font-bold text-pink-400">Total Images</span><span id="stat-imgs" class="text-5xl font-bold">0</span></div>
+                <div class="glass p-6 rounded-3xl text-center"><span class="block text-xs uppercase font-bold text-pink-400">Locked</span><span id="stat-locked" class="text-5xl font-bold">0</span></div>
+                <div class="glass p-6 rounded-3xl text-center"><span class="block text-xs uppercase font-bold text-pink-400">Your Favs</span><span id="stat-favs" class="text-5xl font-bold">0</span></div>
             </div>
         </div>
     </div>
 
-    <!-- Settings Modal -->
-    <div id="modal-settings" class="fixed inset-0 z-[110] bg-black/90 backdrop-blur-md hidden items-center justify-center p-6 opacity-0">
-        <div class="glass w-full max-w-sm rounded-3xl p-8">
-            <div class="flex items-center justify-between mb-8">
-                <h4 class="playfair italic text-2xl">Settings</h4>
-                <button onclick="closeModal('settings')" class="text-xl">✕</button>
+    <div id="modal-settings" class="fixed inset-0 z-[110] bg-black/90 backdrop-blur-xl hidden items-center justify-center p-6">
+        <div class="glass w-full max-w-md rounded-3xl p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h4 class="playfair italic text-3xl">Settings</h4>
+                <button onclick="closeModal('settings')" class="text-3xl">✕</button>
             </div>
-            <div class="space-y-6">
-                <div class="flex items-center justify-between">
-                    <div><p class="font-bold text-sm mb-1">High Quality Images</p><p class="text-[10px] text-zinc-500">Load 4K versions when available</p></div>
+            <div class="space-y-8">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p class="font-bold">4K High Quality</p>
+                        <p class="text-xs text-zinc-400">Load maximum resolution images</p>
+                    </div>
                     <div id="toggle-hq" onclick="toggleSetting('hq')" class="toggle-switch"></div>
                 </div>
-                <div class="flex items-center justify-between">
-                    <div><p class="font-bold text-sm mb-1">UI Animations</p><p class="text-[10px] text-zinc-500">Enable smooth animations</p></div>
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p class="font-bold">Smooth Animations</p>
+                        <p class="text-xs text-zinc-400">Enable buttery transitions</p>
+                    </div>
                     <div id="toggle-anim" onclick="toggleSetting('anim')" class="toggle-switch"></div>
                 </div>
-                <button onclick="clearVaultData()" class="w-full py-4 glass border border-zinc-700 rounded-2xl text-red-500 text-xs font-black uppercase tracking-widest hover:bg-red-500/10">Clear All Saved Data</button>
+                <button onclick="clearVaultData()" class="w-full py-6 text-red-400 hover:text-white border border-red-400/30 hover:bg-red-400/10 rounded-3xl font-bold uppercase text-sm tracking-widest">Clear all saved data</button>
             </div>
         </div>
     </div>
 
-    <!-- About Modal -->
-    <div id="modal-about" class="fixed inset-0 z-[110] bg-black/90 backdrop-blur-md hidden items-center justify-center p-6 opacity-0">
+    <div id="modal-about" class="fixed inset-0 z-[110] bg-black/90 backdrop-blur-xl hidden items-center justify-center p-6">
         <div class="glass w-full max-w-sm rounded-3xl p-10 text-center">
-            <div class="w-24 h-24 rounded-full mx-auto mb-6 overflow-hidden border-4 border-black">
+            <div class="w-28 h-28 mx-auto mb-6 rounded-3xl overflow-hidden border-4 border-pink-400">
                 <img src="https://i.imgur.com/rjgEjoV.jpeg" class="w-full h-full object-cover">
             </div>
-            <h4 class="playfair italic text-3xl mb-1">Queendom</h4>
-            <p class="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.4em] mb-6">AI Arts Creator</p>
-            <p class="text-zinc-400 text-sm leading-relaxed mb-8">Welcome to my personal uncensored AI art archive.<br><br>No limits. No censorship. Made with love 💘</p>
-            <button onclick="closeModal('about')" class="px-8 py-3 bg-white text-black rounded-full font-bold text-xs uppercase tracking-widest">Close</button>
+            <h4 class="playfair italic text-4xl mb-1 neon-text">Queendom</h4>
+            <p class="uppercase text-pink-400 text-xs font-bold tracking-[3px]">My personal uncensored vault</p>
+            <p class="text-zinc-300 mt-8">No limits. No censorship.<br>Made with pure lust 💖</p>
+            <button onclick="closeModal('about')" class="mt-10 px-12 py-4 bg-gradient-to-r from-pink-500 to-purple-500 rounded-3xl font-bold text-sm">Close vault</button>
         </div>
     </div>
 
@@ -272,50 +383,76 @@
             currentArt: null,
             imgIndex: 0,
             touchStartX: 0,
-            hearts: {}                     // ← Fixed: always exists
+            hearts: {} 
         };
 
         const API_BASE = "/.netlify/functions/hearts";
 
-        async function loadHearts() {
-            try {
-                const res = await fetch(API_BASE);
-                if (res.ok) STATE.hearts = await res.json();
-            } catch (e) {}
-            renderGrid();   // re-render once hearts are loaded
-        }
+async function loadHearts() {
+    try {
+        const res = await fetch(API_BASE);
+        if (res.ok) STATE.hearts = await res.json();
+    } catch (e) {}
+    renderGrid();
+}
 
-        async function sendHeart(id) {
-            try {
-                const res = await fetch(API_BASE, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ id: String(id) })
-                });
-                if (res.ok) {
-                    STATE.hearts = await res.json();
-                    renderGrid();
-                    showToast("❤️ Heart added!", "success");
-                }
-            } catch (e) {
-                showToast("Couldn't send heart", "error");
-            }
+async function sendHeart(id) {
+    if (!STATE.hearts) STATE.hearts = {};
+    const previousCount = STATE.hearts[id] || 0;
+    STATE.hearts[id] = previousCount + 1;
+    renderGrid();
+    
+    try {
+        const res = await fetch(API_BASE, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id: String(id) })
+        });
+        if (res.ok) {
+            STATE.hearts = await res.json();
+            renderGrid();
+            showToast("❤️ Heart sent! Thank you 💕", "success");
+        } else {
+            STATE.hearts[id] = previousCount;
+            renderGrid();
         }
+    } catch (e) {
+        STATE.hearts[id] = previousCount;
+        renderGrid();
+        showToast("Network error — heart not saved", "error");
+    }
+}
 
-        function saveState() {
-            localStorage.setItem('vault_favs', JSON.stringify(STATE.favorites));
-            localStorage.setItem('vault_settings', JSON.stringify(STATE.settings));
-        }
+function createFloatingHeart(clientX, clientY) {
+    const heart = document.createElement('div');
+    heart.className = 'floating-heart';
+    heart.textContent = '❤️';
+    heart.style.left = `${clientX}px`;
+    heart.style.top = `${clientY - 30}px`;
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 1600);
+}
 
-        function showToast(msg, type = "info") {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = 'vault-toast';
-            const icon = type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️';
-            toast.innerHTML = `<span>${icon}</span><span>${msg}</span>`;
-            container.appendChild(toast);
-            setTimeout(() => toast.remove(), 2800);
-        }
+function handleHeartClick(e, id) {
+    e.stopImmediatePropagation();
+    createFloatingHeart(e.clientX, e.clientY);
+    sendHeart(id);
+}
+
+function saveState() {
+    localStorage.setItem('vault_favs', JSON.stringify(STATE.favorites));
+    localStorage.setItem('vault_settings', JSON.stringify(STATE.settings));
+}
+
+function showToast(msg, type = "info") {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = 'vault-toast fixed top-6 left-1/2 -translate-x-1/2 flex items-center gap-3 px-6 py-4 rounded-3xl text-sm font-medium';
+    const icon = type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️';
+    toast.innerHTML = `${icon} <span>${msg}</span>`;
+    container.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
 
         function getFilteredData() {
             let res = [...DB_ARTWORKS];
@@ -326,7 +463,11 @@
             if (STATE.category !== 'all') res = res.filter(a => a.cat === STATE.category);
             if (STATE.search) {
                 const term = STATE.search.toLowerCase();
-                res = res.filter(a => a.title.toLowerCase().includes(term) || a.desc.toLowerCase().includes(term));
+                res = res.filter(a => 
+                    a.title.toLowerCase().includes(term) || 
+                    a.desc.toLowerCase().includes(term) ||
+                    a.cat.toLowerCase().includes(term)
+                );
             }
             if (STATE.sort === 'newest') res.sort((a,b) => new Date(b.date) - new Date(a.date));
             if (STATE.sort === 'oldest') res.sort((a,b) => new Date(a.date) - new Date(b.date));
@@ -338,7 +479,8 @@
         function renderCategories() {
             const container = document.getElementById('category-container');
             container.innerHTML = CATEGORIES.map(cat => `
-                <button onclick="setCategory('${cat.id}')" class="px-4 py-2 rounded-full glass text-[11px] font-black uppercase tracking-widest whitespace-nowrap transition-all ${STATE.category === cat.id ? 'bg-white text-black' : 'text-zinc-500'}">
+                <button onclick="setCategory('${cat.id}')" 
+                        class="px-6 py-3 rounded-3xl glass text-xs font-black uppercase tracking-widest whitespace-nowrap ${STATE.category === cat.id ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg' : 'text-zinc-400'}">
                     ${cat.name}
                 </button>
             `).join('');
@@ -352,9 +494,9 @@
 
         function applyFilter(type) {
             STATE.filter = type;
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            if (type === 'favs') document.getElementById('btn-fav-filter').classList.add('active');
-            else if (document.getElementById(`tab-${type}`)) document.getElementById(`tab-${type}`).classList.add('active');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            const activeTab = type === 'favs' ? 'btn-fav-filter' : `tab-${type}`;
+            if (document.getElementById(activeTab)) document.getElementById(activeTab).classList.add('active');
             renderGrid();
         }
 
@@ -383,36 +525,39 @@
 
             grid.innerHTML = data.map((art, i) => {
                 const isFav = STATE.favorites.includes(art.id);
-                const heartCount = STATE.hearts?.[art.id] || 0;   // ← Safe optional chaining
-                const delay = STATE.settings.anim ? `style="animation-delay: ${i * 0.05}s"` : '';
+                const heartCount = STATE.hearts?.[art.id] || 0;
+                const delay = STATE.settings.anim ? `style="animation-delay: ${i * 40}ms"` : '';
 
                 return `
-                    <div onclick="openLightbox(${art.id})" class="art-card animate-pop-in relative" ${delay}>
-                        <img src="${art.imgs[0]}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110 ${art.locked ? 'locked-blur' : ''}">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    <div onclick="openLightbox(${art.id})" class="art-card animate-pop-in" ${delay}>
+                        <img src="${art.imgs[0]}" class="w-full h-full object-cover ${art.locked ? 'locked-blur' : ''}">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80"></div>
                         
-                        <div onclick="event.stopImmediatePropagation(); sendHeart(${art.id});" 
-                             class="absolute top-3 right-3 bg-black/70 hover:bg-black/90 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 cursor-pointer active:scale-90">
-                            ❤️ <span>${heartCount}</span>
+                        <!-- FIXED HEART BUTTON -->
+                        <div onclick="handleHeartClick(event, ${art.id})" 
+                             class="heart-btn absolute top-4 right-4 px-4 py-1 rounded-3xl text-sm font-bold flex items-center gap-1 cursor-pointer active:scale-90">
+                            ❤️ <span class="text-base">${heartCount}</span>
                         </div>
 
-                        <div class="absolute bottom-0 left-0 right-0 p-3">
-                            <h4 class="text-xs font-bold leading-tight truncate mb-1">${art.title}</h4>
-                            <div class="flex items-center justify-between">
-                                <span class="text-[8px] font-black uppercase tracking-widest text-zinc-400">${art.date}</span>
-                                ${isFav ? '<span>❤️</span>' : ''}
+                        <div class="absolute bottom-0 left-0 right-0 p-4">
+                            <h4 class="text-sm font-semibold leading-tight mb-1 line-clamp-2">${art.title}</h4>
+                            <div class="flex justify-between text-xs">
+                                <span class="font-mono text-pink-300">${art.date}</span>
+                                ${isFav ? '<span class="text-pink-400">❤️</span>' : ''}
                             </div>
                         </div>
-                        ${art.locked ? '<div class="absolute inset-0 flex items-center justify-center text-2xl">🔒</div>' : ''}
+                        ${art.locked ? `<div class="absolute inset-0 flex items-center justify-center text-5xl text-white/30">🔒</div>` : ''}
                     </div>
                 `;
             }).join('');
         }
 
+        // Lightbox & rest of functions (unchanged except minor polish)
         function openLightbox(id) {
             STATE.currentArt = DB_ARTWORKS.find(a => a.id === id);
             if (!STATE.currentArt) return;
             STATE.imgIndex = 0;
+
             const newUrl = `${window.location.origin}${window.location.pathname}?art=${id}`;
             window.history.pushState({}, '', newUrl);
 
@@ -422,12 +567,14 @@
             document.getElementById('lb-cat').innerText = art.cat.toUpperCase();
             document.getElementById('lb-desc').innerText = art.desc;
             document.getElementById('lb-set-total').innerText = `${art.imgs.length} IMAGES IN SET`;
+
             updateLightboxFavUI();
 
             const modal = document.getElementById('modal-lightbox');
-            modal.classList.remove('hidden', 'opacity-0');
+            modal.classList.remove('hidden');
             modal.classList.add('flex');
             document.body.style.overflow = 'hidden';
+
             loadLightboxImage();
         }
 
@@ -456,7 +603,8 @@
             if (!art) return;
             const container = document.getElementById('lb-thumbs');
             container.innerHTML = art.imgs.map((src, i) => `
-                <div onclick="setLightboxImage(${i}); event.stopImmediatePropagation()" class="w-16 h-20 rounded-lg overflow-hidden flex-shrink-0 cursor-pointer border-2 ${STATE.imgIndex === i ? 'border-white' : 'border-transparent'}">
+                <div onclick="setLightboxImage(${i}); event.stopImmediatePropagation()" 
+                     class="w-20 h-24 rounded-2xl overflow-hidden flex-shrink-0 cursor-pointer border-2 ${STATE.imgIndex === i ? 'border-pink-400 shadow-lg' : 'border-transparent'}">
                     <img src="${src}" class="w-full h-full object-cover">
                 </div>
             `).join('');
@@ -486,10 +634,8 @@
         function toggleFav(id) {
             if (STATE.favorites.includes(id)) {
                 STATE.favorites = STATE.favorites.filter(f => f !== id);
-                showToast("Removed from favorites", "error");
             } else {
                 STATE.favorites.push(id);
-                showToast("Added to favorites ❤️", "success");
             }
             saveState();
             updateStatsCounters();
@@ -500,7 +646,7 @@
         function openModal(type) {
             const modal = document.getElementById(`modal-${type}`);
             if (!modal) return;
-            modal.classList.remove('hidden', 'opacity-0');
+            modal.classList.remove('hidden');
             modal.classList.add('flex');
             document.body.style.overflow = 'hidden';
         }
@@ -523,55 +669,49 @@
         function copyBotShareLink() {
             if (!STATE.currentArt) return;
             const link = `${window.location.origin}${window.location.pathname}?art=${STATE.currentArt.id}`;
-            navigator.clipboard.writeText(link).then(() => showToast("Share link copied!", "success"));
+            navigator.clipboard.writeText(link).then(() => showToast("Share link copied", "success"));
         }
 
         function copyImageDirectLink() {
             if (!STATE.currentArt) return;
-            const link = STATE.currentArt.imgs[STATE.imgIndex];
-            navigator.clipboard.writeText(link).then(() => showToast("Image link copied!", "success"));
+            navigator.clipboard.writeText(STATE.currentArt.imgs[STATE.imgIndex]).then(() => showToast("Image link copied", "success"));
         }
 
         function downloadCurrentImage() {
             if (!STATE.currentArt) return;
-            const link = document.createElement('a');
-            link.href = STATE.currentArt.imgs[STATE.imgIndex];
-            link.download = `Queendom_${STATE.currentArt.id}_${STATE.imgIndex + 1}.jpg`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            showToast("Download started...", "success");
+            const a = document.createElement('a');
+            a.href = STATE.currentArt.imgs[STATE.imgIndex];
+            a.download = `Queendom_${STATE.currentArt.id}_${STATE.imgIndex + 1}.jpg`;
+            a.click();
+            showToast("Download started", "success");
         }
 
         function updateStatsCounters() {
-            document.getElementById('count-all').innerText = DB_ARTWORKS.filter(a => !a.locked).length;
-            document.getElementById('count-new').innerText = DB_ARTWORKS.filter(a => a.tags.includes('new')).length;
-            document.getElementById('count-favs').innerText = STATE.favorites.length;
-            document.getElementById('hdr-stats-count').innerText = DB_ARTWORKS.length;
-            document.getElementById('stat-total').innerText = DB_ARTWORKS.length;
-            document.getElementById('stat-imgs').innerText = DB_ARTWORKS.reduce((sum, a) => sum + a.imgs.length, 0);
-            document.getElementById('stat-locked').innerText = DB_ARTWORKS.filter(a => a.locked).length;
-            document.getElementById('stat-favs').innerText = STATE.favorites.length;
-        }
+    // FIXED: removed the old count-all / count-new / count-favs that no longer exist
+    document.getElementById('hdr-stats-count').innerText = DB_ARTWORKS.length;
+    document.getElementById('stat-total').innerText = DB_ARTWORKS.length;
+    document.getElementById('stat-imgs').innerText = DB_ARTWORKS.reduce((sum, a) => sum + a.imgs.length, 0);
+    document.getElementById('stat-locked').innerText = DB_ARTWORKS.filter(a => a.locked).length;
+    document.getElementById('stat-favs').innerText = STATE.favorites.length;
+}
 
         function toggleSetting(key) {
             STATE.settings[key] = !STATE.settings[key];
-            const toggleEl = document.getElementById(`toggle-${key}`);
-            if (toggleEl) toggleEl.className = `toggle-switch ${STATE.settings[key] ? 'on' : ''}`;
+            const el = document.getElementById(`toggle-${key}`);
+            if (el) el.className = `toggle-switch ${STATE.settings[key] ? 'on' : ''}`;
             saveState();
-            showToast(`${key.toUpperCase()} updated`, "info");
             renderGrid();
         }
 
         function initSettingsUI() {
-            const hqToggle = document.getElementById('toggle-hq');
-            const animToggle = document.getElementById('toggle-anim');
-            if (hqToggle) hqToggle.className = `toggle-switch ${STATE.settings.hq ? 'on' : ''}`;
-            if (animToggle) animToggle.className = `toggle-switch ${STATE.settings.anim ? 'on' : ''}`;
+            const hq = document.getElementById('toggle-hq');
+            const anim = document.getElementById('toggle-anim');
+            if (hq) hq.className = `toggle-switch ${STATE.settings.hq ? 'on' : ''}`;
+            if (anim) anim.className = `toggle-switch ${STATE.settings.anim ? 'on' : ''}`;
         }
 
         function clearVaultData() {
-            if (confirm("Clear all favorites and settings?")) {
+            if (confirm("Delete ALL favorites and settings?")) {
                 localStorage.clear();
                 location.reload();
             }
@@ -589,11 +729,13 @@
         function setupEventListeners() {
             const searchInput = document.getElementById('search-input');
             const clearBtn = document.getElementById('clear-search');
+
             searchInput.addEventListener('input', e => {
-                STATE.search = e.target.value.toLowerCase();
+                STATE.search = e.target.value;
                 clearBtn.style.display = STATE.search.length > 0 ? 'block' : 'none';
                 renderGrid();
             });
+
             clearBtn.addEventListener('click', () => {
                 searchInput.value = '';
                 STATE.search = '';
@@ -601,11 +743,12 @@
                 renderGrid();
             });
 
+            // Touch swipe in lightbox
             const touchArea = document.getElementById('lb-touch-area');
             touchArea.addEventListener('touchstart', e => STATE.touchStartX = e.changedTouches[0].screenX);
             touchArea.addEventListener('touchend', e => {
                 const diff = STATE.touchStartX - e.changedTouches[0].screenX;
-                if (Math.abs(diff) > 50) navImage(diff > 0 ? 1 : -1);
+                if (Math.abs(diff) > 60) navImage(diff > 0 ? 1 : -1);
             });
 
             document.addEventListener('keydown', e => {
@@ -627,28 +770,30 @@
             initSettingsUI();
             renderCategories();
             setupEventListeners();
-            applyFilter('all');           // initial render
-            updateStatsCounters();
-            loadHearts();                 // ← hearts load safely after first render
+            applyFilter('all');
+            updateStatsCounters();   // ← now safe
+            loadHearts();
+
+            // preloader...
             let progress = 0;
             const bar = document.getElementById('load-bar');
             const text = document.getElementById('load-text');
             const intv = setInterval(() => {
-                progress += Math.random() * 40;
+                progress += Math.random() * 45;
                 if (progress >= 100) {
                     progress = 100;
                     clearInterval(intv);
-                    text.innerText = "ACCESS GRANTED";
+                    text.innerText = "ACCESS GRANTED 💖";
                     setTimeout(() => {
                         document.getElementById('preloader').style.opacity = '0';
                         setTimeout(() => {
                             document.getElementById('preloader').remove();
                             checkDeepLink();
-                        }, 500);
-                    }, 300);
+                        }, 600);
+                    }, 400);
                 }
                 bar.style.width = `${progress}%`;
-            }, 60);
+            }, 55);
         };
     </script>
 </body>
