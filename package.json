@@ -1,0 +1,7 @@
+{
+  "name": "nsfw-arts-hub",
+  "version": "1.0.0",
+  "dependencies": {
+    "@netlify/blobs": "^latest"
+  }
+}
