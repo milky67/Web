@@ -1,8 +1,10 @@
 [build]
-  command = "npm run build"   # kung may build step
-  publish = "."
+  command = ""          # empty = no build needed
+  publish = "."         # root folder contains index.html
+  functions = "netlify/functions"
 
+# Optional: clean redirects for functions
 [[redirects]]
-  from = "/netlify/functions/*"
-  to = "/netlify/functions/:splat"
+  from = "/.netlify/functions/*"
+  to = "/.netlify/functions/:splat"
   status = 200
