@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
@@ -11,7 +9,6 @@
     <meta name="description" content="Queendom Free NSFW arts - real uncensored AI Arts.">
     <title>Queendom • Free NSFW Arts</title>
 
-    <!-- External Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
 
@@ -19,43 +16,33 @@
         :root { --accent: #ffffff; }
         body { background-color: #0a0a0a; color: white; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
         .playfair { font-family: 'Playfair Display', serif; }
-        
-        /* Custom Scrollbar */
+      
         ::-webkit-scrollbar { width: 4px; height: 4px; }
         ::-webkit-scrollbar-track { background: #0a0a0a; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-
-        /* Animations */
+        
         @keyframes popIn { from { opacity: 0; transform: scale(0.9) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
         .animate-pop-in { animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        
-        /* Glassmorphism */
+      
         .glass { background: rgba(15, 15, 15, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
-        
-        /* UI Elements */
+      
         .art-card { position: relative; border-radius: 12px; overflow: hidden; background: #111; aspect-ratio: 2/3; cursor: pointer; transition: all 0.3s ease; }
-        .art-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-color: rgba(255,255,255,0.2); }
+        .art-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .locked-blur { filter: blur(25px); transform: scale(1.1); }
-        
-        /* Tabs & Switches */
+
         .tab-btn { padding: 8px 16px; border-radius: 50px; font-size: 13px; font-weight: 600; transition: 0.2s; color: #666; }
         .tab-btn.active { background: white; color: black; }
+
         .toggle-switch { width: 40px; height: 20px; background: #333; border-radius: 20px; position: relative; cursor: pointer; transition: 0.3s; }
         .toggle-switch::after { content: ''; width: 16px; height: 16px; background: white; border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: 0.3s; }
         .toggle-switch.on { background: #22c55e; }
         .toggle-switch.on::after { left: 22px; }
 
-        /* Toast & Context Menu */
         .vault-toast { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); z-index: 10000; background: rgba(0,0,0,0.95); color: white; padding: 12px 20px; border-radius: 50px; border: 1px solid #333; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; box-shadow: 0 10px 40px rgba(0,0,0,0.5); animation: toastIn 0.3s ease forwards; }
         @keyframes toastIn { from { opacity: 0; transform: translate(-50%, -20px); } to { opacity: 1; transform: translate(-50%, 0); } }
-        .toast-exiting { opacity: 0; transform: translate(-50%, -20px); transition: 0.3s; }
-        
-        #context-menu { position: fixed; z-index: 9000; width: 200px; background: rgba(10,10,10,0.95); backdrop-filter: blur(15px); border: 1px solid #333; border-radius: 12px; padding: 6px; display: none; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
-        #context-menu.show { display: block; animation: popIn 0.2s ease-out; }
     </style>
 </head>
 <body>
-
     <!-- Preloader -->
     <div id="preloader" class="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center transition-opacity duration-500">
         <div class="mb-6 text-center">
@@ -69,7 +56,7 @@
     </div>
 
     <!-- Header -->
-    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4 flex items-center justify-between">
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3" onclick="openModal('about')">
             <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-black bg-zinc-800">
                 <img src="https://i.imgur.com/rjgEjoV.jpeg" alt="avatar" class="w-full h-full object-cover">
@@ -87,13 +74,12 @@
         </div>
     </header>
 
-    <!-- Content -->
+    <!-- Main Content -->
     <main class="pt-24 pb-32 px-4 max-w-5xl mx-auto">
-        <!-- Hero Section -->
         <section class="mb-12 text-center animate-pop-in">
             <h2 class="playfair italic text-5xl md:text-7xl mb-4">Welcome To My Arts</h2>
             <p class="text-zinc-400 text-sm md:text-base max-w-xl mx-auto leading-relaxed">
-                Highly detailed AI art sets. Explicit themes, no limits, updated constantly. 
+                Highly detailed AI art sets. Explicit themes, no limits, updated constantly.
                 <span class="text-white font-bold">Strictly 18+</span>.
             </p>
         </section>
@@ -102,14 +88,12 @@
         <section class="mb-8 space-y-4">
             <div class="relative group">
                 <span class="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500">🔍</span>
-                <input type="text" id="search-input" placeholder="Search by title, category or prompt..." 
+                <input type="text" id="search-input" placeholder="Search by title, category or prompt..."
                        class="w-full bg-zinc-900/50 border border-zinc-800 rounded-2xl py-4 pl-12 pr-12 focus:outline-none focus:border-white/30 transition-all text-sm">
                 <button id="clear-search" class="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 hidden hover:text-white">✕</button>
             </div>
 
-            <div class="flex flex-wrap items-center gap-2 overflow-x-auto pb-2 no-scrollbar" id="category-container">
-                <!-- Categories injected here -->
-            </div>
+            <div class="flex flex-wrap items-center gap-2 overflow-x-auto pb-2 no-scrollbar" id="category-container"></div>
 
             <div class="flex items-center justify-between border-t border-zinc-900 pt-4">
                 <div class="flex gap-1 glass p-1 rounded-full">
@@ -127,10 +111,8 @@
             </div>
         </section>
 
-        <!-- Gallery Grid -->
-        <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <!-- Cards injected here -->
-        </div>
+        <!-- Gallery -->
+        <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
 
         <!-- Empty State -->
         <div id="empty-state" class="hidden flex-col items-center justify-center py-20 text-zinc-600">
@@ -141,28 +123,27 @@
     </main>
 
     <!-- Bottom Nav -->
-    <nav id="bottom-nav" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] glass rounded-full px-4 py-2 flex items-center gap-8 transition-transform duration-500 shadow-2xl">
-        <button onclick="window.scrollTo({top:0, behavior:'smooth'})" class="flex flex-col items-center gap-1 opacity-50 hover:opacity-100 transition-opacity">
+    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] glass rounded-full px-4 py-2 flex items-center gap-8 shadow-2xl">
+        <button onclick="window.scrollTo({top:0, behavior:'smooth'})" class="flex flex-col items-center gap-1 opacity-50 hover:opacity-100">
             <span class="text-xl">🏠</span>
             <span class="text-[9px] font-bold">HOME</span>
         </button>
-        <button onclick="applyFilter('new')" class="flex flex-col items-center gap-1 opacity-50 hover:opacity-100 transition-opacity">
+        <button onclick="applyFilter('new')" class="flex flex-col items-center gap-1 opacity-50 hover:opacity-100">
             <span class="text-xl">✨</span>
             <span class="text-[9px] font-bold">NEW</span>
         </button>
-        <button onclick="applyFilter('favs')" class="flex flex-col items-center gap-1 opacity-50 hover:opacity-100 transition-opacity">
+        <button onclick="applyFilter('favs')" class="flex flex-col items-center gap-1 opacity-50 hover:opacity-100">
             <span class="text-xl">❤️</span>
             <span class="text-[9px] font-bold">FAVS</span>
         </button>
-        <button onclick="openModal('settings')" class="flex flex-col items-center gap-1 opacity-50 hover:opacity-100 transition-opacity">
+        <button onclick="openModal('settings')" class="flex flex-col items-center gap-1 opacity-50 hover:opacity-100">
             <span class="text-xl">⚙️</span>
             <span class="text-[9px] font-bold">MENU</span>
         </button>
     </nav>
 
-    <!-- Lightbox Modal -->
+    <!-- Lightbox -->
     <div id="modal-lightbox" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl hidden flex-col transition-opacity duration-300 opacity-0">
-        <!-- Lightbox Header -->
         <div class="p-6 flex items-center justify-between">
             <div class="flex flex-col">
                 <span id="lb-cat" class="text-[10px] font-black tracking-[0.3em] text-white uppercase opacity-40 mb-1">CATEGORY</span>
@@ -174,14 +155,12 @@
             </div>
         </div>
 
-        <!-- Image Container -->
         <div id="lb-touch-area" class="flex-1 relative flex items-center justify-center p-4 overflow-hidden">
             <div id="lb-spinner" class="absolute inset-0 flex items-center justify-center z-0">
                 <div class="w-12 h-12 border-4 border-zinc-800 border-t-white rounded-full animate-spin"></div>
             </div>
             <img id="lb-image" src="" class="max-w-full max-h-full object-contain transition-all duration-300 z-10 drop-shadow-2xl">
-            
-            <!-- Locked Overlay -->
+
             <div id="lb-locked-ui" class="absolute inset-0 z-20 glass flex-col items-center justify-center text-center p-10 hidden">
                 <span class="text-5xl mb-6">🔒</span>
                 <h4 class="text-2xl font-bold mb-2">Arts Locked</h4>
@@ -189,69 +168,62 @@
                 <button class="px-8 py-3 bg-white text-black rounded-full font-bold text-xs uppercase tracking-widest">🔔 Get Release Alert</button>
             </div>
 
-            <!-- Navigation Buttons -->
-            <button id="lb-prev" onclick="navImage(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 glass rounded-full flex items-center justify-center text-2xl z-30 opacity-0 hover:opacity-100 transition-opacity">‹</button>
-            <button id="lb-next" onclick="navImage(1)" class="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 glass rounded-full flex items-center justify-center text-2xl z-30 opacity-0 hover:opacity-100 transition-opacity">›</button>
-            
-            <!-- Index Badge -->
+            <button onclick="navImage(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 glass rounded-full flex items-center justify-center text-2xl z-30 opacity-0 hover:opacity-100">‹</button>
+            <button onclick="navImage(1)" class="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 glass rounded-full flex items-center justify-center text-2xl z-30 opacity-0 hover:opacity-100">›</button>
+
             <div class="absolute bottom-10 left-1/2 -translate-x-1/2 glass px-4 py-1.5 rounded-full text-[10px] font-bold tracking-widest z-30">
                 <span id="lb-curr-idx-overlay">1</span> / <span id="lb-tot-idx-overlay">1</span> IMAGES
             </div>
         </div>
 
-        <!-- Lightbox Footer -->
-        <div class="glass p-6 rounded-t-3xl border-t border-zinc-800 animate-pop-in">
+        <div class="glass p-6 rounded-t-3xl border-t border-zinc-800">
             <div class="flex items-center justify-between mb-6">
                 <div class="flex flex-col">
-                    <span id="lb-date" class="text-[10px] font-bold text-zinc-500 mb-1 tracking-widest">2026-03-30</span>
-                    <span id="lb-set-total" class="text-[11px] font-black uppercase tracking-tighter">15 IMAGES IN SET</span>
+                    <span id="lb-date" class="text-[10px] font-bold text-zinc-500 mb-1 tracking-widest"></span>
+                    <span id="lb-set-total" class="text-[11px] font-black uppercase tracking-tighter"></span>
                 </div>
                 <div class="flex items-center gap-6">
                     <div onclick="copyBotShareLink()" class="flex flex-col items-center gap-1 cursor-pointer group">
-                        <span class="text-xl group-hover:scale-110 transition-transform">🔗</span>
-                        <span class="text-[9px] font-bold tracking-tighter opacity-50">SHARE BOT</span>
+                        <span class="text-xl group-hover:scale-110">🔗</span>
+                        <span class="text-[9px] font-bold tracking-tighter opacity-50">SHARE</span>
                     </div>
                     <div onclick="copyImageDirectLink()" class="flex flex-col items-center gap-1 cursor-pointer group">
-                        <span class="text-xl group-hover:scale-110 transition-transform">🖼️</span>
+                        <span class="text-xl group-hover:scale-110">🖼️</span>
                         <span class="text-[9px] font-bold tracking-tighter opacity-50">COPY LINK</span>
                     </div>
                     <div onclick="downloadCurrentImage()" class="flex flex-col items-center gap-1 cursor-pointer group">
-                        <span class="text-xl group-hover:scale-110 transition-transform">⬇️</span>
+                        <span class="text-xl group-hover:scale-110">⬇️</span>
                         <span class="text-[9px] font-bold tracking-tighter opacity-50">DOWNLOAD</span>
                     </div>
                 </div>
             </div>
-            
-            <p id="lb-desc" class="text-zinc-400 text-sm leading-relaxed mb-6 italic">Description goes here...</p>
-            
-            <div id="lb-thumbs" class="flex gap-2 overflow-x-auto no-scrollbar py-2">
-                <!-- Thumbs injected here -->
-            </div>
+            <p id="lb-desc" class="text-zinc-400 text-sm leading-relaxed mb-6 italic"></p>
+            <div id="lb-thumbs" class="flex gap-2 overflow-x-auto no-scrollbar py-2"></div>
         </div>
     </div>
 
     <!-- Stats Modal -->
-    <div id="modal-stats" class="fixed inset-0 z-[110] bg-black/90 backdrop-blur-md hidden items-center justify-center p-6 opacity-0 transition-opacity duration-300">
-        <div id="modal-stats-content" class="glass w-full max-w-sm rounded-3xl p-8 transform scale-95 transition-transform duration-300">
+    <div id="modal-stats" class="fixed inset-0 z-[110] bg-black/90 backdrop-blur-md hidden items-center justify-center p-6 opacity-0">
+        <div class="glass w-full max-w-sm rounded-3xl p-8">
             <div class="flex items-center justify-between mb-8">
                 <h4 class="playfair italic text-2xl">Arts Statistics</h4>
                 <button onclick="closeModal('stats')" class="text-xl">✕</button>
             </div>
             <div class="grid grid-cols-2 gap-4">
                 <div class="glass p-6 rounded-2xl text-center">
-                    <span class="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-1">Total Works</span>
+                    <span class="block text-[10px] font-bold text-zinc-500 uppercase">Total Works</span>
                     <span id="stat-total" class="text-3xl font-bold">0</span>
                 </div>
                 <div class="glass p-6 rounded-2xl text-center">
-                    <span class="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-1">Total Images</span>
+                    <span class="block text-[10px] font-bold text-zinc-500 uppercase">Total Images</span>
                     <span id="stat-imgs" class="text-3xl font-bold">0</span>
                 </div>
                 <div class="glass p-6 rounded-2xl text-center">
-                    <span class="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-1">Locked</span>
+                    <span class="block text-[10px] font-bold text-zinc-500 uppercase">Locked</span>
                     <span id="stat-locked" class="text-3xl font-bold">0</span>
                 </div>
                 <div class="glass p-6 rounded-2xl text-center">
-                    <span class="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-1">Favorites</span>
+                    <span class="block text-[10px] font-bold text-zinc-500 uppercase">Favorites</span>
                     <span id="stat-favs" class="text-3xl font-bold">0</span>
                 </div>
             </div>
@@ -259,71 +231,63 @@
     </div>
 
     <!-- Settings Modal -->
-    <div id="modal-settings" class="fixed inset-0 z-[110] bg-black/90 backdrop-blur-md hidden items-center justify-center p-6 opacity-0 transition-opacity duration-300">
-        <div id="modal-settings-content" class="glass w-full max-w-sm rounded-3xl p-8 transform scale-95 transition-transform duration-300">
+    <div id="modal-settings" class="fixed inset-0 z-[110] bg-black/90 backdrop-blur-md hidden items-center justify-center p-6 opacity-0">
+        <div class="glass w-full max-w-sm rounded-3xl p-8">
             <div class="flex items-center justify-between mb-8">
-                <h4 class="playfair italic text-2xl">Arts Settings</h4>
+                <h4 class="playfair italic text-2xl">Settings</h4>
                 <button onclick="closeModal('settings')" class="text-xl">✕</button>
             </div>
             <div class="space-y-6">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="font-bold text-sm mb-1">High Quality Images</p>
-                        <p class="text-[10px] text-zinc-500 uppercase font-bold tracking-tighter">Load 4K uncompressed versions</p>
+                        <p class="text-[10px] text-zinc-500">Load 4K versions when available</p>
                     </div>
                     <div id="toggle-hq" onclick="toggleSetting('hq')" class="toggle-switch"></div>
                 </div>
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="font-bold text-sm mb-1">UI Animations</p>
-                        <p class="text-[10px] text-zinc-500 uppercase font-bold tracking-tighter">Smooth transitions and FX</p>
+                        <p class="text-[10px] text-zinc-500">Enable smooth animations</p>
                     </div>
                     <div id="toggle-anim" onclick="toggleSetting('anim')" class="toggle-switch"></div>
                 </div>
-                <button onclick="clearVaultData()" class="w-full py-4 glass border-zinc-800 rounded-2xl text-red-500 text-[10px] font-black uppercase tracking-widest hover:bg-red-500/10 transition-all">
-                    Clear Saved Data & Cache
+                <button onclick="clearVaultData()" class="w-full py-4 glass border border-zinc-700 rounded-2xl text-red-500 text-xs font-black uppercase tracking-widest hover:bg-red-500/10">
+                    Clear All Saved Data
                 </button>
             </div>
         </div>
     </div>
 
     <!-- About Modal -->
-    <div id="modal-about" class="fixed inset-0 z-[110] bg-black/90 backdrop-blur-md hidden items-center justify-center p-6 opacity-0 transition-opacity duration-300">
-        <div id="modal-about-content" class="glass w-full max-w-sm rounded-3xl p-10 text-center transform scale-95 transition-transform duration-300">
+    <div id="modal-about" class="fixed inset-0 z-[110] bg-black/90 backdrop-blur-md hidden items-center justify-center p-6 opacity-0">
+        <div class="glass w-full max-w-sm rounded-3xl p-10 text-center">
             <div class="w-24 h-24 rounded-full mx-auto mb-6 overflow-hidden border-4 border-black">
                 <img src="https://i.imgur.com/rjgEjoV.jpeg" class="w-full h-full object-cover">
             </div>
-            <h4 class="playfair italic text-3xl mb-1">Queendom..</h4>
+            <h4 class="playfair italic text-3xl mb-1">Queendom</h4>
             <p class="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.4em] mb-6">AI Arts Creator</p>
             <p class="text-zinc-400 text-sm leading-relaxed mb-8">
-                Welcome to my personal archive. Every piece here is generated, heavily edited, and curated by me. No censorship, no limits.
-                <br><br>Made With Love💘
+                Welcome to my personal uncensored AI art archive.<br><br>
+                No limits. No censorship. Made with love 💘
             </p>
             <button onclick="closeModal('about')" class="px-8 py-3 bg-white text-black rounded-full font-bold text-xs uppercase tracking-widest">Close</button>
         </div>
-    </div>
-
-    <!-- Context Menu -->
-    <div id="context-menu">
-        <div class="text-[9px] font-black text-zinc-600 px-3 py-2 uppercase tracking-widest">Artwork Options</div>
-        <button onclick="handleCtxSave()" class="w-full text-left px-3 py-2 text-xs font-bold hover:bg-white/10 rounded-lg flex items-center gap-3">💾 Save to Device</button>
-        <button onclick="handleCtxFav()" class="w-full text-left px-3 py-2 text-xs font-bold hover:bg-white/10 rounded-lg flex items-center gap-3">❤️ Add to Favorites</button>
-        <div class="h-px bg-zinc-900 my-1"></div>
-        <button onclick="closeContextMenu()" class="w-full text-left px-3 py-2 text-xs font-bold text-zinc-500 hover:bg-white/10 rounded-lg">✕ Close Menu</button>
     </div>
 
     <!-- Toast Container -->
     <div id="toast-container"></div>
 
     <script>
+        // ================== DATA ==================
         const DB_ARTWORKS = [
-            { id: 1, title: "Mei - My flirty pink-haired neighbor", tags: ["new"], locked: false, cat: "netori", imgs: ["https://i.imgur.com/vb4Yl9z.jpeg","https://i.imgur.com/dk2ZKLx.jpeg"], date: "2026-03-30", desc: "Mei is the hot pink-haired MILF next door who loves teasing me over the fence every evening 😏. Full 4K uncompressed set.", prompt: "pink hair milf, neighbor, explicit lingerie" },
-            { id: 2, title: "Lily - My sweet best friend", tags: ["new"], locked: false, cat: "romance", imgs: ["https://i.imgur.com/ApGGlML.jpeg","https://i.imgur.com/isG3Hft.jpeg"], date: "2026-03-21", desc: "Lily's been my friend forever but lately things have been getting way more flirty... and she finally stayed over.", prompt: "cute brunette, soft lighting, bedroom" },
-            { id: 3, title: "Lisa - Gym Bully Humiliation", tags: ["new"], locked: false, cat: "bully", imgs: ["https://i.imgur.com/JYnqkMP.jpeg","https://i.imgur.com/dqvxFfX.jpeg"], date: "2026-02-17", desc: "Lisa is this shredded gym brat who loves reminding me how weak I am... in the hottest way possible.", prompt: "gym bully, muscular girl, teasing, sweaty" },
-            { id: 4, title: "Lena - Ice Cold CEO", tags: ["new"], locked: false, cat: "brat", imgs: ["https://i.imgur.com/mGRpvbD.jpeg"], date: "2026-01-15", desc: "Lena is the ice-cold CEO who acts like she hates me... but we both know what happens after hours.", prompt: "ceo boss, cold beauty, office tease" },
-            { id: 5, title: "Roommate's Shy Girlfriend", tags: ["classic"], locked: false, cat: "netori", imgs: ["https://i.imgur.com/Iwt4knx.jpeg"], date: "2025-06-08", desc: "Yae is my roommate's shy girlfriend... but she's been looking at me a lot lately when he's not around.", prompt: "shy girlfriend, netori theme" },
-            { id: 6, title: "Late Night Knock - Milena", tags: ["classic"], locked: false, cat: "netori", imgs: ["https://i.imgur.com/rjgEjoV.jpeg"], date: "2025-10-30", desc: "It was 2am when Milena knocked on my door... wearing almost nothing. She said her husband was asleep.", prompt: "milf at door, late night" },
-            { id: 11, title: "Lorie - You're so cute, Mister", tags: ["upcoming"], locked: false, cat: "romance", imgs: ["https://cdn.juicychat.ai/user/prod/character/20260410/1925952967652044801/f_2c5c795c506e4344adea43e8dc1c3fcd.gif","https://i.imgur.com/hs3p3fe.jpeg","https://i.imgur.com/Iu1i271.jpeg","https://i.imgur.com/df4yPtu.jpeg","https://i.imgur.com/QlzWARE.jpeg","https://i.imgur.com/u2sZ7jW.jpeg","https://i.imgur.com/oCR6gqi.jpeg","https://i.imgur.com/HBsfj6G.jpeg","https://i.imgur.com/MzbLREZ.jpeg","https://i.imgur.com/bq6pZgf.jpeg","https://i.imgur.com/RPMcxGc.jpeg","https://i.imgur.com/gKcyO3m.jpeg","https://i.imgur.com/c8rJgf9.jpeg","https://i.imgur.com/c5uVUYT.jpeg","https://i.imgur.com/MXD484w.jpeg"], date: "2026-05-12", desc: "{{user}}'s son has a crush on Lorie and Lorie is your friend's daughter that's why you and Lorie are so close.", prompt: "project sekai,best quality, ultra detailed, 4k, soft, (blurred outlines), flat colors, cel shading, (soft style), sketch style, (watercolor effect) , masterpiece, moe, kawaii, cute, (dynamic light) ,Hoshino ichika,Black hair,kimono,Hairstyles can be changed freely., adult, msture, huge breasts" }
+            { id: 1, title: "Mei - My flirty pink-haired neighbor", tags: ["new"], locked: false, cat: "netori", imgs: ["https://i.imgur.com/vb4Yl9z.jpeg","https://i.imgur.com/dk2ZKLx.jpeg"], date: "2026-03-30", desc: "Mei is the hot pink-haired MILF next door who loves teasing me over the fence every evening 😏. Full 4K uncompressed set." },
+            { id: 2, title: "Lily - My sweet best friend", tags: ["new"], locked: false, cat: "romance", imgs: ["https://i.imgur.com/ApGGlML.jpeg","https://i.imgur.com/isG3Hft.jpeg"], date: "2026-03-21", desc: "Lily's been my friend forever but lately things have been getting way more flirty... and she finally stayed over." },
+            { id: 3, title: "Lisa - Gym Bully Humiliation", tags: ["new"], locked: false, cat: "bully", imgs: ["https://i.imgur.com/JYnqkMP.jpeg","https://i.imgur.com/dqvxFfX.jpeg"], date: "2026-02-17", desc: "Lisa is this shredded gym brat who loves reminding me how weak I am... in the hottest way possible." },
+            { id: 4, title: "Lena - Ice Cold CEO", tags: ["new"], locked: false, cat: "brat", imgs: ["https://i.imgur.com/mGRpvbD.jpeg"], date: "2026-01-15", desc: "Lena is the ice-cold CEO who acts like she hates me... but we both know what happens after hours." },
+            { id: 5, title: "Roommate's Shy Girlfriend", tags: ["classic"], locked: false, cat: "netori", imgs: ["https://i.imgur.com/Iwt4knx.jpeg"], date: "2025-06-08", desc: "Yae is my roommate's shy girlfriend... but she's been looking at me a lot lately when he's not around." },
+            { id: 6, title: "Late Night Knock - Milena", tags: ["classic"], locked: false, cat: "netori", imgs: ["https://i.imgur.com/rjgEjoV.jpeg"], date: "2025-10-30", desc: "It was 2am when Milena knocked on my door... wearing almost nothing." },
+            { id: 11, title: "Lorie - You're so cute, Mister", tags: ["upcoming"], locked: false, cat: "romance", imgs: ["https://cdn.juicychat.ai/user/prod/character/20260410/1925952967652044801/f_2c5c795c506e4344adea43e8dc1c3fcd.gif","https://i.imgur.com/hs3p3fe.jpeg","https://i.imgur.com/Iu1i271.jpeg","https://i.imgur.com/df4yPtu.jpeg","https://i.imgur.com/QlzWARE.jpeg","https://i.imgur.com/u2sZ7jW.jpeg","https://i.imgur.com/oCR6gqi.jpeg","https://i.imgur.com/HBsfj6G.jpeg","https://i.imgur.com/MzbLREZ.jpeg","https://i.imgur.com/bq6pZgf.jpeg","https://i.imgur.com/RPMcxGc.jpeg","https://i.imgur.com/gKcyO3m.jpeg","https://i.imgur.com/c8rJgf9.jpeg","https://i.imgur.com/c5uVUYT.jpeg","https://i.imgur.com/MXD484w.jpeg"], date: "2026-05-12", desc: "Lorie is your friend's daughter. Your son has a crush on her." }
         ];
 
         const CATEGORIES = [
@@ -335,102 +299,86 @@
             { id: "yandere", name: "Yandere" }
         ];
 
-        const STATE = {
+        // ================== STATE ==================
+        let STATE = {
             filter: 'all',
             category: 'all',
             search: '',
             sort: 'newest',
             favorites: JSON.parse(localStorage.getItem('vault_favs')) || [],
-            settings: JSON.parse(localStorage.getItem('vault_settings')) || { blur: true, hq: true, anim: true },
+            settings: JSON.parse(localStorage.getItem('vault_settings')) || { hq: true, anim: true },
             currentArt: null,
             imgIndex: 0,
-            touchStartX: 0
+            touchStartX: 0,
+            hearts: {}
         };
 
+        const API_BASE = "/.netlify/functions/hearts";
+
+        // ================== HEARTS ==================
+        async function loadHearts() {
+            try {
+                const res = await fetch(API_BASE);
+                if (res.ok) STATE.hearts = await res.json();
+            } catch (e) { console.log("Offline - hearts not loaded"); }
+            renderGrid();
+        }
+
+        async function sendHeart(id) {
+            try {
+                const res = await fetch(API_BASE, {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({ id: String(id) })
+                });
+                if (res.ok) {
+                    STATE.hearts = await res.json();
+                    renderGrid();
+                    showToast("❤️ Heart added!", "success");
+                }
+            } catch (e) {
+                showToast("Couldn't send heart right now", "error");
+            }
+        }
+
+        // ================== UTILITY ==================
         function saveState() {
             localStorage.setItem('vault_favs', JSON.stringify(STATE.favorites));
             localStorage.setItem('vault_settings', JSON.stringify(STATE.settings));
         }
 
-        window.onload = () => {
-            initSettingsUI();
-            renderCategories();
-            setupEventListeners();
-            applyFilter('all');
-            updateStatsCounters();
-
-            // Faster Preloader
-            let progress = 0;
-            const bar = document.getElementById('load-bar');
-            const text = document.getElementById('load-text');
-            const intv = setInterval(() => {
-                progress += Math.random() * 30; 
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(intv);
-                    text.innerText = "ACCESS GRANTED";
-                    setTimeout(() => {
-                        document.getElementById('preloader').style.opacity = '0';
-                        setTimeout(() => {
-                            document.getElementById('preloader').remove();
-                            checkDeepLink(); // Check if URL has ?art=ID
-                        }, 500);
-                    }, 200);
-                }
-                bar.style.width = `${progress}%`;
-            }, 40);
-        };
-
-        function checkDeepLink() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const artId = urlParams.get('art');
-            if (artId) {
-                const art = DB_ARTWORKS.find(a => a.id == artId);
-                if (art) {
-                    openLightbox(art.id);
-                    showToast(`Direct Link: ${art.title}`, "info");
-                }
-            }
+        function showToast(msg, type = "info") {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'vault-toast';
+            const icon = type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️';
+            toast.innerHTML = `<span>${icon}</span><span>${msg}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 2800);
         }
 
-        function setupEventListeners() {
-            const searchInput = document.getElementById('search-input');
-            const clearBtn = document.getElementById('clear-search');
+        // ================== FILTER & RENDER ==================
+        function getFilteredData() {
+            let res = [...DB_ARTWORKS];
 
-            searchInput.addEventListener('input', (e) => {
-                STATE.search = e.target.value.toLowerCase();
-                clearBtn.style.display = STATE.search.length > 0 ? 'block' : 'none';
-                renderGrid();
-            });
+            if (STATE.filter === 'new') res = res.filter(a => a.tags.includes('new'));
+            if (STATE.filter === 'upcoming') res = res.filter(a => a.locked);
+            if (STATE.filter === 'all') res = res.filter(a => !a.locked);
+            if (STATE.filter === 'favs') res = res.filter(a => STATE.favorites.includes(a.id));
 
-            clearBtn.addEventListener('click', () => {
-                searchInput.value = '';
-                STATE.search = '';
-                clearBtn.style.display = 'none';
-                renderGrid();
-            });
+            if (STATE.category !== 'all') res = res.filter(a => a.cat === STATE.category);
 
-            document.addEventListener('contextmenu', (e) => {
-                if(e.target.tagName === 'IMG' || e.target.closest('.art-card')) {
-                    e.preventDefault();
-                    showContextMenu(e.clientX, e.clientY);
-                }
-            });
+            if (STATE.search) {
+                const term = STATE.search.toLowerCase();
+                res = res.filter(a => a.title.toLowerCase().includes(term) || a.desc.toLowerCase().includes(term));
+            }
 
-            document.addEventListener('click', closeContextMenu);
+            if (STATE.sort === 'newest') res.sort((a,b) => new Date(b.date) - new Date(a.date));
+            if (STATE.sort === 'oldest') res.sort((a,b) => new Date(a.date) - new Date(b.date));
+            if (STATE.sort === 'az') res.sort((a,b) => a.title.localeCompare(b.title));
+            if (STATE.sort === 'random') res.sort(() => Math.random() - 0.5);
 
-            const touchArea = document.getElementById('lb-touch-area');
-            touchArea.addEventListener('touchstart', e => STATE.touchStartX = e.changedTouches[0].screenX);
-            touchArea.addEventListener('touchend', e => {
-                const diff = STATE.touchStartX - e.changedTouches[0].screenX;
-                if (Math.abs(diff) > 50) navImage(diff > 0 ? 1 : -1);
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closeAllModals();
-                if (e.key === 'ArrowRight') navImage(1);
-                if (e.key === 'ArrowLeft') navImage(-1);
-            });
+            return res;
         }
 
         function renderCategories() {
@@ -451,10 +399,8 @@
 
         function applyFilter(type) {
             STATE.filter = type;
-            ['all', 'new', 'upcoming'].forEach(t => document.getElementById(`tab-${t}`).classList.remove('active'));
-            document.getElementById('btn-fav-filter').classList.remove('active');
-            
-            if(type === 'favs') document.getElementById('btn-fav-filter').classList.add('active');
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (type === 'favs') document.getElementById('btn-fav-filter').classList.add('active');
             else document.getElementById(`tab-${type}`).classList.add('active');
             renderGrid();
         }
@@ -466,23 +412,6 @@
         function applySort() {
             STATE.sort = document.getElementById('sort-select').value;
             renderGrid();
-        }
-
-        function getFilteredData() {
-            let res = [...DB_ARTWORKS];
-            if (STATE.filter === 'new') res = res.filter(a => a.tags.includes('new'));
-            if (STATE.filter === 'upcoming') res = res.filter(a => a.locked);
-            if (STATE.filter === 'all') res = res.filter(a => !a.locked);
-            if (STATE.filter === 'favs') res = res.filter(a => STATE.favorites.includes(a.id));
-            if (STATE.category !== 'all') res = res.filter(a => a.cat === STATE.category);
-            if (STATE.search) {
-                res = res.filter(a => a.title.toLowerCase().includes(STATE.search) || a.desc.toLowerCase().includes(STATE.search));
-            }
-            if (STATE.sort === 'newest') res.sort((a,b) => new Date(b.date) - new Date(a.date));
-            if (STATE.sort === 'oldest') res.sort((a,b) => new Date(a.date) - new Date(b.date));
-            if (STATE.sort === 'az') res.sort((a,b) => a.title.localeCompare(b.title));
-            if (STATE.sort === 'random') res.sort(() => Math.random() - 0.5);
-            return res;
         }
 
         function renderGrid() {
@@ -498,18 +427,27 @@
 
             grid.style.display = 'grid';
             empty.style.display = 'none';
-            grid.innerHTML = data.map((art, index) => {
+
+            grid.innerHTML = data.map((art, i) => {
                 const isFav = STATE.favorites.includes(art.id);
-                const delay = STATE.settings.anim ? `style="animation-delay: ${index * 0.05}s"` : '';
+                const heartCount = STATE.hearts[art.id] || 0;
+                const delay = STATE.settings.anim ? `style="animation-delay: ${i * 0.05}s"` : '';
+
                 return `
-                    <div onclick="openLightbox(${art.id})" class="art-card animate-pop-in" ${delay}>
-                        <img src="${art.imgs[0]}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110 ${art.locked && STATE.settings.blur ? 'locked-blur' : ''}">
+                    <div onclick="openLightbox(${art.id})" class="art-card animate-pop-in relative" ${delay}>
+                        <img src="${art.imgs[0]}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110 ${art.locked ? 'locked-blur' : ''}">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        
+                        <div onclick="event.stopImmediatePropagation(); sendHeart(${art.id});" 
+                             class="absolute top-3 right-3 bg-black/70 hover:bg-black/90 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 cursor-pointer active:scale-90">
+                            ❤️ <span>${heartCount}</span>
+                        </div>
+
                         <div class="absolute bottom-0 left-0 right-0 p-3">
                             <h4 class="text-xs font-bold leading-tight truncate mb-1">${art.title}</h4>
                             <div class="flex items-center justify-between">
                                 <span class="text-[8px] font-black uppercase tracking-widest text-zinc-400">${art.date}</span>
-                                <span>${isFav ? '❤️' : ''}</span>
+                                ${isFav ? '<span>❤️</span>' : ''}
                             </div>
                         </div>
                         ${art.locked ? '<div class="absolute inset-0 flex items-center justify-center text-2xl">🔒</div>' : ''}
@@ -518,36 +456,28 @@
             }).join('');
         }
 
+        // ================== LIGHTBOX ==================
         function openLightbox(id) {
             STATE.currentArt = DB_ARTWORKS.find(a => a.id === id);
             STATE.imgIndex = 0;
-            
-            // Dynamic URL Update
+
             const newUrl = `${window.location.origin}${window.location.pathname}?art=${id}`;
-            window.history.pushState({ path: newUrl }, '', newUrl);
+            window.history.pushState({}, '', newUrl);
 
             const art = STATE.currentArt;
             document.getElementById('lb-title').innerText = art.title;
             document.getElementById('lb-date').innerText = art.date;
-            document.getElementById('lb-cat').innerText = art.cat;
+            document.getElementById('lb-cat').innerText = art.cat.toUpperCase();
             document.getElementById('lb-desc').innerText = art.desc;
-            document.getElementById('lb-set-total').innerText = art.imgs.length + " IMAGES IN SET";
+            document.getElementById('lb-set-total').innerText = `${art.imgs.length} IMAGES IN SET`;
+
             updateLightboxFavUI();
 
-            const lockOverlay = document.getElementById('lb-locked-ui');
-            if(art.locked && STATE.settings.blur) {
-                lockOverlay.classList.remove('hidden');
-                lockOverlay.classList.add('flex');
-            } else {
-                lockOverlay.classList.add('hidden');
-                lockOverlay.classList.remove('flex');
-            }
-
             const modal = document.getElementById('modal-lightbox');
-            modal.classList.remove('hidden');
+            modal.classList.remove('hidden', 'opacity-0');
             modal.classList.add('flex');
-            setTimeout(() => modal.classList.remove('opacity-0'), 10);
             document.body.style.overflow = 'hidden';
+
             loadLightboxImage();
         }
 
@@ -555,7 +485,7 @@
             const art = STATE.currentArt;
             const imgEl = document.getElementById('lb-image');
             const spinner = document.getElementById('lb-spinner');
-            
+
             imgEl.style.opacity = '0';
             spinner.style.display = 'flex';
 
@@ -575,7 +505,8 @@
             const art = STATE.currentArt;
             const container = document.getElementById('lb-thumbs');
             container.innerHTML = art.imgs.map((src, i) => `
-                <div onclick="setLightboxImage(${i})" class="w-16 h-20 rounded-lg overflow-hidden flex-shrink-0 cursor-pointer border-2 ${STATE.imgIndex === i ? 'border-white' : 'border-transparent'}">
+                <div onclick="setLightboxImage(${i}); event.stopImmediatePropagation()" 
+                     class="w-16 h-20 rounded-lg overflow-hidden flex-shrink-0 cursor-pointer border-2 ${STATE.imgIndex === i ? 'border-white' : 'border-transparent'}">
                     <img src="${src}" class="w-full h-full object-cover">
                 </div>
             `).join('');
@@ -592,59 +523,13 @@
             loadLightboxImage();
         }
 
-        function closeModal(type) {
-            const modal = document.getElementById(`modal-${type}`);
-            modal.classList.add('opacity-0');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-                document.body.style.overflow = '';
-                if(type === 'lightbox') {
-                    STATE.currentArt = null;
-                    // Reset URL
-                    window.history.pushState({}, '', window.location.pathname);
-                }
-            }, 300);
+        function updateLightboxFavUI() {
+            const btn = document.getElementById('lb-fav-btn');
+            btn.innerText = STATE.favorites.includes(STATE.currentArt.id) ? '❤️' : '🤍';
         }
 
-        function copyBotShareLink() {
-            if (!STATE.currentArt) return;
-            const shareLink = `${window.location.origin}${window.location.pathname}?art=${STATE.currentArt.id}`;
-            navigator.clipboard.writeText(shareLink).then(() => {
-                showToast("✅ Share Link Copied to Clipboard!", "success");
-            });
-        }
-
-        function copyImageDirectLink() {
-            if (!STATE.currentArt) return;
-            const imgUrl = STATE.currentArt.imgs[STATE.imgIndex];
-            navigator.clipboard.writeText(imgUrl).then(() => {
-                showToast("📸 Direct Image Link Copied!", "success");
-            });
-        }
-
-        function downloadCurrentImage() {
-            if (!STATE.currentArt) return;
-            const link = document.createElement('a');
-            link.href = STATE.currentArt.imgs[STATE.imgIndex];
-            link.download = `Queendom_Art_${STATE.currentArt.id}_${STATE.imgIndex + 1}.jpg`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            showToast("⬇️ Starting Download...", "success");
-        }
-
-        function showToast(msg, type = 'info') {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = 'vault-toast';
-            const icon = type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️';
-            toast.innerHTML = `<span>${icon}</span> <span>${msg}</span>`;
-            container.appendChild(toast);
-            setTimeout(() => {
-                toast.classList.add('toast-exiting');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
+        function toggleCurrentFav() {
+            if (STATE.currentArt) toggleFav(STATE.currentArt.id);
         }
 
         function toggleFav(id) {
@@ -660,17 +545,50 @@
             renderGrid();
         }
 
-        function toggleCurrentFav() {
-            if (STATE.currentArt) {
-                toggleFav(STATE.currentArt.id);
-                updateLightboxFavUI();
-            }
+        // ================== MODALS ==================
+        function openModal(type) {
+            const modal = document.getElementById(`modal-${type}`);
+            modal.classList.remove('hidden', 'opacity-0');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
         }
 
-        function updateLightboxFavUI() {
-            const btn = document.getElementById('lb-fav-btn');
-            const isFav = STATE.favorites.includes(STATE.currentArt.id);
-            btn.innerText = isFav ? '❤️' : '🤍';
+        function closeModal(type) {
+            const modal = document.getElementById(`modal-${type}`);
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+                if (type === 'lightbox') {
+                    STATE.currentArt = null;
+                    window.history.pushState({}, '', window.location.pathname);
+                }
+            }, 300);
+        }
+
+        // ================== OTHER FUNCTIONS ==================
+        function copyBotShareLink() {
+            if (!STATE.currentArt) return;
+            const link = `${window.location.origin}${window.location.pathname}?art=${STATE.currentArt.id}`;
+            navigator.clipboard.writeText(link).then(() => showToast("Share link copied!", "success"));
+        }
+
+        function copyImageDirectLink() {
+            if (!STATE.currentArt) return;
+            const link = STATE.currentArt.imgs[STATE.imgIndex];
+            navigator.clipboard.writeText(link).then(() => showToast("Image link copied!", "success"));
+        }
+
+        function downloadCurrentImage() {
+            if (!STATE.currentArt) return;
+            const link = document.createElement('a');
+            link.href = STATE.currentArt.imgs[STATE.imgIndex];
+            link.download = `Queendom_${STATE.currentArt.id}_${STATE.imgIndex + 1}.jpg`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast("Download started...", "success");
         }
 
         function updateStatsCounters() {
@@ -678,9 +596,9 @@
             document.getElementById('count-new').innerText = DB_ARTWORKS.filter(a => a.tags.includes('new')).length;
             document.getElementById('count-favs').innerText = STATE.favorites.length;
             document.getElementById('hdr-stats-count').innerText = DB_ARTWORKS.length;
-            
+
             document.getElementById('stat-total').innerText = DB_ARTWORKS.length;
-            document.getElementById('stat-imgs').innerText = DB_ARTWORKS.reduce((s, a) => s + a.imgs.length, 0);
+            document.getElementById('stat-imgs').innerText = DB_ARTWORKS.reduce((sum, a) => sum + a.imgs.length, 0);
             document.getElementById('stat-locked').innerText = DB_ARTWORKS.filter(a => a.locked).length;
             document.getElementById('stat-favs').innerText = STATE.favorites.length;
         }
@@ -689,7 +607,7 @@
             STATE.settings[key] = !STATE.settings[key];
             document.getElementById(`toggle-${key}`).className = `toggle-switch ${STATE.settings[key] ? 'on' : ''}`;
             saveState();
-            showToast(`${key.toUpperCase()} Updated`, "info");
+            showToast(`${key.toUpperCase()} setting updated`, "info");
             renderGrid();
         }
 
@@ -698,30 +616,92 @@
             document.getElementById('toggle-anim').className = `toggle-switch ${STATE.settings.anim ? 'on' : ''}`;
         }
 
-        function openModal(type) {
-            const modal = document.getElementById(`modal-${type}`);
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            setTimeout(() => modal.classList.remove('opacity-0'), 10);
-            document.body.style.overflow = 'hidden';
+        function clearVaultData() {
+            if (confirm("Clear all favorites and settings?")) {
+                localStorage.clear();
+                location.reload();
+            }
         }
 
-        function showContextMenu(x, y) {
-            const menu = document.getElementById('context-menu');
-            menu.style.left = `${x}px`;
-            menu.style.top = `${y}px`;
-            menu.classList.add('show');
+        function checkDeepLink() {
+            const params = new URLSearchParams(window.location.search);
+            const artId = params.get('art');
+            if (artId) {
+                const art = DB_ARTWORKS.find(a => a.id == artId);
+                if (art) openLightbox(art.id);
+            }
         }
 
-        function closeContextMenu() { document.getElementById('context-menu').classList.remove('show'); }
-        function handleCtxSave() { downloadCurrentImage(); closeContextMenu(); }
-        function handleCtxFav() { toggleCurrentFav(); closeContextMenu(); }
+        function setupEventListeners() {
+            const searchInput = document.getElementById('search-input');
+            const clearBtn = document.getElementById('clear-search');
+
+            searchInput.addEventListener('input', (e) => {
+                STATE.search = e.target.value.toLowerCase();
+                clearBtn.style.display = STATE.search.length > 0 ? 'block' : 'none';
+                renderGrid();
+            });
+
+            clearBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                STATE.search = '';
+                clearBtn.style.display = 'none';
+                renderGrid();
+            });
+
+            // Touch swipe in lightbox
+            const touchArea = document.getElementById('lb-touch-area');
+            touchArea.addEventListener('touchstart', e => STATE.touchStartX = e.changedTouches[0].screenX);
+            touchArea.addEventListener('touchend', e => {
+                const diff = STATE.touchStartX - e.changedTouches[0].screenX;
+                if (Math.abs(diff) > 50) navImage(diff > 0 ? 1 : -1);
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal('lightbox');
+                if (e.key === 'ArrowRight') navImage(1);
+                if (e.key === 'ArrowLeft') navImage(-1);
+            });
+        }
+
         function resetFilters() {
             document.getElementById('search-input').value = '';
             STATE.search = '';
-            setCategory('all');
+            STATE.category = 'all';
+            renderCategories();
             applyFilter('all');
         }
+
+        // ================== INIT ==================
+        window.onload = () => {
+            initSettingsUI();
+            renderCategories();
+            setupEventListeners();
+            applyFilter('all');
+            updateStatsCounters();
+            loadHearts();
+
+            // Preloader
+            let progress = 0;
+            const bar = document.getElementById('load-bar');
+            const text = document.getElementById('load-text');
+            const intv = setInterval(() => {
+                progress += Math.random() * 40;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(intv);
+                    text.innerText = "ACCESS GRANTED";
+                    setTimeout(() => {
+                        document.getElementById('preloader').style.opacity = '0';
+                        setTimeout(() => {
+                            document.getElementById('preloader').remove();
+                            checkDeepLink();
+                        }, 500);
+                    }, 300);
+                }
+                bar.style.width = `${progress}%`;
+            }, 60);
+        };
     </script>
 </body>
 </html>
